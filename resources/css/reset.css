@@ -1,0 +1,15 @@
+html {
+  line-height: 1.15;
+}
+
+input,
+select,
+textarea,
+button,
+div,
+a {
+  &:focus,
+  &:active {
+    outline: none;
+  }
+}
