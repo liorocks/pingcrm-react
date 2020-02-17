@@ -7,7 +7,7 @@ export default ({ onRestore, children }) => {
       <div className="flex items-center">
         <Icon
           name="trash"
-          className="flex-shrink-0 w-4 h-4 fill-yellow-800 mr-2"
+          className="flex-shrink-0 w-4 h-4 fill-current text-yellow-800 mr-2"
         />
         <div className="text-yellow-800">{children}</div>
       </div>
