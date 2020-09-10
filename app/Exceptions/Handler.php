@@ -2,7 +2,7 @@
 
 namespace App\Exceptions;
 
-use Exception;
+Use Throwable;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\App;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
@@ -34,7 +34,7 @@ class Handler extends ExceptionHandler
      * @param  \Exception  $exception
      * @return void
      */
-    public function report(Exception $exception)
+    public function report(Throwable $exception)
     {
 
         if (app()->bound('sentry') && $this->shouldReport($exception)) {
@@ -51,7 +51,7 @@ class Handler extends ExceptionHandler
      * @param  \Exception  $exception
      * @return \Illuminate\Http\Response
      */
-    public function render($request, Exception $exception)
+    public function render($request, Throwable $exception)
     {
         $response = parent::render($request, $exception);
 
