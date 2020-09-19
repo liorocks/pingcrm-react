@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
     {
         $account = Account::create(['name' => 'Acme Corporation']);
 
-        User::factory()->make([
+        User::factory()->create([
             'account_id' => $account->id,
             'first_name' => 'John',
             'last_name' => 'Doe',
@@ -22,15 +22,15 @@ class DatabaseSeeder extends Seeder
             'owner' => true,
         ]);
 
-        User::factory()->count(5)->make([
+        User::factory()->count(5)->create([
             'account_id' => $account->id
         ]);
 
-        $organizations = Organization::factory()->count(100)->make([
+        $organizations = Organization::factory()->count(100)->create([
             'account_id' => $account->id
         ]);
 
-        Contact::factory()->count(100)->make([
+        Contact::factory()->count(100)->create([
             'account_id' => $account->id
         ])
             ->each(function (Contact  $contact) use ($organizations) {
