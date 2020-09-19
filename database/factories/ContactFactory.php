@@ -2,9 +2,8 @@
 
 namespace Database\Factories;
 
-use App\Model;
+use App\Contact;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 
 class ContactFactory extends Factory
 {
@@ -13,7 +12,7 @@ class ContactFactory extends Factory
      *
      * @var string
      */
-    protected $model = Model::class;
+    protected $model = Contact::class;
 
     /**
      * Define the model's default state.

@@ -2,9 +2,8 @@
 
 namespace Database\Factories;
 
-use App\Model;
+use App\Organization;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 
 class OrganizationFactory extends Factory
 {
@@ -13,7 +12,7 @@ class OrganizationFactory extends Factory
      *
      * @var string
      */
-    protected $model = Model::class;
+    protected $model = Organization::class;
 
     /**
      * Define the model's default state.
