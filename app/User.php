@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use League\Glide\Server;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\URL;
@@ -14,7 +15,7 @@ use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 
 class User extends Model implements AuthenticatableContract, AuthorizableContract
 {
-    use SoftDeletes, Authenticatable, Authorizable;
+    use SoftDeletes, Authenticatable, Authorizable, HasFactory;
 
     protected $casts = [
         'owner' => 'boolean',
