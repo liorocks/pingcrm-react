@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\User;
-use App\Account;
-use App\Contact;
-use App\Organization;
+use App\Models\User;
+use App\Models\Account;
+use App\Models\Contact;
+use App\Models\Organization;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder

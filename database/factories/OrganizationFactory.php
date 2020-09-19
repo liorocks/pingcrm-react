@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Organization;
+use App\Models\Organization;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class OrganizationFactory extends Factory
