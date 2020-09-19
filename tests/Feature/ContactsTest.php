@@ -2,11 +2,10 @@
 
 namespace Tests\Feature;
 
-use App\User;
-use App\Account;
-use App\Contact;
+use App\Models\User;
+use App\Models\Account;
+use App\Models\Contact;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ContactsTest extends TestCase
@@ -19,7 +18,7 @@ class ContactsTest extends TestCase
 
         $account = Account::create(['name' => 'Acme Corporation']);
 
-        $this->user = factory(User::class)->create([
+        $this->user = User::factory()->make([
             'account_id' => $account->id,
             'first_name' => 'John',
             'last_name' => 'Doe',
@@ -31,7 +30,7 @@ class ContactsTest extends TestCase
     public function test_can_view_contacts()
     {
         $this->user->account->contacts()->saveMany(
-            factory(Contact::class, 5)->make()
+            Contact::factory()->count(5)->make()
         );
 
         $this->actingAs($this->user)
@@ -40,7 +39,7 @@ class ContactsTest extends TestCase
             ->assertPropCount('contacts.data', 5)
             ->assertPropValue('contacts.data', function ($contacts) {
                 $this->assertEquals(
-                    ['id', 'name', 'phone', 'city', 
+                    ['id', 'name', 'phone', 'city',
                     'deleted_at', 'organization'],
                     array_keys($contacts[0])
                 );
@@ -50,7 +49,7 @@ class ContactsTest extends TestCase
     public function test_can_search_for_contacts()
     {
         $this->user->account->contacts()->saveMany(
-            factory(contact::class, 5)->make()
+            Contact::factory()->count(5)->make()
         )->first()->update([
             'first_name' => 'Greg',
             'last_name' => 'Andersson'
@@ -69,7 +68,7 @@ class ContactsTest extends TestCase
     public function test_cannot_view_deleted_contacts()
     {
         $this->user->account->contacts()->saveMany(
-            factory(contact::class, 5)->make()
+            Contact::factory()->count(5)->make()
         )->first()->delete();
 
         $this->actingAs($this->user)
@@ -81,7 +80,7 @@ class ContactsTest extends TestCase
     public function test_can_filter_to_view_deleted_contacts()
     {
         $this->user->account->contacts()->saveMany(
-            factory(contact::class, 5)->make()
+            Contact::factory()->count(5)->make()
         )->first()->delete();
 
         $this->actingAs($this->user)
