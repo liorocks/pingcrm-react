@@ -12,7 +12,7 @@ class DatabaseSeeder extends Seeder
     {
         $account = Account::create(['name' => 'Acme Corporation']);
 
-        factory(User::class)->create([
+        User::factory()->make([
             'account_id' => $account->id,
             'first_name' => 'John',
             'last_name' => 'Doe',
@@ -20,14 +20,18 @@ class DatabaseSeeder extends Seeder
             'owner' => true,
         ]);
 
-        factory(User::class, 5)->create(['account_id' => $account->id]);
+        User::factory()->count(5)->make([
+            'account_id' => $account->id
+        ]);
 
-        $organizations = factory(Organization::class, 100)
-            ->create(['account_id' => $account->id]);
+        $organizations = Organization::factory()->count(100)->make([
+            'account_id' => $account->id
+        ]);
 
-        factory(Contact::class, 100)
-            ->create(['account_id' => $account->id])
-            ->each(function ($contact) use ($organizations) {
+        Contact::factory()->count(100)->make([
+            'account_id' => $account->id
+        ])
+            ->each(function (Contact  $contact) use ($organizations) {
                 $contact->update(['organization_id' => $organizations->random()->id]);
             });
     }
