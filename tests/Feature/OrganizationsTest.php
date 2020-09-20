@@ -2,10 +2,10 @@
 
 namespace Tests\Feature;
 
-use App\User;
-use App\Account;
+use App\Models\User;
+use App\Models\Account;
 use Tests\TestCase;
-use App\Organization;
+use App\Models\Organization;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class OrganizationsTest extends TestCase
@@ -18,7 +18,7 @@ class OrganizationsTest extends TestCase
 
         $account = Account::create(['name' => 'Acme Corporation']);
 
-        $this->user = factory(User::class)->create([
+        $this->user = User::factory()->make([
             'account_id' => $account->id,
             'first_name' => 'John',
             'last_name' => 'Doe',
@@ -30,7 +30,7 @@ class OrganizationsTest extends TestCase
     public function test_can_view_organizations()
     {
         $this->user->account->organizations()->saveMany(
-            factory(Organization::class, 5)->make()
+            Organization::factory()->count(5)->make()
         );
 
         $this->actingAs($this->user)
@@ -48,7 +48,7 @@ class OrganizationsTest extends TestCase
     public function test_can_search_for_organizations()
     {
         $this->user->account->organizations()->saveMany(
-            factory(Organization::class, 5)->make()
+            Organization::factory()->count(5)->make()
         )->first()->update(['name' => 'Some Big Fancy Company Name']);
 
         $this->actingAs($this->user)
@@ -64,7 +64,7 @@ class OrganizationsTest extends TestCase
     public function test_cannot_view_deleted_organizations()
     {
         $this->user->account->organizations()->saveMany(
-            factory(Organization::class, 5)->make()
+            Organization::factory()->count(5)->make()
         )->first()->delete();
 
         $this->actingAs($this->user)
@@ -76,7 +76,7 @@ class OrganizationsTest extends TestCase
     public function test_can_filter_to_view_deleted_organizations()
     {
         $this->user->account->organizations()->saveMany(
-            factory(Organization::class, 5)->make()
+            Organization::factory()->count(5)->make()
         )->first()->delete();
 
         $this->actingAs($this->user)

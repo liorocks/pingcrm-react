@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Contact;
+use App\Models\Contact;
 use Inertia\Inertia;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
