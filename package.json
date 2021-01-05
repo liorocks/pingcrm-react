@@ -15,7 +15,7 @@
     "@inertiajs/inertia": "^0.1.7",
     "@inertiajs/inertia-react": "^0.1.4",
     "@sentry/browser": "^5.10.2",
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "classnames": "^2.2.6",
     "cross-env": "^6.0.3",
     "eslint": "^6.8.0",
