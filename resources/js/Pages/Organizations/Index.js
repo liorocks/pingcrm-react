@@ -8,7 +8,10 @@ import Pagination from '@/Shared/Pagination';
 
 const Organizations = () => {
   const { organizations } = usePage().props;
-  const { links, data } = organizations;
+  const {
+    data,
+    meta: { links }
+  } = organizations;
   return (
     <div>
       <Helmet title="Organizations" />

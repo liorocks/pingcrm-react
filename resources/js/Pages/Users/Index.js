@@ -8,7 +8,10 @@ import Pagination from '@/Shared/Pagination';
 
 export default () => {
   const { users } = usePage().props;
-  const { data, links } = users;
+  const {
+    data,
+    meta: { links }
+  } = users;
   return (
     <Layout>
       <div>

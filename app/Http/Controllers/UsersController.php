@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\UserResource;
 use App\Models\User;
 use Inertia\Inertia;
 use Illuminate\Validation\Rule;
@@ -17,20 +18,13 @@ class UsersController extends Controller
     {
         return Inertia::render('Users/Index', [
             'filters' => Request::all('search', 'role', 'trashed'),
-            'users' => Auth::user()->account->users()
-                ->orderByName()
-                ->filter(Request::only('search', 'role', 'trashed'))
-                ->paginate()
-                ->transform(function ($user) {
-                    return [
-                        'id' => $user->id,
-                        'name' => $user->name,
-                        'email' => $user->email,
-                        'owner' => $user->owner,
-                        'photo' => $user->photoUrl(['w' => 40, 'h' => 40, 'fit' => 'crop']),
-                        'deleted_at' => $user->deleted_at,
-                    ];
-                }),
+            'users' => UserResource::collection(
+                Auth::user()->account->users()
+                    ->orderByName()
+                    ->filter(Request::only('search', 'role', 'trashed'))
+                    ->paginate()
+                    ->appends(Request::all())
+            ),
         ]);
     }
 
@@ -65,15 +59,7 @@ class UsersController extends Controller
     public function edit(User $user)
     {
         return Inertia::render('Users/Edit', [
-            'user' => [
-                'id' => $user->id,
-                'first_name' => $user->first_name,
-                'last_name' => $user->last_name,
-                'email' => $user->email,
-                'owner' => $user->owner,
-                'photo' => $user->photoUrl(['w' => 60, 'h' => 60, 'fit' => 'crop']),
-                'deleted_at' => $user->deleted_at,
-            ],
+            'user' => UserResource::make($user),
         ]);
     }
 

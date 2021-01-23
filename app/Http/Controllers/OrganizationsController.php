@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\OrganizationCollection;
+use App\Http\Resources\OrganizationResource;
 use Inertia\Inertia;
 use App\Models\Organization;
 use Illuminate\Support\Facades\Auth;
@@ -14,11 +16,13 @@ class OrganizationsController extends Controller
     {
         return Inertia::render('Organizations/Index', [
             'filters' => Request::all('search', 'trashed'),
-            'organizations' => Auth::user()->account->organizations()
-                ->orderBy('name')
-                ->filter(Request::only('search', 'trashed'))
-                ->paginate()
-                ->only('id', 'name', 'phone', 'city', 'deleted_at'),
+            'organizations' => new OrganizationCollection(
+                Auth::user()->account->organizations()
+                    ->orderBy('name')
+                    ->filter(Request::only('search', 'trashed'))
+                    ->paginate()
+                    ->appends(Request::all())
+            ),
         ]);
     }
 
@@ -48,19 +52,7 @@ class OrganizationsController extends Controller
     public function edit(Organization $organization)
     {
         return Inertia::render('Organizations/Edit', [
-            'organization' => [
-                'id' => $organization->id,
-                'name' => $organization->name,
-                'email' => $organization->email,
-                'phone' => $organization->phone,
-                'address' => $organization->address,
-                'city' => $organization->city,
-                'region' => $organization->region,
-                'country' => $organization->country,
-                'postal_code' => $organization->postal_code,
-                'deleted_at' => $organization->deleted_at,
-                'contacts' => $organization->contacts()->orderByName()->get()->map->only('id', 'name', 'city', 'phone'),
-            ],
+            'organization' => new OrganizationResource($organization),
         ]);
     }
 

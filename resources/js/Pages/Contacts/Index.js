@@ -8,7 +8,10 @@ import SearchFilter from '@/Shared/SearchFilter';
 
 export default () => {
   const { contacts } = usePage().props;
-  const { data, links } = contacts;
+  const {
+    data,
+    meta: { links }
+  } = contacts;
   return (
     <Layout>
       <Helmet title="Contacts" />
