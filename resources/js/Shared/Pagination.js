@@ -28,7 +28,7 @@ const PageLink = ({ active, label, url }) => {
 // and dots, if exists (...)
 const PageInactive = ({ label }) => {
   const className = classNames(
-    'mr-1 mb-1 px-4 py-3 text-sm border rounded text-gray'
+    'mr-1 mb-1 px-4 py-3 text-sm border rounded border-solid border-gray-300 text-gray'
   );
   return (
     <div className={className} dangerouslySetInnerHTML={{ __html: label }} />
