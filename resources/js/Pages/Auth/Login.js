@@ -84,7 +84,7 @@ export default () => {
           </div>
           <div className="px-10 py-4 bg-gray-100 border-t border-gray-200 flex justify-between items-center">
             <a className="hover:underline" tabIndex="-1" href="#reset-password">
-              Forget password?
+              Forgot password?
             </a>
             <LoadingButton
               type="submit"
