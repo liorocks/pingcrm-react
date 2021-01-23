@@ -23,7 +23,7 @@ export default ({
       >
         {children}
       </select>
-      {errors && <div className="form-error">{errors[0]}</div>}
+      {errors && <div className="form-error">{errors}</div>}
     </div>
   );
 };

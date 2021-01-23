@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\OrganizationStoreRequest;
+use App\Http\Requests\OrganizationUpdateRequest;
 use App\Http\Resources\OrganizationCollection;
 use App\Http\Resources\OrganizationResource;
 use Inertia\Inertia;
@@ -31,19 +33,10 @@ class OrganizationsController extends Controller
         return Inertia::render('Organizations/Create');
     }
 
-    public function store()
+    public function store(OrganizationStoreRequest $request)
     {
         Auth::user()->account->organizations()->create(
-            Request::validate([
-                'name' => ['required', 'max:100'],
-                'email' => ['nullable', 'max:50', 'email'],
-                'phone' => ['nullable', 'max:50'],
-                'address' => ['nullable', 'max:150'],
-                'city' => ['nullable', 'max:50'],
-                'region' => ['nullable', 'max:50'],
-                'country' => ['nullable', 'max:2'],
-                'postal_code' => ['nullable', 'max:25'],
-            ])
+            $request->validated()
         );
 
         return Redirect::route('organizations')->with('success', 'Organization created.');
@@ -56,19 +49,10 @@ class OrganizationsController extends Controller
         ]);
     }
 
-    public function update(Organization $organization)
+    public function update(Organization $organization, OrganizationUpdateRequest $request)
     {
         $organization->update(
-            Request::validate([
-                'name' => ['required', 'max:100'],
-                'email' => ['nullable', 'max:50', 'email'],
-                'phone' => ['nullable', 'max:50'],
-                'address' => ['nullable', 'max:150'],
-                'city' => ['nullable', 'max:50'],
-                'region' => ['nullable', 'max:50'],
-                'country' => ['nullable', 'max:2'],
-                'postal_code' => ['nullable', 'max:25'],
-            ])
+            $request->validated()
         );
 
         return Redirect::back()->with('success', 'Organization updated.');
