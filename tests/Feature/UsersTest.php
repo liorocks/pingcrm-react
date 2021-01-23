@@ -37,8 +37,8 @@ class UsersTest extends TestCase
             ->assertPropCount('users.data', 5)
             ->assertPropValue('users.data', function ($users) {
                 $this->assertEquals([
-                    'id', 'first_name', 'last_name', 'name',
-                    'email', 'owner', 'photo', 'deleted_at'
+                    'id', 'name', 'email', 'owner',
+                    'photo', 'deleted_at'
                 ],
                     array_keys($users[0])
                 );

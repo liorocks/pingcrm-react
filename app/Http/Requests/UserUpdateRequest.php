@@ -2,29 +2,14 @@
 
 namespace App\Http\Requests;
 
+use App\Traits\LockedDemoUser;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\ValidationException;
 
 class UserUpdateRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize()
-    {
-        return !$this->route('user')->isDemoUser();
-    }
-
-    public function failedAuthorization() {
-
-        $this->session()->flash('error', 'Updating the demo user is not allowed.');
-
-        throw ValidationException::withMessages([]);
-    }
+    use LockedDemoUser;
 
     /**
      * Get the validation rules that apply to the request.

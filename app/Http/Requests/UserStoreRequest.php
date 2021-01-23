@@ -31,28 +31,7 @@ class UserStoreRequest extends FormRequest
             'password' => ['nullable'],
             'owner' => ['required', 'boolean'],
             'photo' => ['nullable', 'image'],
-            'photo_path' => ['nullable']
         ];
     }
 
-    public function withValidator($validator)
-    {
-        $validator->after(function ($validator) {
-            // if (true) {
-            //     $validator->errors()->add('field', 'Something is wrong with this field!');
-            // }
-            // dd($this->validationData());
-            // $this->request->remove('photo');
-            // return $this->request->remove('photo');
-
-        });
-    }
-
-    protected function prepareForValidation(): void
-    {
-        $this->request->remove('photo');
-        $this->merge([
-            'photo_path' => $this->file('photo') ? $this->file('photo')->store('users') : null
-        ]);
-    }
 }

@@ -9,7 +9,6 @@ use App\Http\Resources\UserCollection;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use Inertia\Inertia;
-use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -54,18 +53,8 @@ class UsersController extends Controller
     public function update(User $user, UserUpdateRequest $request)
     {
         $user->update(
-            $request->only('first_name', 'last_name', 'email', 'owner')
+            $request->validated()
         );
-
-        // TODO: this can be moved in form request class
-        if (Request::file('photo')) {
-            $user->update(['photo_path' => Request::file('photo')->store('users')]);
-        }
-
-        // TODO: this can be moved in form request class
-        if (Request::get('password')) {
-            $user->update(['password' => Request::get('password')]);
-        }
 
         return Redirect::back()->with('success', 'User updated.');
     }
