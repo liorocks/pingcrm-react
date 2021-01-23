@@ -23,4 +23,10 @@ class UserDeleteRequest extends FormRequest
 
         throw ValidationException::withMessages([]);
     }
+
+    public function rules() {
+        return [
+            //
+        ];
+    }
 }
