@@ -36,6 +36,10 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         $this->attributes['password'] = Hash::make($password);
     }
 
+    public function getPhotoAttribute() {
+        return $this->photoUrl(['w' => 40, 'h' => 40, 'fit' => 'crop']);
+    }
+
     public function photoUrl(array $attributes)
     {
         if ($this->photo_path) {

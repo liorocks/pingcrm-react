@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UserDeleteRequest;
 use App\Http\Requests\UserStoreRequest;
 use App\Http\Requests\UserUpdateRequest;
+use App\Http\Resources\UserCollection;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use Inertia\Inertia;
@@ -19,7 +20,7 @@ class UsersController extends Controller
     {
         return Inertia::render('Users/Index', [
             'filters' => Request::all('search', 'role', 'trashed'),
-            'users' => UserResource::collection(
+            'users' => new UserCollection(
                 Auth::user()->account->users()
                     ->orderByName()
                     ->filter(Request::only('search', 'role', 'trashed'))
