@@ -3,7 +3,7 @@ import Helmet from 'react-helmet';
 // import { usePage } from '@inertiajs/inertia-react';
 
 export default ({ status }) => {
-  // const { status } = usePage();
+  // const { status } = usePage().props;
 
   const title = {
     503: '503: Service Unavailable',

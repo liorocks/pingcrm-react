@@ -7,7 +7,7 @@ import SearchFilter from '@/Shared/SearchFilter';
 import Pagination from '@/Shared/Pagination';
 
 export default () => {
-  const { users } = usePage();
+  const { users } = usePage().props;
   const { data, links } = users;
   return (
     <Layout>

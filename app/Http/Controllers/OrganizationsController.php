@@ -86,7 +86,8 @@ class OrganizationsController extends Controller
     {
         $organization->delete();
 
-        return Redirect::back()->with('success', 'Organization deleted.');
+        // https://inertiajs.com/redirects "303 response code"
+        return Redirect::back(303)->with('success', 'Organization deleted.');
     }
 
     public function restore(Organization $organization)

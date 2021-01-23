@@ -6,7 +6,7 @@ import SelectInput from '@/Shared/SelectInput';
 import pickBy from 'lodash/pickBy';
 
 export default () => {
-  const { filters } = usePage();
+  const { filters } = usePage().props;
   const [opened, setOpened] = useState(false);
 
   const [values, setValues] = useState({

@@ -12,7 +12,7 @@ import TrashedMessage from '@/Shared/TrashedMessage';
 import { toFormData } from '@/utils';
 
 export default () => {
-  const { user, errors } = usePage();
+  const { user, errors } = usePage().props;
   const [sending, setSending] = useState(false);
   const [values, setValues] = useState({
     first_name: user.first_name || '',

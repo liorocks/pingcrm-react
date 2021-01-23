@@ -7,7 +7,7 @@ import SearchFilter from '@/Shared/SearchFilter';
 import Pagination from '@/Shared/Pagination';
 
 const Organizations = () => {
-  const { organizations } = usePage();
+  const { organizations } = usePage().props;
   const { links, data } = organizations;
   return (
     <div>

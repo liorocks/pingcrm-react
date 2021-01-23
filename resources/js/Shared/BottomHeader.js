@@ -3,7 +3,7 @@ import { InertiaLink, usePage } from '@inertiajs/inertia-react';
 import Icon from '@/Shared/Icon';
 
 export default () => {
-  const { auth } = usePage();
+  const { auth } = usePage().props;
   const [menuOpened, setMenuOpened] = useState(false);
   return (
     <div className="bg-white border-b w-full p-4 md:py-0 md:px-12 text-sm d:text-md flex justify-between items-center">

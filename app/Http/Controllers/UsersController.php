@@ -113,7 +113,8 @@ class UsersController extends Controller
 
         $user->delete();
 
-        return Redirect::back()->with('success', 'User deleted.');
+        // https://inertiajs.com/redirects "303 response code"
+        return Redirect::back(303)->with('success', 'User deleted.');
     }
 
     public function restore(User $user)

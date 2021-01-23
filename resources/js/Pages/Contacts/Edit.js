@@ -10,7 +10,7 @@ import SelectInput from '@/Shared/SelectInput';
 import TrashedMessage from '@/Shared/TrashedMessage';
 
 export default () => {
-  const { contact, organizations, errors } = usePage();
+  const { contact, organizations, errors } = usePage().props;
   const [sending, setSending] = useState(false);
 
   const [values, setValues] = useState({

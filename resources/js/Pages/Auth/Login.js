@@ -7,7 +7,7 @@ import LoadingButton from '@/Shared/LoadingButton';
 import TextInput from '@/Shared/TextInput';
 
 export default () => {
-  const { errors } = usePage();
+  const { errors } = usePage().props;
   const [sending, setSending] = useState(false);
   const [values, setValues] = useState({
     email: 'johndoe@example.com',
@@ -84,7 +84,7 @@ export default () => {
           </div>
           <div className="px-10 py-4 bg-gray-100 border-t border-gray-200 flex justify-between items-center">
             <a className="hover:underline" tabIndex="-1" href="#reset-password">
-              Forgot password?
+              Forget password?
             </a>
             <LoadingButton
               type="submit"

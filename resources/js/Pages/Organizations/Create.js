@@ -8,7 +8,7 @@ import TextInput from '@/Shared/TextInput';
 import SelectInput from '@/Shared/SelectInput';
 
 export default () => {
-  const { errors } = usePage();
+  const { errors } = usePage().props;
   const [sending, setSending] = useState(false);
 
   const [values, setValues] = useState({

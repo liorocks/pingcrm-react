@@ -10,7 +10,7 @@ import FileInput from '@/Shared/FileInput';
 import { toFormData } from '@/utils';
 
 export default () => {
-  const { errors } = usePage();
+  const { errors } = usePage().props;
   const [sending, setSending] = useState(false);
 
   const [values, setValues] = useState({

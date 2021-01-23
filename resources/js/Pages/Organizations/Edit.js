@@ -11,7 +11,7 @@ import TrashedMessage from '@/Shared/TrashedMessage';
 import Icon from '@/Shared/Icon';
 
 export default () => {
-  const { errors, organization } = usePage();
+  const { errors, organization } = usePage().props;
   const [sending, setSending] = useState(false);
 
   const [values, setValues] = useState({
