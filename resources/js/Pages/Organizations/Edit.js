@@ -169,7 +169,7 @@ export default () => {
         </div>
         <h2 className="mt-12 text-2xl font-bold">Contacts</h2>
         <div className="mt-6 overflow-x-auto bg-white rounded shadow">
-          <table className="w-full whitespace-no-wrap">
+          <table className="w-full whitespace-nowrap">
             <thead>
               <tr className="font-bold text-left">
                 <th className="px-6 pt-5 pb-4">Name</th>

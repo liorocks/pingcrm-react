@@ -19,13 +19,16 @@ export default () => {
         <h1 className="mb-8 text-3xl font-bold">Users</h1>
         <div className="flex items-center justify-between mb-6">
           <SearchFilter />
-          <InertiaLink className="btn-indigo" href={route('users.create')}>
+          <InertiaLink
+            className="btn-indigo focus:outline-none"
+            href={route('users.create')}
+          >
             <span>Create</span>
             <span className="hidden md:inline"> User</span>
           </InertiaLink>
         </div>
         <div className="overflow-x-auto bg-white rounded shadow">
-          <table className="w-full whitespace-no-wrap">
+          <table className="w-full whitespace-nowrap">
             <thead>
               <tr className="font-bold text-left">
                 <th className="px-6 pt-5 pb-4">Name</th>
@@ -45,7 +48,7 @@ export default () => {
                     <td className="border-t">
                       <InertiaLink
                         href={route('users.edit', id)}
-                        className="flex items-center px-6 py-4 focus:text-indigo-700"
+                        className="flex items-center px-6 py-4 focus:text-indigo-700 focus:outline-none"
                       >
                         {photo && (
                           <img
@@ -66,7 +69,7 @@ export default () => {
                       <InertiaLink
                         tabIndex="-1"
                         href={route('users.edit', id)}
-                        className="flex items-center px-6 py-4 focus:text-indigo"
+                        className="flex items-center px-6 py-4 focus:text-indigo focus:outline-none"
                       >
                         {email}
                       </InertiaLink>
@@ -75,7 +78,7 @@ export default () => {
                       <InertiaLink
                         tabIndex="-1"
                         href={route('users.edit', id)}
-                        className="flex items-center px-6 py-4 focus:text-indigo"
+                        className="flex items-center px-6 py-4 focus:text-indigo focus:outline-none"
                       >
                         {owner ? 'Owner' : 'User'}
                       </InertiaLink>
@@ -84,7 +87,7 @@ export default () => {
                       <InertiaLink
                         tabIndex="-1"
                         href={route('users.edit', id)}
-                        className="flex items-center px-4"
+                        className="flex items-center px-4 focus:outline-none"
                       >
                         <Icon
                           name="cheveron-right"

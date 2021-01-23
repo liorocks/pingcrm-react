@@ -20,7 +20,7 @@ const Organizations = () => {
         <div className="flex items-center justify-between mb-6">
           <SearchFilter />
           <InertiaLink
-            className="btn-indigo"
+            className="btn-indigo focus:outline-none"
             href={route('organizations.create')}
           >
             <span>Create</span>
@@ -28,7 +28,7 @@ const Organizations = () => {
           </InertiaLink>
         </div>
         <div className="overflow-x-auto bg-white rounded shadow">
-          <table className="w-full whitespace-no-wrap">
+          <table className="w-full whitespace-nowrap">
             <thead>
               <tr className="font-bold text-left">
                 <th className="px-6 pt-5 pb-4">Name</th>
@@ -48,7 +48,7 @@ const Organizations = () => {
                     <td className="border-t">
                       <InertiaLink
                         href={route('organizations.edit', id)}
-                        className="flex items-center px-6 py-4 focus:text-indigo-700"
+                        className="flex items-center px-6 py-4 focus:text-indigo-700 focus:outline-none"
                       >
                         {name}
                         {deleted_at && (
@@ -63,7 +63,7 @@ const Organizations = () => {
                       <InertiaLink
                         tabIndex="-1"
                         href={route('organizations.edit', id)}
-                        className="flex items-center px-6 py-4 focus:text-indigo"
+                        className="flex items-center px-6 py-4 focus:text-indigo focus:outline-none"
                       >
                         {city}
                       </InertiaLink>
@@ -72,7 +72,7 @@ const Organizations = () => {
                       <InertiaLink
                         tabIndex="-1"
                         href={route('organizations.edit', id)}
-                        className="flex items-center px-6 py-4 focus:text-indigo"
+                        className="flex items-center px-6 py-4 focus:text-indigo focus:outline-none"
                       >
                         {phone}
                       </InertiaLink>
@@ -81,7 +81,7 @@ const Organizations = () => {
                       <InertiaLink
                         tabIndex="-1"
                         href={route('organizations.edit', id)}
-                        className="flex items-center px-4"
+                        className="flex items-center px-4 focus:outline-none"
                       >
                         <Icon
                           name="cheveron-right"

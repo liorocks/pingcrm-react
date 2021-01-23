@@ -7,10 +7,10 @@ const PageLink = ({ active, label, url }) => {
     [
       'mr-1 mb-1',
       'px-4 py-3',
-      'border rounded',
+      'border border-solid border-gray-300 rounded',
       'text-sm',
       'hover:bg-white',
-      'focus:border-indigo-700 focus:text-indigo-700'
+      'focus:outline-none focus:border-indigo-700 focus:text-indigo-700'
     ],
     {
       'bg-white': active

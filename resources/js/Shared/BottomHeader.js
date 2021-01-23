@@ -13,7 +13,7 @@ export default () => {
           className="flex items-center cursor-pointer select-none group"
           onClick={() => setMenuOpened(true)}
         >
-          <div className="mr-1 text-gray-800 whitespace-no-wrap group-hover:text-indigo-600 focus:text-indigo-600">
+          <div className="mr-1 text-gray-800 whitespace-nowrap group-hover:text-indigo-600 focus:text-indigo-600">
             <span>{auth.user.first_name}</span>
             <span className="hidden ml-1 md:inline">{auth.user.last_name}</span>
           </div>
@@ -23,7 +23,7 @@ export default () => {
           />
         </div>
         <div className={menuOpened ? '' : 'hidden'}>
-          <div className="absolute top-0 right-0 left-auto z-20 py-2 mt-8 text-sm whitespace-no-wrap bg-white rounded shadow-xl">
+          <div className="absolute top-0 right-0 left-auto z-20 py-2 mt-8 text-sm whitespace-nowrap bg-white rounded shadow-xl">
             <InertiaLink
               href={route('users.edit', auth.user.id)}
               className="block px-6 py-2 hover:bg-indigo-600 hover:text-white"
