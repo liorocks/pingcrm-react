@@ -12,7 +12,7 @@ import TrashedMessage from '@/Shared/TrashedMessage';
 import { toFormData } from '@/utils';
 
 export default () => {
-  const { user, errors } = usePage();
+  const { user, errors } = usePage().props;
   const [sending, setSending] = useState(false);
   const [values, setValues] = useState({
     first_name: user.first_name || '',
@@ -72,19 +72,19 @@ export default () => {
     <Layout>
       <div>
         <Helmet title={`${values.first_name} ${values.last_name}`} />
-        <div className="mb-8 flex justify-start max-w-lg">
-          <h1 className="font-bold text-3xl">
+        <div className="flex justify-start max-w-lg mb-8">
+          <h1 className="text-3xl font-bold">
             <InertiaLink
               href={route('users')}
               className="text-indigo-600 hover:text-indigo-700"
             >
               Users
             </InertiaLink>
-            <span className="text-indigo-600 font-medium mx-2">/</span>
+            <span className="mx-2 font-medium text-indigo-600">/</span>
             {values.first_name} {values.last_name}
           </h1>
           {user.photo && (
-            <img className="block w-8 h-8 rounded-full ml-4" src={user.photo} />
+            <img className="block w-8 h-8 ml-4 rounded-full" src={user.photo} />
           )}
         </div>
         {user.deleted_at && (
@@ -92,11 +92,11 @@ export default () => {
             This contact has been deleted.
           </TrashedMessage>
         )}
-        <div className="bg-white rounded shadow overflow-hidden max-w-3xl">
+        <div className="max-w-3xl overflow-hidden bg-white rounded shadow">
           <form onSubmit={handleSubmit}>
-            <div className="p-8 -mr-6 -mb-8 flex flex-wrap">
+            <div className="flex flex-wrap p-8 -mb-8 -mr-6">
               <TextInput
-                className="pr-6 pb-8 w-full lg:w-1/2"
+                className="w-full pb-8 pr-6 lg:w-1/2"
                 label="First Name"
                 name="first_name"
                 errors={errors.first_name}
@@ -104,7 +104,7 @@ export default () => {
                 onChange={handleChange}
               />
               <TextInput
-                className="pr-6 pb-8 w-full lg:w-1/2"
+                className="w-full pb-8 pr-6 lg:w-1/2"
                 label="Last Name"
                 name="last_name"
                 errors={errors.last_name}
@@ -112,7 +112,7 @@ export default () => {
                 onChange={handleChange}
               />
               <TextInput
-                className="pr-6 pb-8 w-full lg:w-1/2"
+                className="w-full pb-8 pr-6 lg:w-1/2"
                 label="Email"
                 name="email"
                 type="email"
@@ -121,7 +121,7 @@ export default () => {
                 onChange={handleChange}
               />
               <TextInput
-                className="pr-6 pb-8 w-full lg:w-1/2"
+                className="w-full pb-8 pr-6 lg:w-1/2"
                 label="Password"
                 name="password"
                 type="password"
@@ -130,7 +130,7 @@ export default () => {
                 onChange={handleChange}
               />
               <SelectInput
-                className="pr-6 pb-8 w-full lg:w-1/2"
+                className="w-full pb-8 pr-6 lg:w-1/2"
                 label="Owner"
                 name="owner"
                 errors={errors.owner}
@@ -141,7 +141,7 @@ export default () => {
                 <option value="0">No</option>
               </SelectInput>
               <FileInput
-                className="pr-6 pb-8 w-full lg:w-1/2"
+                className="w-full pb-8 pr-6 lg:w-1/2"
                 label="Photo"
                 name="photo"
                 accept="image/*"
@@ -150,14 +150,14 @@ export default () => {
                 onChange={handleFileChange}
               />
             </div>
-            <div className="px-8 py-4 bg-gray-100 border-t border-gray-200 flex items-center">
+            <div className="flex items-center px-8 py-4 bg-gray-100 border-t border-gray-200">
               {!user.deleted_at && (
                 <DeleteButton onDelete={destroy}>Delete User</DeleteButton>
               )}
               <LoadingButton
                 loading={sending}
                 type="submit"
-                className="btn-indigo ml-auto"
+                className="ml-auto btn-indigo"
               >
                 Update User
               </LoadingButton>

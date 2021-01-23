@@ -10,7 +10,7 @@ import SelectInput from '@/Shared/SelectInput';
 import TrashedMessage from '@/Shared/TrashedMessage';
 
 export default () => {
-  const { contact, organizations, errors } = usePage();
+  const { contact, organizations, errors } = usePage().props;
   const [sending, setSending] = useState(false);
 
   const [values, setValues] = useState({
@@ -59,14 +59,14 @@ export default () => {
     <Layout>
       <div>
         <Helmet title={`${values.first_name} ${values.last_name}`} />
-        <h1 className="mb-8 font-bold text-3xl">
+        <h1 className="mb-8 text-3xl font-bold">
           <InertiaLink
             href={route('contacts')}
             className="text-indigo-600 hover:text-indigo-700"
           >
             Contacts
           </InertiaLink>
-          <span className="text-indigo-600 font-medium mx-2">/</span>
+          <span className="mx-2 font-medium text-indigo-600">/</span>
           {values.first_name} {values.last_name}
         </h1>
         {contact.deleted_at && (
@@ -74,11 +74,11 @@ export default () => {
             This contact has been deleted.
           </TrashedMessage>
         )}
-        <div className="bg-white rounded shadow overflow-hidden max-w-3xl">
+        <div className="max-w-3xl overflow-hidden bg-white rounded shadow">
           <form onSubmit={handleSubmit}>
-            <div className="p-8 -mr-6 -mb-8 flex flex-wrap">
+            <div className="flex flex-wrap p-8 -mb-8 -mr-6">
               <TextInput
-                className="pr-6 pb-8 w-full lg:w-1/2"
+                className="w-full pb-8 pr-6 lg:w-1/2"
                 label="First Name"
                 name="first_name"
                 errors={errors.first_name}
@@ -86,7 +86,7 @@ export default () => {
                 onChange={handleChange}
               />
               <TextInput
-                className="pr-6 pb-8 w-full lg:w-1/2"
+                className="w-full pb-8 pr-6 lg:w-1/2"
                 label="Last Name"
                 name="last_name"
                 errors={errors.last_name}
@@ -94,7 +94,7 @@ export default () => {
                 onChange={handleChange}
               />
               <SelectInput
-                className="pr-6 pb-8 w-full lg:w-1/2"
+                className="w-full pb-8 pr-6 lg:w-1/2"
                 label="Organization"
                 name="organization_id"
                 errors={errors.organization_id}
@@ -111,7 +111,7 @@ export default () => {
                 <option value="US">United States</option>
               </SelectInput>
               <TextInput
-                className="pr-6 pb-8 w-full lg:w-1/2"
+                className="w-full pb-8 pr-6 lg:w-1/2"
                 label="Email"
                 name="email"
                 type="email"
@@ -120,7 +120,7 @@ export default () => {
                 onChange={handleChange}
               />
               <TextInput
-                className="pr-6 pb-8 w-full lg:w-1/2"
+                className="w-full pb-8 pr-6 lg:w-1/2"
                 label="Phone"
                 name="phone"
                 type="text"
@@ -129,7 +129,7 @@ export default () => {
                 onChange={handleChange}
               />
               <TextInput
-                className="pr-6 pb-8 w-full lg:w-1/2"
+                className="w-full pb-8 pr-6 lg:w-1/2"
                 label="Address"
                 name="address"
                 type="text"
@@ -138,7 +138,7 @@ export default () => {
                 onChange={handleChange}
               />
               <TextInput
-                className="pr-6 pb-8 w-full lg:w-1/2"
+                className="w-full pb-8 pr-6 lg:w-1/2"
                 label="City"
                 name="city"
                 type="text"
@@ -147,7 +147,7 @@ export default () => {
                 onChange={handleChange}
               />
               <TextInput
-                className="pr-6 pb-8 w-full lg:w-1/2"
+                className="w-full pb-8 pr-6 lg:w-1/2"
                 label="Province/State"
                 name="region"
                 type="text"
@@ -156,7 +156,7 @@ export default () => {
                 onChange={handleChange}
               />
               <SelectInput
-                className="pr-6 pb-8 w-full lg:w-1/2"
+                className="w-full pb-8 pr-6 lg:w-1/2"
                 label="Country"
                 name="country"
                 errors={errors.country}
@@ -168,7 +168,7 @@ export default () => {
                 <option value="US">United States</option>
               </SelectInput>
               <TextInput
-                className="pr-6 pb-8 w-full lg:w-1/2"
+                className="w-full pb-8 pr-6 lg:w-1/2"
                 label="Postal Code"
                 name="postal_code"
                 type="text"
@@ -177,14 +177,14 @@ export default () => {
                 onChange={handleChange}
               />
             </div>
-            <div className="px-8 py-4 bg-gray-100 border-t border-gray-200 flex items-center">
+            <div className="flex items-center px-8 py-4 bg-gray-100 border-t border-gray-200">
               {!contact.deleted_at && (
                 <DeleteButton onDelete={destroy}>Delete Contact</DeleteButton>
               )}
               <LoadingButton
                 loading={sending}
                 type="submit"
-                className="btn-indigo ml-auto"
+                className="ml-auto btn-indigo"
               >
                 Update Contact
               </LoadingButton>

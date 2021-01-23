@@ -11,7 +11,7 @@ import TrashedMessage from '@/Shared/TrashedMessage';
 import Icon from '@/Shared/Icon';
 
 export default () => {
-  const { errors, organization } = usePage();
+  const { errors, organization } = usePage().props;
   const [sending, setSending] = useState(false);
 
   const [values, setValues] = useState({
@@ -59,14 +59,14 @@ export default () => {
     <Layout>
       <Helmet title={values.name} />
       <div>
-        <h1 className="mb-8 font-bold text-3xl">
+        <h1 className="mb-8 text-3xl font-bold">
           <InertiaLink
             href={route('organizations')}
             className="text-indigo-600 hover:text-indigo-700"
           >
             Organizations
           </InertiaLink>
-          <span className="text-indigo-600 font-medium mx-2">/</span>
+          <span className="mx-2 font-medium text-indigo-600">/</span>
           {values.name}
         </h1>
         {organization.deleted_at && (
@@ -74,11 +74,11 @@ export default () => {
             This organization has been deleted.
           </TrashedMessage>
         )}
-        <div className="bg-white rounded shadow overflow-hidden max-w-3xl">
+        <div className="max-w-3xl overflow-hidden bg-white rounded shadow">
           <form onSubmit={handleSubmit}>
-            <div className="p-8 -mr-6 -mb-8 flex flex-wrap">
+            <div className="flex flex-wrap p-8 -mb-8 -mr-6">
               <TextInput
-                className="pr-6 pb-8 w-full lg:w-1/2"
+                className="w-full pb-8 pr-6 lg:w-1/2"
                 label="Name"
                 name="name"
                 errors={errors.name}
@@ -86,7 +86,7 @@ export default () => {
                 onChange={handleChange}
               />
               <TextInput
-                className="pr-6 pb-8 w-full lg:w-1/2"
+                className="w-full pb-8 pr-6 lg:w-1/2"
                 label="Email"
                 name="email"
                 type="email"
@@ -95,7 +95,7 @@ export default () => {
                 onChange={handleChange}
               />
               <TextInput
-                className="pr-6 pb-8 w-full lg:w-1/2"
+                className="w-full pb-8 pr-6 lg:w-1/2"
                 label="Phone"
                 name="phone"
                 type="text"
@@ -104,7 +104,7 @@ export default () => {
                 onChange={handleChange}
               />
               <TextInput
-                className="pr-6 pb-8 w-full lg:w-1/2"
+                className="w-full pb-8 pr-6 lg:w-1/2"
                 label="Address"
                 name="address"
                 type="text"
@@ -113,7 +113,7 @@ export default () => {
                 onChange={handleChange}
               />
               <TextInput
-                className="pr-6 pb-8 w-full lg:w-1/2"
+                className="w-full pb-8 pr-6 lg:w-1/2"
                 label="City"
                 name="city"
                 type="text"
@@ -122,7 +122,7 @@ export default () => {
                 onChange={handleChange}
               />
               <TextInput
-                className="pr-6 pb-8 w-full lg:w-1/2"
+                className="w-full pb-8 pr-6 lg:w-1/2"
                 label="Province/State"
                 name="region"
                 type="text"
@@ -131,7 +131,7 @@ export default () => {
                 onChange={handleChange}
               />
               <SelectInput
-                className="pr-6 pb-8 w-full lg:w-1/2"
+                className="w-full pb-8 pr-6 lg:w-1/2"
                 label="Country"
                 name="country"
                 errors={errors.country}
@@ -143,7 +143,7 @@ export default () => {
                 <option value="US">United States</option>
               </SelectInput>
               <TextInput
-                className="pr-6 pb-8 w-full lg:w-1/2"
+                className="w-full pb-8 pr-6 lg:w-1/2"
                 label="Postal Code"
                 name="postal_code"
                 type="text"
@@ -152,7 +152,7 @@ export default () => {
                 onChange={handleChange}
               />
             </div>
-            <div className="px-8 py-4 bg-gray-100 border-t border-gray-200 flex items-center">
+            <div className="flex items-center px-8 py-4 bg-gray-100 border-t border-gray-200">
               {!organization.deleted_at && (
                 <DeleteButton onDelete={destroy}>
                   Delete Organization
@@ -161,18 +161,18 @@ export default () => {
               <LoadingButton
                 loading={sending}
                 type="submit"
-                className="btn-indigo ml-auto"
+                className="ml-auto btn-indigo"
               >
                 Update Organization
               </LoadingButton>
             </div>
           </form>
         </div>
-        <h2 className="mt-12 font-bold text-2xl">Contacts</h2>
-        <div className="mt-6 bg-white rounded shadow overflow-x-auto">
+        <h2 className="mt-12 text-2xl font-bold">Contacts</h2>
+        <div className="mt-6 overflow-x-auto bg-white rounded shadow">
           <table className="w-full whitespace-no-wrap">
             <thead>
-              <tr className="text-left font-bold">
+              <tr className="font-bold text-left">
                 <th className="px-6 pt-5 pb-4">Name</th>
                 <th className="px-6 pt-5 pb-4">City</th>
                 <th className="px-6 pt-5 pb-4" colSpan="2">
@@ -191,13 +191,13 @@ export default () => {
                       <td className="border-t">
                         <InertiaLink
                           href={route('contacts.edit', id)}
-                          className="px-6 py-4 flex items-center focus:text-indigo"
+                          className="flex items-center px-6 py-4 focus:text-indigo"
                         >
                           {name}
                           {deleted_at && (
                             <Icon
                               name="trash"
-                              className="flex-shrink-0 w-3 h-3 text-gray-400 fill-current ml-2"
+                              className="flex-shrink-0 w-3 h-3 ml-2 text-gray-400 fill-current"
                             />
                           )}
                         </InertiaLink>
@@ -206,7 +206,7 @@ export default () => {
                         <InertiaLink
                           tabIndex="-1"
                           href={route('contacts.edit', id)}
-                          className="px-6 py-4 flex items-center focus:text-indigo"
+                          className="flex items-center px-6 py-4 focus:text-indigo"
                         >
                           {city}
                         </InertiaLink>
@@ -215,16 +215,16 @@ export default () => {
                         <InertiaLink
                           tabIndex="-1"
                           href={route('contacts.edit', id)}
-                          className="px-6 py-4 flex items-center focus:text-indigo"
+                          className="flex items-center px-6 py-4 focus:text-indigo"
                         >
                           {phone}
                         </InertiaLink>
                       </td>
-                      <td className="border-t w-px">
+                      <td className="w-px border-t">
                         <InertiaLink
                           tabIndex="-1"
                           href={route('contacts.edit', id)}
-                          className="px-4 flex items-center"
+                          className="flex items-center px-4"
                         >
                           <Icon
                             name="cheveron-right"
@@ -238,7 +238,7 @@ export default () => {
               )}
               {organization.contacts.length === 0 && (
                 <tr>
-                  <td className="border-t px-6 py-4" colSpan="4">
+                  <td className="px-6 py-4 border-t" colSpan="4">
                     No contacts found.
                   </td>
                 </tr>

@@ -48,7 +48,7 @@ const ButtonClose = ({ color, onClick }) => {
 
 export default () => {
   const [visible, setVisible] = useState(true);
-  const { flash, errors } = usePage();
+  const { flash, errors } = usePage().props;
   const numOfErrors = Object.keys(errors).length;
 
   useEffect(() => {
