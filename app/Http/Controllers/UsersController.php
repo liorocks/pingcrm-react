@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserDeleteRequest;
+use App\Http\Requests\UserStoreRequest;
+use App\Http\Requests\UserUpdateRequest;
+use App\Http\Resources\UserCollection;
+use App\Http\Resources\UserResource;
 use App\Models\User;
 use Inertia\Inertia;
-use Illuminate\Validation\Rule;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\Validation\ValidationException;
 
 class UsersController extends Controller
 {
@@ -17,20 +19,13 @@ class UsersController extends Controller
     {
         return Inertia::render('Users/Index', [
             'filters' => Request::all('search', 'role', 'trashed'),
-            'users' => Auth::user()->account->users()
-                ->orderByName()
-                ->filter(Request::only('search', 'role', 'trashed'))
-                ->paginate()
-                ->transform(function ($user) {
-                    return [
-                        'id' => $user->id,
-                        'name' => $user->name,
-                        'email' => $user->email,
-                        'owner' => $user->owner,
-                        'photo' => $user->photoUrl(['w' => 40, 'h' => 40, 'fit' => 'crop']),
-                        'deleted_at' => $user->deleted_at,
-                    ];
-                }),
+            'users' => new UserCollection(
+                Auth::user()->account->users()
+                    ->orderByName()
+                    ->filter(Request::only('search', 'role', 'trashed'))
+                    ->paginate()
+                    ->appends(Request::all())
+            ),
         ]);
     }
 
@@ -39,25 +34,11 @@ class UsersController extends Controller
         return Inertia::render('Users/Create');
     }
 
-    public function store()
+    public function store(UserStoreRequest $request)
     {
-        Request::validate([
-            'first_name' => ['required', 'max:50'],
-            'last_name' => ['required', 'max:50'],
-            'email' => ['required', 'max:50', 'email', Rule::unique('users')],
-            'password' => ['nullable'],
-            'owner' => ['required', 'boolean'],
-            'photo' => ['nullable', 'image'],
-        ]);
-
-        Auth::user()->account->users()->create([
-            'first_name' => Request::get('first_name'),
-            'last_name' => Request::get('last_name'),
-            'email' => Request::get('email'),
-            'password' => Request::get('password'),
-            'owner' => Request::get('owner'),
-            'photo_path' => Request::file('photo') ? Request::file('photo')->store('users') : null,
-        ]);
+        Auth::user()->account->users()->create(
+            $request->validated()
+        );
 
         return Redirect::route('users')->with('success', 'User created.');
     }
@@ -65,52 +46,21 @@ class UsersController extends Controller
     public function edit(User $user)
     {
         return Inertia::render('Users/Edit', [
-            'user' => [
-                'id' => $user->id,
-                'first_name' => $user->first_name,
-                'last_name' => $user->last_name,
-                'email' => $user->email,
-                'owner' => $user->owner,
-                'photo' => $user->photoUrl(['w' => 60, 'h' => 60, 'fit' => 'crop']),
-                'deleted_at' => $user->deleted_at,
-            ],
+            'user' => new UserResource($user),
         ]);
     }
 
-    public function update(User $user)
+    public function update(User $user, UserUpdateRequest $request)
     {
-        if (App::environment('production') && $user->isDemoUser()) {
-            return Redirect::back()->with('error', 'Updating the demo user is not allowed.');
-        }
-
-        Request::validate([
-            'first_name' => ['required', 'max:50'],
-            'last_name' => ['required', 'max:50'],
-            'email' => ['required', 'max:50', 'email', Rule::unique('users')->ignore($user->id)],
-            'password' => ['nullable'],
-            'owner' => ['required', 'boolean'],
-            'photo' => ['nullable', 'image'],
-        ]);
-
-        $user->update(Request::only('first_name', 'last_name', 'email', 'owner'));
-
-        if (Request::file('photo')) {
-            $user->update(['photo_path' => Request::file('photo')->store('users')]);
-        }
-
-        if (Request::get('password')) {
-            $user->update(['password' => Request::get('password')]);
-        }
+        $user->update(
+            $request->validated()
+        );
 
         return Redirect::back()->with('success', 'User updated.');
     }
 
-    public function destroy(User $user)
+    public function destroy(User $user, UserDeleteRequest $request)
     {
-        if (App::environment('production') && $user->isDemoUser()) {
-            return Redirect::back()->with('error', 'Deleting the demo user is not allowed.');
-        }
-
         $user->delete();
 
         return Redirect::back()->with('success', 'User deleted.');

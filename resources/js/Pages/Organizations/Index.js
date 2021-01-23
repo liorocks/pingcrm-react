@@ -7,27 +7,30 @@ import SearchFilter from '@/Shared/SearchFilter';
 import Pagination from '@/Shared/Pagination';
 
 const Organizations = () => {
-  const { organizations } = usePage();
-  const { links, data } = organizations;
+  const { organizations } = usePage().props;
+  const {
+    data,
+    meta: { links }
+  } = organizations;
   return (
     <div>
       <Helmet title="Organizations" />
       <div>
-        <h1 className="mb-8 font-bold text-3xl">Organizations</h1>
-        <div className="mb-6 flex justify-between items-center">
+        <h1 className="mb-8 text-3xl font-bold">Organizations</h1>
+        <div className="flex items-center justify-between mb-6">
           <SearchFilter />
           <InertiaLink
-            className="btn-indigo"
+            className="btn-indigo focus:outline-none"
             href={route('organizations.create')}
           >
             <span>Create</span>
             <span className="hidden md:inline"> Organization</span>
           </InertiaLink>
         </div>
-        <div className="bg-white rounded shadow overflow-x-auto">
-          <table className="w-full whitespace-no-wrap">
+        <div className="overflow-x-auto bg-white rounded shadow">
+          <table className="w-full whitespace-nowrap">
             <thead>
-              <tr className="text-left font-bold">
+              <tr className="font-bold text-left">
                 <th className="px-6 pt-5 pb-4">Name</th>
                 <th className="px-6 pt-5 pb-4">City</th>
                 <th className="px-6 pt-5 pb-4" colSpan="2">
@@ -45,13 +48,13 @@ const Organizations = () => {
                     <td className="border-t">
                       <InertiaLink
                         href={route('organizations.edit', id)}
-                        className="px-6 py-4 flex items-center focus:text-indigo-700"
+                        className="flex items-center px-6 py-4 focus:text-indigo-700 focus:outline-none"
                       >
                         {name}
                         {deleted_at && (
                           <Icon
                             name="trash"
-                            className="flex-shrink-0 w-3 h-3 text-gray-400 fill-current ml-2"
+                            className="flex-shrink-0 w-3 h-3 ml-2 text-gray-400 fill-current"
                           />
                         )}
                       </InertiaLink>
@@ -60,7 +63,7 @@ const Organizations = () => {
                       <InertiaLink
                         tabIndex="-1"
                         href={route('organizations.edit', id)}
-                        className="px-6 py-4 flex items-center focus:text-indigo"
+                        className="flex items-center px-6 py-4 focus:text-indigo focus:outline-none"
                       >
                         {city}
                       </InertiaLink>
@@ -69,16 +72,16 @@ const Organizations = () => {
                       <InertiaLink
                         tabIndex="-1"
                         href={route('organizations.edit', id)}
-                        className="px-6 py-4 flex items-center focus:text-indigo"
+                        className="flex items-center px-6 py-4 focus:text-indigo focus:outline-none"
                       >
                         {phone}
                       </InertiaLink>
                     </td>
-                    <td className="border-t w-px">
+                    <td className="w-px border-t">
                       <InertiaLink
                         tabIndex="-1"
                         href={route('organizations.edit', id)}
-                        className="px-4 flex items-center"
+                        className="flex items-center px-4 focus:outline-none"
                       >
                         <Icon
                           name="cheveron-right"
@@ -91,7 +94,7 @@ const Organizations = () => {
               })}
               {data.length === 0 && (
                 <tr>
-                  <td className="border-t px-6 py-4" colSpan="4">
+                  <td className="px-6 py-4 border-t" colSpan="4">
                     No organizations found.
                   </td>
                 </tr>

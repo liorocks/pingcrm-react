@@ -4,7 +4,7 @@ import { filesize } from '@/utils';
 const Button = ({ text, onClick }) => (
   <button
     type="button"
-    className="focus:outline-none px-4 py-1 bg-gray-600 hover:bg-gray-700 rounded-sm text-xs font-medium text-white"
+    className="px-4 py-1 text-xs font-medium text-white bg-gray-600 rounded-sm focus:outline-none hover:bg-gray-700"
     onClick={onClick}
   >
     {text}
@@ -56,7 +56,7 @@ export default ({ className, name, label, accept, errors = [], onChange }) => {
           <div className="flex items-center justify-between p-2">
             <div className="flex-1 pr-1">
               {file.name}
-              <span className="text-gray-600 text-xs ml-1">
+              <span className="ml-1 text-xs text-gray-600">
                 ({filesize(file.size)})
               </span>
             </div>
@@ -64,7 +64,7 @@ export default ({ className, name, label, accept, errors = [], onChange }) => {
           </div>
         )}
       </div>
-      {errors.length > 0 && <div className="form-error">{errors[0]}</div>}
+      {errors.length > 0 && <div className="form-error">{errors}</div>}
     </div>
   );
 };

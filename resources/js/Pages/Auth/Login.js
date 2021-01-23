@@ -7,7 +7,7 @@ import LoadingButton from '@/Shared/LoadingButton';
 import TextInput from '@/Shared/TextInput';
 
 export default () => {
-  const { errors } = usePage();
+  const { errors } = usePage().props;
   const [sending, setSending] = useState(false);
   const [values, setValues] = useState({
     email: 'johndoe@example.com',
@@ -29,26 +29,26 @@ export default () => {
   function handleSubmit(e) {
     e.preventDefault();
     setSending(true);
-    Inertia.post(route('login.attempt'), values).then(() => {
-      setSending(false);
+    Inertia.post(route('login.attempt'), values, {
+      onFinish: () => setSending(false)
     });
   }
 
   return (
-    <div className="p-6 bg-indigo-900 min-h-screen flex justify-center items-center">
+    <div className="flex items-center justify-center min-h-screen p-6 bg-indigo-900">
       <Helmet title="Login" />
       <div className="w-full max-w-md">
         <Logo
-          className="block mx-auto w-full max-w-xs text-white fill-current"
+          className="block w-full max-w-xs mx-auto text-white fill-current"
           height={50}
         />
         <form
           onSubmit={handleSubmit}
-          className="mt-8 bg-white rounded-lg shadow-xl overflow-hidden"
+          className="mt-8 overflow-hidden bg-white rounded-lg shadow-xl"
         >
           <div className="px-10 py-12">
-            <h1 className="text-center font-bold text-3xl">Welcome Back!</h1>
-            <div className="mx-auto mt-6 w-24 border-b-2" />
+            <h1 className="text-3xl font-bold text-center">Welcome Back!</h1>
+            <div className="w-24 mx-auto mt-6 border-b-2" />
             <TextInput
               className="mt-10"
               label="Email"
@@ -68,7 +68,7 @@ export default () => {
               onChange={handleChange}
             />
             <label
-              className="mt-6 select-none flex items-center"
+              className="flex items-center mt-6 select-none"
               htmlFor="remember"
             >
               <input
@@ -82,7 +82,7 @@ export default () => {
               <span className="text-sm">Remember Me</span>
             </label>
           </div>
-          <div className="px-10 py-4 bg-gray-100 border-t border-gray-200 flex justify-between items-center">
+          <div className="flex items-center justify-between px-10 py-4 bg-gray-100 border-t border-gray-200">
             <a className="hover:underline" tabIndex="-1" href="#reset-password">
               Forgot password?
             </a>
