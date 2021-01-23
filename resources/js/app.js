@@ -1,7 +1,13 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { InertiaApp } from '@inertiajs/inertia-react';
+import { InertiaProgress } from '@inertiajs/progress';
 import * as Sentry from '@sentry/browser';
+
+InertiaProgress.init({
+  color: '#434190',
+  showSpinner: true
+});
 
 Sentry.init({
   dsn: process.env.MIX_SENTRY_LARAVEL_DSN

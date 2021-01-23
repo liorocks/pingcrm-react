@@ -14,6 +14,7 @@
     "@fullhuman/postcss-purgecss": "^1.3.0",
     "@inertiajs/inertia": "^0.8.4",
     "@inertiajs/inertia-react": "^0.5.2",
+    "@inertiajs/progress": "^0.2.4",
     "@sentry/browser": "^5.30.0",
     "axios": "^0.21.1",
     "classnames": "^2.2.6",
