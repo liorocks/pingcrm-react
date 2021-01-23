@@ -28,8 +28,6 @@ class ContactResource extends JsonResource
             'postal_code' => $this->postal_code,
             'deleted_at' => $this->deleted_at,
             'organization_id' => $this->organization_id,
-            // TODO: n+1 query problem here
-            'organization' => $this->organization ? $this->organization->only('name') : null,
         ];
     }
 }
