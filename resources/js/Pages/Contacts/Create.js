@@ -35,8 +35,8 @@ export default () => {
   function handleSubmit(e) {
     e.preventDefault();
     setSending(true);
-    Inertia.post(route('contacts.store'), values).then(() => {
-      setSending(false);
+    Inertia.post(route('contacts.store'), values, {
+      onFinish: () => setSending(false)
     });
   }
 

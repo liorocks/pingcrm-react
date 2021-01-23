@@ -13,13 +13,12 @@ const PageLink = ({ active, label, url }) => {
       'focus:border-indigo-700 focus:text-indigo-700'
     ],
     {
-      'bg-white': active,
-      'ml-auto': label === 'Next'
+      'bg-white': active
     }
   );
   return (
     <InertiaLink className={className} href={url}>
-      {label}
+      <span dangerouslySetInnerHTML={{ __html: label }}></span>
     </InertiaLink>
   );
 };
@@ -29,19 +28,18 @@ const PageLink = ({ active, label, url }) => {
 // and dots, if exists (...)
 const PageInactive = ({ label }) => {
   const className = classNames(
-    'mr-1 mb-1 px-4 py-3 text-sm border rounded text-gray',
-    {
-      'ml-auto': label === 'Next'
-    }
+    'mr-1 mb-1 px-4 py-3 text-sm border rounded text-gray'
   );
-  return <div className={className}>{label}</div>;
+  return (
+    <div className={className} dangerouslySetInnerHTML={{ __html: label }} />
+  );
 };
 
 export default ({ links = [] }) => {
   // dont render, if there's only 1 page (previous, 1, next)
   if (links.length === 3) return null;
   return (
-    <div className="mt-6 -mb-1 flex flex-wrap">
+    <div className="flex flex-wrap mt-6 -mb-1">
       {links.map(({ active, label, url }) => {
         return url === null ? (
           <PageInactive key={label} label={label} />

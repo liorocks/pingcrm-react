@@ -34,8 +34,9 @@ export default () => {
   function handleSubmit(e) {
     e.preventDefault();
     setSending(true);
-    Inertia.post(route('organizations.store'), values).then(() => {
-      setSending(false);
+
+    Inertia.post(route('organizations.store'), values, {
+      onFinish: () => setSending(false)
     });
   }
 

@@ -38,9 +38,9 @@ export default () => {
   function handleSubmit(e) {
     e.preventDefault();
     setSending(true);
-    Inertia.put(route('contacts.update', contact.id), values).then(() =>
-      setSending(false)
-    );
+    Inertia.put(route('contacts.update', contact.id), values, {
+      onFinish: () => setSending(false)
+    });
   }
 
   function destroy() {

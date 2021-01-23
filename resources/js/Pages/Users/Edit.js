@@ -19,8 +19,8 @@ export default () => {
     last_name: user.last_name || '',
     email: user.email || '',
     password: user.password || '',
-    owner: user.owner ? '1' : '0' || '0'
-    // photo: '',
+    owner: user.owner ? '1' : '0' || '0',
+    photo: ''
   });
 
   function handleChange(e) {
@@ -35,7 +35,7 @@ export default () => {
   function handleFileChange(file) {
     setValues(values => ({
       ...values,
-      photo: file
+      photo: file ? file : ''
     }));
   }
 
@@ -51,8 +51,8 @@ export default () => {
     // For more info check utils.jf file
     const formData = toFormData(values, 'PUT');
 
-    Inertia.post(route('users.update', user.id), formData).then(() => {
-      setSending(false);
+    Inertia.post(route('users.update', user.id), formData, {
+      onFinish: () => setSending(false)
     });
   }
 

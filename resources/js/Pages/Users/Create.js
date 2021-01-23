@@ -34,7 +34,7 @@ export default () => {
   function handleFileChange(file) {
     setValues(values => ({
       ...values,
-      photo: file
+      photo: file ? file : ''
     }));
   }
 
@@ -47,8 +47,8 @@ export default () => {
     // for more info check utils.js
     const formData = toFormData(values);
 
-    Inertia.post(route('users.store'), formData).then(() => {
-      setSending(false);
+    Inertia.post(route('users.store'), formData, {
+      onFinish: () => setSending(false)
     });
   }
 

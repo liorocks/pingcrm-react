@@ -37,10 +37,9 @@ export default () => {
   function handleSubmit(e) {
     e.preventDefault();
     setSending(true);
-    Inertia.put(
-      route('organizations.update', organization.id),
-      values
-    ).then(() => setSending(false));
+    Inertia.put(route('organizations.update', organization.id), values, {
+      onFinish: () => setSending(false)
+    });
   }
 
   function destroy() {
