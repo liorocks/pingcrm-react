@@ -39,7 +39,7 @@ export default () => {
             <InertiaLink
               as="button"
               href={route('logout')}
-              className="block px-6 py-2 hover:bg-indigo-600 hover:text-white"
+              className="block w-full px-6 py-2 text-left focus:outline-none hover:bg-indigo-600 hover:text-white"
               method="post"
             >
               Logout
