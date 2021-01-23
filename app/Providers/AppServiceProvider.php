@@ -3,8 +3,6 @@
 namespace App\Providers;
 
 use League\Glide\Server;
-use Carbon\CarbonImmutable;
-use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\ServiceProvider;
@@ -14,7 +12,6 @@ class AppServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        Date::use(CarbonImmutable::class);
         JsonResource::withoutWrapping();
     }
 
