@@ -29,8 +29,8 @@ export default () => {
   function handleSubmit(e) {
     e.preventDefault();
     setSending(true);
-    Inertia.post(route('login.attempt'), values).then(() => {
-      setSending(false);
+    Inertia.post(route('login.attempt'), values, {
+      onFinish: () => setSending(false)
     });
   }
 
