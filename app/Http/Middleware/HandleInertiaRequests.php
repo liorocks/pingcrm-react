@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use App\Http\Resources\UserResource;
 use Inertia\Middleware;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HandleInertiaRequests extends Middleware
 {
@@ -38,9 +39,9 @@ class HandleInertiaRequests extends Middleware
     public function share(Request $request)
     {
         return array_merge(parent::share($request), [
-            'auth' => function () use ($request) {
+            'auth' => function () {
                 return [
-                    'user' => new UserResource($request->user()->load('account'))
+                    'user' => Auth::check() ? new UserResource(Auth::user()->load('account')) : null
                 ];
             },
             'flash' => function () use ($request) {
