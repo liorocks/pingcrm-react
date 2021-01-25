@@ -1,6 +1,9 @@
 const mix = require('laravel-mix');
 const path = require('path');
 
+// THIS IS A TEMPORARY SOLUTION.
+const { hmrOptions, devServer } = require('./webpack.fix');
+
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -22,13 +25,17 @@ mix
     require('tailwindcss'),
     require('autoprefixer')
   ])
+  .options({
+    hmrOptions: hmrOptions
+  })
   .webpackConfig({
     output: { chunkFilename: 'js/[name].js?id=[chunkhash]' },
     resolve: {
       alias: {
         '@': path.resolve('resources/js')
       }
-    }
+    },
+    devServer: devServer
   })
   .version()
   .sourceMaps();
