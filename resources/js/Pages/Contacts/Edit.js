@@ -107,8 +107,6 @@ export default () => {
                     {name}
                   </option>
                 ))}
-                <option value="CA">Canada</option>
-                <option value="US">United States</option>
               </SelectInput>
               <TextInput
                 className="w-full pb-8 pr-6 lg:w-1/2"
