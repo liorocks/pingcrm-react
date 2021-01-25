@@ -1,14 +1,10 @@
 import React from 'react';
-import Helmet from 'react-helmet';
 import { InertiaLink } from '@inertiajs/inertia-react';
 import Layout from '@/Shared/Layout';
 
 const Dashboard = () => {
   return (
     <div>
-      <Helmet>
-        <title>Dashboard</title>
-      </Helmet>
       <h1 className="mb-8 text-3xl font-bold">Dashboard</h1>
       <p className="mb-12 leading-normal">
         Hey there! Welcome to Ping CRM, a demo app designed to help illustrate
@@ -40,8 +36,8 @@ const Dashboard = () => {
   );
 };
 
-// Persisten layout
+// Persistent layout
 // Docs: https://inertiajs.com/pages#persistent-layouts
-Dashboard.layout = page => <Layout children={page} />;
+Dashboard.layout = page => <Layout title="Dashboard" children={page} />;
 
 export default Dashboard;

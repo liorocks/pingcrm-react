@@ -11,7 +11,7 @@ import FileInput from '@/Shared/FileInput';
 import TrashedMessage from '@/Shared/TrashedMessage';
 import { toFormData } from '@/utils';
 
-export default () => {
+const Edit = () => {
   const { user, errors } = usePage().props;
   const [sending, setSending] = useState(false);
   const [values, setValues] = useState({
@@ -69,102 +69,104 @@ export default () => {
   }
 
   return (
-    <Layout>
-      <div>
-        <Helmet title={`${values.first_name} ${values.last_name}`} />
-        <div className="flex justify-start max-w-lg mb-8">
-          <h1 className="text-3xl font-bold">
-            <InertiaLink
-              href={route('users')}
-              className="text-indigo-600 hover:text-indigo-700"
-            >
-              Users
-            </InertiaLink>
-            <span className="mx-2 font-medium text-indigo-600">/</span>
-            {values.first_name} {values.last_name}
-          </h1>
-          {user.photo && (
-            <img className="block w-8 h-8 ml-4 rounded-full" src={user.photo} />
-          )}
-        </div>
-        {user.deleted_at && (
-          <TrashedMessage onRestore={restore}>
-            This user has been deleted.
-          </TrashedMessage>
+    <div>
+      <Helmet title={`${values.first_name} ${values.last_name}`} />
+      <div className="flex justify-start max-w-lg mb-8">
+        <h1 className="text-3xl font-bold">
+          <InertiaLink
+            href={route('users')}
+            className="text-indigo-600 hover:text-indigo-700"
+          >
+            Users
+          </InertiaLink>
+          <span className="mx-2 font-medium text-indigo-600">/</span>
+          {values.first_name} {values.last_name}
+        </h1>
+        {user.photo && (
+          <img className="block w-8 h-8 ml-4 rounded-full" src={user.photo} />
         )}
-        <div className="max-w-3xl overflow-hidden bg-white rounded shadow">
-          <form onSubmit={handleSubmit}>
-            <div className="flex flex-wrap p-8 -mb-8 -mr-6">
-              <TextInput
-                className="w-full pb-8 pr-6 lg:w-1/2"
-                label="First Name"
-                name="first_name"
-                errors={errors.first_name}
-                value={values.first_name}
-                onChange={handleChange}
-              />
-              <TextInput
-                className="w-full pb-8 pr-6 lg:w-1/2"
-                label="Last Name"
-                name="last_name"
-                errors={errors.last_name}
-                value={values.last_name}
-                onChange={handleChange}
-              />
-              <TextInput
-                className="w-full pb-8 pr-6 lg:w-1/2"
-                label="Email"
-                name="email"
-                type="email"
-                errors={errors.email}
-                value={values.email}
-                onChange={handleChange}
-              />
-              <TextInput
-                className="w-full pb-8 pr-6 lg:w-1/2"
-                label="Password"
-                name="password"
-                type="password"
-                errors={errors.password}
-                value={values.password}
-                onChange={handleChange}
-              />
-              <SelectInput
-                className="w-full pb-8 pr-6 lg:w-1/2"
-                label="Owner"
-                name="owner"
-                errors={errors.owner}
-                value={values.owner}
-                onChange={handleChange}
-              >
-                <option value="1">Yes</option>
-                <option value="0">No</option>
-              </SelectInput>
-              <FileInput
-                className="w-full pb-8 pr-6 lg:w-1/2"
-                label="Photo"
-                name="photo"
-                accept="image/*"
-                errors={errors.photo}
-                value={values.photo}
-                onChange={handleFileChange}
-              />
-            </div>
-            <div className="flex items-center px-8 py-4 bg-gray-100 border-t border-gray-200">
-              {!user.deleted_at && (
-                <DeleteButton onDelete={destroy}>Delete User</DeleteButton>
-              )}
-              <LoadingButton
-                loading={sending}
-                type="submit"
-                className="ml-auto btn-indigo"
-              >
-                Update User
-              </LoadingButton>
-            </div>
-          </form>
-        </div>
       </div>
-    </Layout>
+      {user.deleted_at && (
+        <TrashedMessage onRestore={restore}>
+          This user has been deleted.
+        </TrashedMessage>
+      )}
+      <div className="max-w-3xl overflow-hidden bg-white rounded shadow">
+        <form onSubmit={handleSubmit}>
+          <div className="flex flex-wrap p-8 -mb-8 -mr-6">
+            <TextInput
+              className="w-full pb-8 pr-6 lg:w-1/2"
+              label="First Name"
+              name="first_name"
+              errors={errors.first_name}
+              value={values.first_name}
+              onChange={handleChange}
+            />
+            <TextInput
+              className="w-full pb-8 pr-6 lg:w-1/2"
+              label="Last Name"
+              name="last_name"
+              errors={errors.last_name}
+              value={values.last_name}
+              onChange={handleChange}
+            />
+            <TextInput
+              className="w-full pb-8 pr-6 lg:w-1/2"
+              label="Email"
+              name="email"
+              type="email"
+              errors={errors.email}
+              value={values.email}
+              onChange={handleChange}
+            />
+            <TextInput
+              className="w-full pb-8 pr-6 lg:w-1/2"
+              label="Password"
+              name="password"
+              type="password"
+              errors={errors.password}
+              value={values.password}
+              onChange={handleChange}
+            />
+            <SelectInput
+              className="w-full pb-8 pr-6 lg:w-1/2"
+              label="Owner"
+              name="owner"
+              errors={errors.owner}
+              value={values.owner}
+              onChange={handleChange}
+            >
+              <option value="1">Yes</option>
+              <option value="0">No</option>
+            </SelectInput>
+            <FileInput
+              className="w-full pb-8 pr-6 lg:w-1/2"
+              label="Photo"
+              name="photo"
+              accept="image/*"
+              errors={errors.photo}
+              value={values.photo}
+              onChange={handleFileChange}
+            />
+          </div>
+          <div className="flex items-center px-8 py-4 bg-gray-100 border-t border-gray-200">
+            {!user.deleted_at && (
+              <DeleteButton onDelete={destroy}>Delete User</DeleteButton>
+            )}
+            <LoadingButton
+              loading={sending}
+              type="submit"
+              className="ml-auto btn-indigo"
+            >
+              Update User
+            </LoadingButton>
+          </div>
+        </form>
+      </div>
+    </div>
   );
 };
+
+Edit.layout = page => <Layout children={page} />;
+
+export default Edit;
