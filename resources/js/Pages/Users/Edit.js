@@ -89,7 +89,7 @@ export default () => {
         </div>
         {user.deleted_at && (
           <TrashedMessage onRestore={restore}>
-            This contact has been deleted.
+            This user has been deleted.
           </TrashedMessage>
         )}
         <div className="max-w-3xl overflow-hidden bg-white rounded shadow">
