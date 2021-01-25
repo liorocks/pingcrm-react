@@ -7,7 +7,7 @@ const path = require('path');
 // If using laravel valet and https
 // it should be domain with full url.
 // Example: https://my-app.test
-const host = process.env.APP_URL.split('//')[1];
+const host = process.env.APP_URL ? process.env.APP_URL.split('//')[1] : '';
 
 // Check if command is: "npm run hot" or "npm run hot with-https"
 const isHotWithSSL =
