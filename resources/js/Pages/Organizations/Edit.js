@@ -190,7 +190,7 @@ export default () => {
                       <td className="border-t">
                         <InertiaLink
                           href={route('contacts.edit', id)}
-                          className="flex items-center px-6 py-4 focus:text-indigo"
+                          className="flex items-center px-6 py-4 focus:text-indigo focus:outline-none"
                         >
                           {name}
                           {deleted_at && (
@@ -205,7 +205,7 @@ export default () => {
                         <InertiaLink
                           tabIndex="-1"
                           href={route('contacts.edit', id)}
-                          className="flex items-center px-6 py-4 focus:text-indigo"
+                          className="flex items-center px-6 py-4 focus:text-indigo focus:outline-none"
                         >
                           {city}
                         </InertiaLink>
@@ -214,7 +214,7 @@ export default () => {
                         <InertiaLink
                           tabIndex="-1"
                           href={route('contacts.edit', id)}
-                          className="flex items-center px-6 py-4 focus:text-indigo"
+                          className="flex items-center px-6 py-4 focus:text-indigo focus:outline-none"
                         >
                           {phone}
                         </InertiaLink>

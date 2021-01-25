@@ -12,8 +12,11 @@ const path = require('path');
  |
  */
 
+mix.extract();
+
 mix
-  .react('resources/js/app.js', 'public/js')
+  .js('resources/js/app.js', 'public/js')
+  .react()
   .postCss('resources/css/app.css', 'public/css/app.css', [
     require('postcss-import'),
     require('tailwindcss'),

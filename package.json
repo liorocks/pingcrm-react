@@ -2,12 +2,12 @@
   "private": true,
   "scripts": {
     "dev": "npm run development",
-    "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-    "watch": "npm run development -- --watch",
-    "watch-poll": "npm run watch -- --watch-poll",
-    "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "development": "mix",
+    "watch": "mix watch",
+    "watch-poll": "mix watch -- --watch-options-poll=1000",
+    "hot": "mix watch --hot",
     "prod": "npm run production",
-    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+    "production": "mix --production"
   },
   "dependencies": {
     "@babel/preset-react": "^7.12.10",
@@ -15,25 +15,24 @@
     "@inertiajs/inertia-react": "^0.5.2",
     "@inertiajs/progress": "^0.2.4",
     "@sentry/browser": "^5.30.0",
-    "@tailwindcss/postcss7-compat": "^2.0.2",
-    "autoprefixer": "^9.8.6",
+    "autoprefixer": "^10.2.3",
     "axios": "^0.21.1",
     "classnames": "^2.2.6",
     "cross-env": "^6.0.3",
     "eslint": "^6.8.0",
-    "laravel-mix": "^5.0.9",
+    "laravel-mix": "^6.0.10",
     "lodash": "^4.17.20",
-    "postcss": "^7.0.35",
     "postcss-import": "^12.0.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-helmet": "^5.2.1",
     "react-use": "^13.27.1",
     "resolve-url-loader": "^3.1.2",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2"
+    "tailwindcss": "^2.0.2"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
-    "eslint-plugin-react": "^7.22.0"
+    "eslint-plugin-react": "^7.22.0",
+    "postcss": "^8.2.4"
   }
 }
