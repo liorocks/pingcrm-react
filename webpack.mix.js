@@ -12,6 +12,8 @@ const path = require('path');
  |
  */
 
+mix.extract();
+
 mix
   .js('resources/js/app.js', 'public/js')
   .react()
