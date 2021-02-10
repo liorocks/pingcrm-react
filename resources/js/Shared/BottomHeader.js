@@ -27,12 +27,14 @@ export default () => {
             <InertiaLink
               href={route('users.edit', auth.user.id)}
               className="block px-6 py-2 hover:bg-indigo-600 hover:text-white"
+              onClick={() => setMenuOpened(false)}
             >
               My Profile
             </InertiaLink>
             <InertiaLink
               href={route('users')}
               className="block px-6 py-2 hover:bg-indigo-600 hover:text-white"
+              onClick={() => setMenuOpened(false)}
             >
               Manage Users
             </InertiaLink>
