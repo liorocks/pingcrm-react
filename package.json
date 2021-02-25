@@ -10,31 +10,31 @@
     "production": "mix --production"
   },
   "dependencies": {
-    "@babel/preset-react": "^7.12.10",
-    "@inertiajs/inertia": "^0.8.4",
-    "@inertiajs/inertia-react": "^0.5.2",
+    "@babel/preset-react": "^7.12.13",
+    "@inertiajs/inertia": "^0.8.5",
+    "@inertiajs/inertia-react": "^0.5.4",
     "@inertiajs/progress": "^0.2.4",
     "@sentry/browser": "^5.30.0",
-    "autoprefixer": "^10.2.3",
+    "autoprefixer": "^10.2.4",
     "axios": "^0.21.1",
     "classnames": "^2.2.6",
     "cross-env": "^6.0.3",
     "eslint": "^6.8.0",
-    "laravel-mix": "^6.0.10",
-    "lodash": "^4.17.20",
+    "laravel-mix": "^6.0.13",
+    "lodash": "^4.17.21",
     "postcss-import": "^12.0.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-helmet": "^5.2.1",
     "react-use": "^13.27.1",
     "resolve-url-loader": "^3.1.2",
-    "tailwindcss": "^2.0.2"
+    "tailwindcss": "^2.0.3"
   },
   "devDependencies": {
     "@pmmmwh/react-refresh-webpack-plugin": "^0.4.3",
     "babel-eslint": "^10.1.0",
     "eslint-plugin-react": "^7.22.0",
-    "postcss": "^8.2.4",
+    "postcss": "^8.2.6",
     "react-refresh": "^0.9.0"
   }
 }

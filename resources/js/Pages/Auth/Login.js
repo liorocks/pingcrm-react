@@ -1,37 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Helmet from 'react-helmet';
 import { Inertia } from '@inertiajs/inertia';
-import { usePage } from '@inertiajs/inertia-react';
+import { useForm } from '@inertiajs/inertia-react';
 import Logo from '@/Shared/Logo';
 import LoadingButton from '@/Shared/LoadingButton';
 import TextInput from '@/Shared/TextInput';
 
 export default () => {
-  const { errors } = usePage().props;
-  const [sending, setSending] = useState(false);
-  const [values, setValues] = useState({
+  const { data, setData, errors, post, processing } = useForm({
     email: 'johndoe@example.com',
     password: 'secret',
     remember: true
   });
 
-  function handleChange(e) {
-    const key = e.target.name;
-    const value =
-      e.target.type === 'checkbox' ? e.target.checked : e.target.value;
-
-    setValues(values => ({
-      ...values,
-      [key]: value
-    }));
-  }
-
   function handleSubmit(e) {
     e.preventDefault();
-    setSending(true);
-    Inertia.post(route('login.attempt'), values, {
-      onFinish: () => setSending(false)
-    });
+    post(route('login.attempt'));
   }
 
   return (
@@ -55,8 +39,8 @@ export default () => {
               name="email"
               type="email"
               errors={errors.email}
-              value={values.email}
-              onChange={handleChange}
+              value={data.email}
+              onChange={e => setData('email', e.target.value)}
             />
             <TextInput
               className="mt-6"
@@ -64,8 +48,8 @@ export default () => {
               name="password"
               type="password"
               errors={errors.password}
-              value={values.password}
-              onChange={handleChange}
+              value={data.password}
+              onChange={e => setData('password', e.target.value)}
             />
             <label
               className="flex items-center mt-6 select-none"
@@ -76,8 +60,8 @@ export default () => {
                 id="remember"
                 className="mr-1"
                 type="checkbox"
-                checked={values.remember}
-                onChange={handleChange}
+                checked={data.remember}
+                onChange={e => setData('remember', e.target.checked)}
               />
               <span className="text-sm">Remember Me</span>
             </label>
@@ -88,7 +72,7 @@ export default () => {
             </a>
             <LoadingButton
               type="submit"
-              loading={sending}
+              loading={processing}
               className="btn-indigo"
             >
               Login
