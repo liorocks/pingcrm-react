@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Helmet from 'react-helmet';
 import { Inertia } from '@inertiajs/inertia';
-import { InertiaLink, usePage } from '@inertiajs/inertia-react';
+import { InertiaLink, usePage, useForm } from '@inertiajs/inertia-react';
 import Layout from '@/Shared/Layout';
 import DeleteButton from '@/Shared/DeleteButton';
 import LoadingButton from '@/Shared/LoadingButton';
@@ -9,51 +9,27 @@ import TextInput from '@/Shared/TextInput';
 import SelectInput from '@/Shared/SelectInput';
 import FileInput from '@/Shared/FileInput';
 import TrashedMessage from '@/Shared/TrashedMessage';
-import { toFormData } from '@/utils';
 
 const Edit = () => {
-  const { user, errors } = usePage().props;
-  const [sending, setSending] = useState(false);
-  const [values, setValues] = useState({
+  const { user } = usePage().props;
+  const { data, setData, errors, post, processing } = useForm({
     first_name: user.first_name || '',
     last_name: user.last_name || '',
     email: user.email || '',
     password: user.password || '',
     owner: user.owner ? '1' : '0' || '0',
-    photo: ''
-  });
-
-  function handleChange(e) {
-    const key = e.target.name;
-    const value = e.target.value;
-    setValues(values => ({
-      ...values,
-      [key]: value
-    }));
-  }
-
-  function handleFileChange(file) {
-    setValues(values => ({
-      ...values,
-      photo: file ? file : ''
-    }));
-  }
-
-  function handleSubmit(e) {
-    e.preventDefault();
-    setSending(true);
-
-    // since we are uploading an image
-    // we need to use FormData object
+    photo: '',
 
     // NOTE: When working with Laravel PUT/PATCH requests and FormData
     // you SHOULD send POST request and fake the PUT request like this.
-    // For more info check utils.jf file
-    const formData = toFormData(values, 'PUT');
+    _method: 'PUT'
+  });
 
-    Inertia.post(route('users.update', user.id), formData, {
-      onFinish: () => setSending(false)
-    });
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    // NOTE: We are using POST method here, not PUT/PACH. See comment above.
+    post(route('users.update', user.id));
   }
 
   function destroy() {
@@ -70,7 +46,7 @@ const Edit = () => {
 
   return (
     <div>
-      <Helmet title={`${values.first_name} ${values.last_name}`} />
+      <Helmet title={`${data.first_name} ${data.last_name}`} />
       <div className="flex justify-start max-w-lg mb-8">
         <h1 className="text-3xl font-bold">
           <InertiaLink
@@ -80,7 +56,7 @@ const Edit = () => {
             Users
           </InertiaLink>
           <span className="mx-2 font-medium text-indigo-600">/</span>
-          {values.first_name} {values.last_name}
+          {data.first_name} {data.last_name}
         </h1>
         {user.photo && (
           <img className="block w-8 h-8 ml-4 rounded-full" src={user.photo} />
@@ -99,16 +75,16 @@ const Edit = () => {
               label="First Name"
               name="first_name"
               errors={errors.first_name}
-              value={values.first_name}
-              onChange={handleChange}
+              value={data.first_name}
+              onChange={e => setData('first_name', e.target.value)}
             />
             <TextInput
               className="w-full pb-8 pr-6 lg:w-1/2"
               label="Last Name"
               name="last_name"
               errors={errors.last_name}
-              value={values.last_name}
-              onChange={handleChange}
+              value={data.last_name}
+              onChange={e => setData('last_name', e.target.value)}
             />
             <TextInput
               className="w-full pb-8 pr-6 lg:w-1/2"
@@ -116,8 +92,8 @@ const Edit = () => {
               name="email"
               type="email"
               errors={errors.email}
-              value={values.email}
-              onChange={handleChange}
+              value={data.email}
+              onChange={e => setData('email', e.target.value)}
             />
             <TextInput
               className="w-full pb-8 pr-6 lg:w-1/2"
@@ -125,16 +101,16 @@ const Edit = () => {
               name="password"
               type="password"
               errors={errors.password}
-              value={values.password}
-              onChange={handleChange}
+              value={data.password}
+              onChange={e => setData('password', e.target.value)}
             />
             <SelectInput
               className="w-full pb-8 pr-6 lg:w-1/2"
               label="Owner"
               name="owner"
               errors={errors.owner}
-              value={values.owner}
-              onChange={handleChange}
+              value={data.owner}
+              onChange={e => setData('owner', e.target.value)}
             >
               <option value="1">Yes</option>
               <option value="0">No</option>
@@ -145,8 +121,8 @@ const Edit = () => {
               name="photo"
               accept="image/*"
               errors={errors.photo}
-              value={values.photo}
-              onChange={handleFileChange}
+              value={data.photo}
+              onChange={photo => setData('photo', photo)}
             />
           </div>
           <div className="flex items-center px-8 py-4 bg-gray-100 border-t border-gray-200">
@@ -154,7 +130,7 @@ const Edit = () => {
               <DeleteButton onDelete={destroy}>Delete User</DeleteButton>
             )}
             <LoadingButton
-              loading={sending}
+              loading={processing}
               type="submit"
               className="ml-auto btn-indigo"
             >

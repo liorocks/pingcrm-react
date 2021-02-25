@@ -1,16 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Inertia } from '@inertiajs/inertia';
-import { InertiaLink, usePage } from '@inertiajs/inertia-react';
+import { InertiaLink, useForm } from '@inertiajs/inertia-react';
 import Layout from '@/Shared/Layout';
 import LoadingButton from '@/Shared/LoadingButton';
 import TextInput from '@/Shared/TextInput';
 import SelectInput from '@/Shared/SelectInput';
 
 const Create = () => {
-  const { errors } = usePage().props;
-  const [sending, setSending] = useState(false);
-
-  const [values, setValues] = useState({
+  const { data, setData, errors, post, processing } = useForm({
     name: '',
     email: '',
     phone: '',
@@ -21,22 +18,9 @@ const Create = () => {
     postal_code: ''
   });
 
-  function handleChange(e) {
-    const key = e.target.name;
-    const value = e.target.value;
-    setValues(values => ({
-      ...values,
-      [key]: value
-    }));
-  }
-
   function handleSubmit(e) {
     e.preventDefault();
-    setSending(true);
-
-    Inertia.post(route('organizations.store'), values, {
-      onFinish: () => setSending(false)
-    });
+    post(route('organizations.store'));
   }
 
   return (
@@ -58,8 +42,8 @@ const Create = () => {
               label="Name"
               name="name"
               errors={errors.name}
-              value={values.name}
-              onChange={handleChange}
+              value={data.name}
+              onChange={e => setData('name', e.target.value)}
             />
             <TextInput
               className="w-full pb-8 pr-6 lg:w-1/2"
@@ -67,8 +51,8 @@ const Create = () => {
               name="email"
               type="email"
               errors={errors.email}
-              value={values.email}
-              onChange={handleChange}
+              value={data.email}
+              onChange={e => setData('email', e.target.value)}
             />
             <TextInput
               className="w-full pb-8 pr-6 lg:w-1/2"
@@ -76,8 +60,8 @@ const Create = () => {
               name="phone"
               type="text"
               errors={errors.phone}
-              value={values.phone}
-              onChange={handleChange}
+              value={data.phone}
+              onChange={e => setData('phone', e.target.value)}
             />
             <TextInput
               className="w-full pb-8 pr-6 lg:w-1/2"
@@ -85,8 +69,8 @@ const Create = () => {
               name="address"
               type="text"
               errors={errors.address}
-              value={values.address}
-              onChange={handleChange}
+              value={data.address}
+              onChange={e => setData('address', e.target.value)}
             />
             <TextInput
               className="w-full pb-8 pr-6 lg:w-1/2"
@@ -94,8 +78,8 @@ const Create = () => {
               name="city"
               type="text"
               errors={errors.city}
-              value={values.city}
-              onChange={handleChange}
+              value={data.city}
+              onChange={e => setData('city', e.target.value)}
             />
             <TextInput
               className="w-full pb-8 pr-6 lg:w-1/2"
@@ -103,16 +87,16 @@ const Create = () => {
               name="region"
               type="text"
               errors={errors.region}
-              value={values.region}
-              onChange={handleChange}
+              value={data.region}
+              onChange={e => setData('region', e.target.value)}
             />
             <SelectInput
               className="w-full pb-8 pr-6 lg:w-1/2"
               label="Country"
               name="country"
               errors={errors.country}
-              value={values.country}
-              onChange={handleChange}
+              value={data.country}
+              onChange={e => setData('country', e.target.value)}
             >
               <option value=""></option>
               <option value="CA">Canada</option>
@@ -124,13 +108,13 @@ const Create = () => {
               name="postal_code"
               type="text"
               errors={errors.postal_code}
-              value={values.postal_code}
-              onChange={handleChange}
+              value={data.postal_code}
+              onChange={e => setData('postal_code', e.target.value)}
             />
           </div>
           <div className="flex items-center justify-end px-8 py-4 bg-gray-100 border-t border-gray-200">
             <LoadingButton
-              loading={sending}
+              loading={processing}
               type="submit"
               className="btn-indigo"
             >
