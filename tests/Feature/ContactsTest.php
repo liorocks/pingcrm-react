@@ -2,16 +2,14 @@
 
 namespace Tests\Feature;
 
+use Tests\TestCase;
 use App\Models\User;
 use App\Models\Account;
 use App\Models\Contact;
-use Tests\TestCase;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Inertia\Testing\Assert;
 
 class ContactsTest extends TestCase
 {
-    use RefreshDatabase;
-
     protected function setUp(): void
     {
         parent::setUp();
@@ -36,13 +34,11 @@ class ContactsTest extends TestCase
         $this->actingAs($this->user)
             ->get('/contacts')
             ->assertStatus(200)
-            ->assertPropCount('contacts.data', 5)
-            ->assertPropValue('contacts.data', function ($contacts) {
-                $this->assertEquals(
-                    ['id', 'name', 'phone', 'city',
-                    'deleted_at', 'organization'],
-                    array_keys($contacts[0])
-                );
+            ->assertInertia(function (Assert $page) {
+                $page->component('Contacts/Index');
+                $page->has('contacts.data', 5, function (Assert $page) {
+                    $page->hasAll(['id', 'name', 'phone', 'city', 'deleted_at', 'organization']);
+                });
             });
     }
 
@@ -58,10 +54,11 @@ class ContactsTest extends TestCase
         $this->actingAs($this->user)
             ->get('/contacts?search=Greg')
             ->assertStatus(200)
-            ->assertPropValue('filters.search', 'Greg')
-            ->assertPropCount('contacts.data', 1)
-            ->assertPropValue('contacts.data', function ($contacts) {
-                $this->assertEquals('Greg Andersson', $contacts[0]['name']);
+            ->assertInertia(function (Assert $page) {
+                $page->where('filters.search', 'Greg');
+                $page->has('contacts.data', 1, function (Assert $page) {
+                    $page->where('name', 'Greg Andersson')->etc();
+                });
             });
     }
 
@@ -74,7 +71,9 @@ class ContactsTest extends TestCase
         $this->actingAs($this->user)
             ->get('/contacts')
             ->assertStatus(200)
-            ->assertPropCount('contacts.data', 4);
+            ->assertInertia(function (Assert $page) {
+                $page->has('contacts.data', 4);
+            });
     }
 
     public function test_can_filter_to_view_deleted_contacts()
@@ -86,7 +85,9 @@ class ContactsTest extends TestCase
         $this->actingAs($this->user)
             ->get('/contacts?trashed=with')
             ->assertStatus(200)
-            ->assertPropValue('filters.trashed', 'with')
-            ->assertPropCount('contacts.data', 5);
+            ->assertInertia(function (Assert $page) {
+                $page->where('filters.trashed', 'with');
+                $page->has('contacts.data', 5);
+            });
     }
 }

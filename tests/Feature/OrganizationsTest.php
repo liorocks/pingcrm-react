@@ -2,16 +2,14 @@
 
 namespace Tests\Feature;
 
+use Tests\TestCase;
 use App\Models\User;
 use App\Models\Account;
-use Tests\TestCase;
 use App\Models\Organization;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Inertia\Testing\Assert;
 
 class OrganizationsTest extends TestCase
 {
-    use RefreshDatabase;
-
     protected function setUp(): void
     {
         parent::setUp();
@@ -36,12 +34,11 @@ class OrganizationsTest extends TestCase
         $this->actingAs($this->user)
             ->get('/organizations')
             ->assertStatus(200)
-            ->assertPropCount('organizations.data', 5)
-            ->assertPropValue('organizations.data', function ($organizations) {
-                $this->assertEquals(
-                    ['id', 'name', 'phone', 'city', 'deleted_at'],
-                    array_keys($organizations[0])
-                );
+            ->assertInertia(function (Assert $page) {
+                $page->component('Organizations/Index');
+                $page->has('organizations.data', 5, function (Assert $page) {
+                    $page->hasAll(['id', 'name', 'phone', 'city', 'deleted_at']);
+                });
             });
     }
 
@@ -54,10 +51,11 @@ class OrganizationsTest extends TestCase
         $this->actingAs($this->user)
             ->get('/organizations?search=Some Big Fancy Company Name')
             ->assertStatus(200)
-            ->assertPropValue('filters.search', 'Some Big Fancy Company Name')
-            ->assertPropCount('organizations.data', 1)
-            ->assertPropValue('organizations.data', function ($organizations) {
-                $this->assertEquals('Some Big Fancy Company Name', $organizations[0]['name']);
+            ->assertInertia(function (Assert $page) {
+                $page->where('filters.search', 'Some Big Fancy Company Name');
+                $page->has('organizations.data', 1, function (Assert $page) {
+                    $page->where('name', 'Some Big Fancy Company Name')->etc();
+                });
             });
     }
 
@@ -70,7 +68,9 @@ class OrganizationsTest extends TestCase
         $this->actingAs($this->user)
             ->get('/organizations')
             ->assertStatus(200)
-            ->assertPropCount('organizations.data', 4);
+            ->assertInertia(function (Assert $page) {
+                $page->has('organizations.data', 4);
+            });
     }
 
     public function test_can_filter_to_view_deleted_organizations()
@@ -82,7 +82,9 @@ class OrganizationsTest extends TestCase
         $this->actingAs($this->user)
             ->get('/organizations?trashed=with')
             ->assertStatus(200)
-            ->assertPropValue('filters.trashed', 'with')
-            ->assertPropCount('organizations.data', 5);
+            ->assertInertia(function (Assert $page) {
+                $page->where('filters.trashed', 'with');
+                $page->has('organizations.data', 5);
+            });
     }
 }
