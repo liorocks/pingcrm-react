@@ -32,6 +32,11 @@ jobs:
         run: |
           mkdir -p database
           touch database/database.sqlite
+      - name: Cache npm dependencies
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: npm-${{ hashFiles('package-lock.json') }}
       - name: Run NPM Scripts
         run: npm ci && npm run prod
       - name: Run Tests
