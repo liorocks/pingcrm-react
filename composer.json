@@ -76,5 +76,8 @@
         "optimize-autoloader": true
     },
     "minimum-stability": "dev",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "require-dev": {
+        "brianium/paratest": "^6.2"
+    }
 }
