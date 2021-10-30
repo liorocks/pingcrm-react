@@ -58,7 +58,7 @@ export default () => {
   return (
     <div>
       {flash.success && visible && (
-        <div className="mb-8 flex items-center justify-between bg-green-500 rounded max-w-3xl">
+        <div className="flex items-center justify-between bg-green-500 rounded">
           <div className="flex items-center">
             <IconSuccess />
             <div className="py-4 text-white text-sm font-medium">
@@ -69,7 +69,7 @@ export default () => {
         </div>
       )}
       {(flash.error || numOfErrors > 0) && visible && (
-        <div className="mb-8 flex items-center justify-between bg-red-500 rounded max-w-3xl">
+        <div className="flex items-center justify-between bg-red-500 rounded">
           <div className="flex items-center">
             <IconDanger />
             <div className="py-4 text-white text-sm font-medium">

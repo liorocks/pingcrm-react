@@ -13,10 +13,15 @@ use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Auth\Passwords\CanResetPassword;
+use Illuminate\Contracts\Auth\CanResetPassword as
+CanResetPasswordContract;
+use Illuminate\Notifications\Notifiable;
+use App\Notifications\ResetPasswordNotification;
 
-class User extends Model implements AuthenticatableContract, AuthorizableContract
+class User extends Model implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract
 {
-    use SoftDeletes, Authenticatable, Authorizable, HasFactory;
+    use SoftDeletes, Authenticatable, Authorizable, HasFactory, CanResetPassword, Notifiable;
 
     protected $casts = [
         'owner' => 'boolean',
@@ -29,24 +34,25 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 
     public function getNameAttribute()
     {
-        return $this->first_name.' '.$this->last_name;
+        return $this->first_name . ' ' . $this->last_name;
     }
 
     public function setPasswordAttribute($password)
     {
-        if(!$password) return;
+        if (!$password) return;
 
         $this->attributes['password'] = Hash::make($password);
     }
 
     public function setPhotoAttribute($photo)
     {
-        if(!$photo) return;
+        if (!$photo) return;
 
         $this->attributes['photo_path'] = $photo instanceof UploadedFile ? $photo->store('users') : $photo;
     }
 
-    public function getPhotoAttribute() {
+    public function getPhotoAttribute()
+    {
         return $this->photoUrl(['w' => 40, 'h' => 40, 'fit' => 'crop']);
     }
 
@@ -70,8 +76,10 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     public function scopeWhereRole($query, $role)
     {
         switch ($role) {
-            case 'user': return $query->where('owner', false);
-            case 'owner': return $query->where('owner', true);
+            case 'user':
+                return $query->where('owner', false);
+            case 'owner':
+                return $query->where('owner', true);
         }
     }
 
@@ -79,9 +87,9 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     {
         $query->when($filters['search'] ?? null, function ($query, $search) {
             $query->where(function ($query) use ($search) {
-                $query->where('first_name', 'like', '%'.$search.'%')
-                    ->orWhere('last_name', 'like', '%'.$search.'%')
-                    ->orWhere('email', 'like', '%'.$search.'%');
+                $query->where('first_name', 'like', '%' . $search . '%')
+                    ->orWhere('last_name', 'like', '%' . $search . '%')
+                    ->orWhere('email', 'like', '%' . $search . '%');
             });
         })->when($filters['role'] ?? null, function ($query, $role) {
             $query->whereRole($role);
@@ -92,5 +100,10 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
                 $query->onlyTrashed();
             }
         });
+    }
+
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetPasswordNotification());
     }
 }

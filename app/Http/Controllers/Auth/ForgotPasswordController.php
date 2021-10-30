@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Inertia\Inertia;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
+use Illuminate\Support\Facades\Password;
 
 class ForgotPasswordController extends Controller
 {
@@ -28,5 +32,24 @@ class ForgotPasswordController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+    }
+
+    public function showForgotPasswordForm()
+    {
+        return Inertia::render('Auth/ForgotPassword');
+    }
+
+    public function sendPasswordResetEmail(Request $request)
+    {
+        $email = $request->email;
+        $userExist = User::where('email', $email)->exists();
+        if (!$userExist) {
+            return back()->withErrors(['email' => 'Oops. Who are you?']);
+        }
+        $status = Password::sendResetLink($request->only('email'));
+        if ($status === Password::RESET_LINK_SENT) {
+            return  redirect(route('login'))->with(['success' => 'We did it!']);
+        }
+        return  back()->withErrors('email', __($status));
     }
 }
