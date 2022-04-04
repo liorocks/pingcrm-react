@@ -5,6 +5,8 @@ import { useForm } from '@inertiajs/inertia-react';
 import Logo from '@/Shared/Logo';
 import LoadingButton from '@/Shared/LoadingButton';
 import TextInput from '@/Shared/TextInput';
+import FlashMessages from "@/Shared/FlashMessages";
+
 
 export default () => {
   const { data, setData, errors, post, processing } = useForm({
@@ -21,6 +23,12 @@ export default () => {
   return (
     <div className="flex items-center justify-center min-h-screen p-6 bg-indigo-900">
       <Helmet title="Login" />
+
+          <div className="w-full absolute top-2">
+              <FlashMessages />
+          </div>
+
+
       <div className="w-full max-w-md">
         <Logo
           className="block w-full max-w-xs mx-auto text-white fill-current"
@@ -67,7 +75,7 @@ export default () => {
             </label>
           </div>
           <div className="flex items-center justify-between px-10 py-4 bg-gray-100 border-t border-gray-200">
-            <a className="hover:underline" tabIndex="-1" href="#reset-password">
+            <a className="hover:underline" tabIndex="-1" href={"reset-password"}>
               Forgot password?
             </a>
             <LoadingButton

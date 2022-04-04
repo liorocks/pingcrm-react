@@ -6,7 +6,9 @@ use App\Models\User;
 use App\Models\Account;
 use App\Models\Contact;
 use App\Models\Organization;
+use App\Models\Report;
 use Illuminate\Database\Seeder;
+use Faker\Generator as Faker;
 
 class DatabaseSeeder extends Seeder
 {
@@ -36,5 +38,7 @@ class DatabaseSeeder extends Seeder
             ->each(function (Contact  $contact) use ($organizations) {
                 $contact->update(['organization_id' => $organizations->random()->id]);
             });
-    }
+
+        Report::factory()->count(100)->create();
+        }
 }
