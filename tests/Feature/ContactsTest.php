@@ -2,10 +2,10 @@
 
 namespace Tests\Feature;
 
+use App\components\Contact\Application\Models\Contact;
+use App\components\User\Application\Models\User;
 use Tests\TestCase;
-use App\Models\User;
-use App\Models\Account;
-use App\Models\Contact;
+use App\components\Account\Application\Models\Account;
 use Inertia\Testing\Assert;
 
 class ContactsTest extends TestCase

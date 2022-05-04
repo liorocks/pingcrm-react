@@ -1,7 +1,9 @@
 <?php
 
-namespace App\Models;
+namespace App\components\User\Application\Models;
 
+use App\components\Account\Application\Models\Account;
+use App\components\Model\Application\Models\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use League\Glide\Server;
 use Illuminate\Support\Facades\App;
@@ -18,6 +20,23 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 {
     use SoftDeletes, Authenticatable, Authorizable, HasFactory;
 
+    protected $table = "users";
+
+    protected $fillable = [
+        'first_name',
+        'last_name',
+        'email',
+        'password'
+    ];
+
+    protected $dates = [
+        'deleted_at',
+    ];
+
+    protected $hidden = [
+        'password'
+    ];
+
     protected $casts = [
         'owner' => 'boolean',
     ];
@@ -31,6 +50,10 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     {
         return $this->first_name.' '.$this->last_name;
     }
+
+    // ------------------------------------------------------------------------
+    // Setters
+    // ------------------------------------------------------------------------
 
     public function setPasswordAttribute($password)
     {
@@ -46,8 +69,19 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         $this->attributes['photo_path'] = $photo instanceof UploadedFile ? $photo->store('users') : $photo;
     }
 
-    public function getPhotoAttribute() {
+
+    // ------------------------------------------------------------------------
+    // Getters
+    // ------------------------------------------------------------------------
+
+    public function getPhotoAttribute()
+    {
         return $this->photoUrl(['w' => 40, 'h' => 40, 'fit' => 'crop']);
+    }
+
+    public function getAccount()
+    {
+        return $this->account()->first();
     }
 
     public function photoUrl(array $attributes)
@@ -61,6 +95,10 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     {
         return $this->email === 'johndoe@example.com';
     }
+
+    // ------------------------------------------------------------------------
+    // Filters
+    // ------------------------------------------------------------------------
 
     public function scopeOrderByName($query)
     {
@@ -92,5 +130,14 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
                 $query->onlyTrashed();
             }
         });
+    }
+
+    /**
+     * Create a new Factory instance for the Model
+     * @return \Database\Factories\UserFactory
+     */
+    protected static function newFactory()
+    {
+        return \Database\Factories\UserFactory::new();
     }
 }

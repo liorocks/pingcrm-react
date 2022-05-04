@@ -3,9 +3,9 @@
 namespace Tests\Feature;
 
 use Tests\TestCase;
-use App\Models\User;
-use App\Models\Account;
-use App\Models\Contact;
+use App\components\Account\Application\Models\User;
+use App\components\Account\Application\Models\Account;
+use App\components\Account\Application\Models\Contact;
 use Inertia\Testing\Assert;
 
 class UsersTest extends TestCase

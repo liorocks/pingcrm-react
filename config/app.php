@@ -174,7 +174,10 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
+        \App\components\User\Application\Providers\UserRouteServiceProvider::class,
+        \App\components\Organization\Application\Providers\OrganizationRouteServiceProvider::class,
+        \App\components\Contact\Application\Providers\ContactRouteServiceProvider::class,
+        \App\components\Report\Application\Providers\ReportRouteServiceProvider::class,
     ],
 
     /*
@@ -211,7 +214,7 @@ return [
         'Log' => Illuminate\Support\Facades\Log::class,
         'Mail' => Illuminate\Support\Facades\Mail::class,
         'Notification' => Illuminate\Support\Facades\Notification::class,
-        'Password' => Illuminate\Support\Facades\Password::class,
+        'password' => Illuminate\Support\Facades\Password::class,
         'Queue' => Illuminate\Support\Facades\Queue::class,
         'Redirect' => Illuminate\Support\Facades\Redirect::class,
         'Redis' => Illuminate\Support\Facades\Redis::class,

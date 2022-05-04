@@ -1,7 +1,9 @@
 <?php
 
-namespace App\Models;
+namespace App\components\Contact\Application\Models;
 
+use App\components\Model\Application\Models\Model;
+use App\components\Organization\Application\Models\Organization;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -42,5 +44,14 @@ class Contact extends Model
                 $query->onlyTrashed();
             }
         });
+    }
+
+    /**
+     * Create a new Factory instance for the Model
+     * @return \Database\Factories\ContactFactory
+     */
+    protected static function newFactory()
+    {
+        return \Database\Factories\ContactFactory::new();
     }
 }

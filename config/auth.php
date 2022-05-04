@@ -1,5 +1,7 @@
 <?php
 
+use App\components\User\Application\Models\User;
+
 return [
 
     /*
@@ -15,7 +17,7 @@ return [
 
     'defaults' => [
         'guard' => 'web',
-        'passwords' => 'users',
+        'password' => 'users',
     ],
 
     /*
@@ -68,7 +70,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\Models\User::class,
+            'model' => User::class,
         ],
 
         // 'users' => [
@@ -92,7 +94,7 @@ return [
     |
     */
 
-    'passwords' => [
+    'password' => [
         'users' => [
             'provider' => 'users',
             'table' => 'password_resets',
@@ -103,7 +105,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Password Confirmation Timeout
+    | password Confirmation Timeout
     |--------------------------------------------------------------------------
     |
     | Here you may define the amount of seconds before a password confirmation
