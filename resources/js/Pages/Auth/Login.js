@@ -67,7 +67,7 @@ export default () => {
             </label>
           </div>
           <div className="flex items-center justify-between px-10 py-4 bg-gray-100 border-t border-gray-200">
-            <a className="hover:underline" tabIndex="-1" href="#reset-password">
+            <a href="/reset_password" className="hover:underline" tabIndex="-1">
               Forgot password?
             </a>
             <LoadingButton
