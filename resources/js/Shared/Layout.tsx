@@ -1,6 +1,6 @@
 import Helmet from 'react-helmet';
-import MainMenu from '@/Shared/MainMenu';
-import FlashMessages from '@/Shared/FlashMessages';
+import MainMenu from '@/Shared/Menu/MainMenu';
+import FlashMessages from '@/Shared/Messages/FlashMessages';
 import TopHeader from '@/Shared/Header/TopHeader';
 import BottomHeader from '@/Shared/Header/BottomHeader';
 

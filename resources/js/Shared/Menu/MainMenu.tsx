@@ -1,4 +1,4 @@
-import MainMenuItem from '@/Shared/MainMenuItem';
+import MainMenuItem from '@/Shared/Menu/MainMenuItem';
 
 export default ({ className }) => {
   return (

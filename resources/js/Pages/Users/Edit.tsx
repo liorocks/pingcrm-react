@@ -7,7 +7,7 @@ import LoadingButton from '@/Shared/Button/LoadingButton';
 import TextInput from '@/Shared/Form/TextInput';
 import SelectInput from '@/Shared/Form/SelectInput';
 import FileInput from '@/Shared/Form/FileInput';
-import TrashedMessage from '@/Shared/TrashedMessage';
+import TrashedMessage from '@/Shared/Messages/TrashedMessage';
 import { User } from '@/types';
 
 const Edit = () => {

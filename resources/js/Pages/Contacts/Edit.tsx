@@ -6,7 +6,7 @@ import DeleteButton from '@/Shared/Button/DeleteButton';
 import LoadingButton from '@/Shared/Button/LoadingButton';
 import TextInput from '@/Shared/Form/TextInput';
 import SelectInput from '@/Shared/Form/SelectInput';
-import TrashedMessage from '@/Shared/TrashedMessage';
+import TrashedMessage from '@/Shared/Messages/TrashedMessage';
 import { Contact, Organization } from '@/types';
 
 const Edit = () => {

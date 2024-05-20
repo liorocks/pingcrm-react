@@ -1,5 +1,3 @@
-import React from 'react';
-
 export default ({ label, name, className, errors = [], ...props }) => {
   return (
     <div className={className}>

@@ -6,9 +6,9 @@ import DeleteButton from '@/Shared/Button/DeleteButton';
 import LoadingButton from '@/Shared/Button/LoadingButton';
 import TextInput from '@/Shared/Form/TextInput';
 import SelectInput from '@/Shared/Form/SelectInput';
-import TrashedMessage from '@/Shared/TrashedMessage';
-import Icon from '@/Shared/Icon';
+import TrashedMessage from '@/Shared/Messages/TrashedMessage';
 import { Organization } from '@/types';
+import Table from '@/Shared/Table/Table';
 
 const Edit = () => {
   const { organization } = usePage<{ organization: Organization }>().props;
@@ -152,84 +152,16 @@ const Edit = () => {
           </div>
         </form>
       </div>
-      <h2 className="mt-12 text-2xl font-bold">Contacts</h2>
-      <div className="mt-6 overflow-x-auto bg-white rounded shadow">
-        <table className="w-full whitespace-nowrap">
-          <thead>
-            <tr className="font-bold text-left">
-              <th className="px-6 pt-5 pb-4">Name</th>
-              <th className="px-6 pt-5 pb-4">City</th>
-              <th className="px-6 pt-5 pb-4" colSpan={2}>
-                Phone
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {organization.contacts.map(
-              ({ id, name, phone, city, deleted_at }) => {
-                return (
-                  <tr
-                    key={id}
-                    className="hover:bg-gray-100 focus-within:bg-gray-100"
-                  >
-                    <td className="border-t">
-                      <Link
-                        href={route('contacts.edit', id)}
-                        className="flex items-center px-6 py-4 focus:text-indigo focus:outline-none"
-                      >
-                        {name}
-                        {deleted_at && (
-                          <Icon
-                            name="trash"
-                            className="flex-shrink-0 w-3 h-3 ml-2 text-gray-400 fill-current"
-                          />
-                        )}
-                      </Link>
-                    </td>
-                    <td className="border-t">
-                      <Link
-                        tabIndex={-1}
-                        href={route('contacts.edit', id)}
-                        className="flex items-center px-6 py-4 focus:text-indigo focus:outline-none"
-                      >
-                        {city}
-                      </Link>
-                    </td>
-                    <td className="border-t">
-                      <Link
-                        tabIndex={-1}
-                        href={route('contacts.edit', id)}
-                        className="flex items-center px-6 py-4 focus:text-indigo focus:outline-none"
-                      >
-                        {phone}
-                      </Link>
-                    </td>
-                    <td className="w-px border-t">
-                      <Link
-                        tabIndex={-1}
-                        href={route('contacts.edit', id)}
-                        className="flex items-center px-4"
-                      >
-                        <Icon
-                          name="cheveron-right"
-                          className="block w-6 h-6 text-gray-400 fill-current"
-                        />
-                      </Link>
-                    </td>
-                  </tr>
-                );
-              }
-            )}
-            {organization.contacts.length === 0 && (
-              <tr>
-                <td className="px-6 py-4 border-t" colSpan={4}>
-                  No contacts found.
-                </td>
-              </tr>
-            )}
-          </tbody>
-        </table>
-      </div>
+      <h2 className="mt-12 mb-6 text-2xl font-bold">Contacts</h2>
+      <Table
+        columns={[
+          { label: 'Name', name: 'name' },
+          { label: 'City', name: 'city' },
+          { label: 'Phone', name: 'phone', colSpan: 2 }
+        ]}
+        rows={organization.contacts}
+        onRowClickUrl={row => route('contacts.edit', row.id)}
+      />
     </div>
   );
 };
