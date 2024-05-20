@@ -23,7 +23,7 @@ class UserResource extends JsonResource
             'owner' => $this->owner,
             'photo' => $this->photo,
             'deleted_at' => $this->deleted_at,
-            'account' => $this->whenLoaded('account')
+            'account' => $this->whenLoaded('account'),
         ];
     }
 }
