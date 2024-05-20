@@ -1,10 +1,6 @@
-/* Base */
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-
-/* Components */
-@import 'components/button';
 @import 'components/form';
+@import 'components/button';
 
-/* Utilities */
-@import 'tailwindcss/utilities';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

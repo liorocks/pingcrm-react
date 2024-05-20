@@ -42,7 +42,7 @@ export default () => {
               as="button"
               href={route('logout')}
               className="block w-full px-6 py-2 text-left focus:outline-none hover:bg-indigo-600 hover:text-white"
-              method="post"
+              method="DELETE"
             >
               Logout
             </Link>
