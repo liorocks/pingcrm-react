@@ -21,6 +21,7 @@
         "tightenco/ziggy": "^2.2"
     },
     "require-dev": {
+        "brianium/paratest": "^7.4",
         "laravel/pint": "^1.15",
         "laravel/sail": "^1.26",
         "mockery/mockery": "^1.6",
