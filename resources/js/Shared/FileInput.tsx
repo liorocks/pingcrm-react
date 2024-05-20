@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { filesize } from '@/utils';
+import { fileSize } from '@/utils';
 
 const Button = ({ text, onClick }) => (
   <button
@@ -57,7 +57,7 @@ export default ({ className, name, label, accept, errors = [], onChange }) => {
             <div className="flex-1 pr-1">
               {file.name}
               <span className="ml-1 text-xs text-gray-600">
-                ({filesize(file.size)})
+                ({fileSize(file.size)})
               </span>
             </div>
             <Button text="Remove" onClick={remove} />
