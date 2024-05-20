@@ -14,7 +14,7 @@ export default () => {
 
   function handleSubmit(e) {
     e.preventDefault();
-    post(route('login.attempt'));
+    post(route('login.store'));
   }
 
   return (

@@ -8,14 +8,16 @@ use App\Http\Requests\UserUpdateRequest;
 use App\Http\Resources\UserCollection;
 use App\Http\Resources\UserResource;
 use App\Models\User;
-use Inertia\Inertia;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Request;
+use Inertia\Inertia;
+use Inertia\Response;
 
 class UsersController extends Controller
 {
-    public function index()
+    public function index(): Response
     {
         return Inertia::render('Users/Index', [
             'filters' => Request::all('search', 'role', 'trashed'),
@@ -29,12 +31,12 @@ class UsersController extends Controller
         ]);
     }
 
-    public function create()
+    public function create(): Response
     {
         return Inertia::render('Users/Create');
     }
 
-    public function store(UserStoreRequest $request)
+    public function store(UserStoreRequest $request): RedirectResponse
     {
         Auth::user()->account->users()->create(
             $request->validated()
@@ -43,14 +45,14 @@ class UsersController extends Controller
         return Redirect::route('users')->with('success', 'User created.');
     }
 
-    public function edit(User $user)
+    public function edit(User $user): Response
     {
         return Inertia::render('Users/Edit', [
             'user' => new UserResource($user),
         ]);
     }
 
-    public function update(User $user, UserUpdateRequest $request)
+    public function update(User $user, UserUpdateRequest $request): RedirectResponse
     {
         $user->update(
             $request->validated()
@@ -59,14 +61,14 @@ class UsersController extends Controller
         return Redirect::back()->with('success', 'User updated.');
     }
 
-    public function destroy(User $user, UserDeleteRequest $request)
+    public function destroy(User $user, UserDeleteRequest $request): RedirectResponse
     {
         $user->delete();
 
         return Redirect::back()->with('success', 'User deleted.');
     }
 
-    public function restore(User $user)
+    public function restore(User $user): RedirectResponse
     {
         $user->restore();
 

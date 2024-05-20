@@ -2,11 +2,10 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
-use App\Models\User;
 use App\Models\Account;
-use App\Models\Contact;
+use App\Models\User;
 use Inertia\Testing\AssertableInertia as Assert;
+use Tests\TestCase;
 
 class UsersTest extends TestCase
 {
@@ -46,7 +45,7 @@ class UsersTest extends TestCase
 
         User::first()->update([
             'first_name' => 'Greg',
-            'last_name' => 'Andersson'
+            'last_name' => 'Andersson',
         ]);
 
         $this->actingAs($this->user)

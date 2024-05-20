@@ -3,26 +3,57 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use League\Glide\Server;
-use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\URL;
-use Illuminate\Auth\Authenticatable;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Foundation\Auth\Access\Authorizable;
-use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
-use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
-use Illuminate\Http\UploadedFile;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Hash;
+use Laravel\Sanctum\HasApiTokens;
 
-class User extends Model implements AuthenticatableContract, AuthorizableContract
+class User extends Authenticatable
 {
-    use SoftDeletes, Authenticatable, Authorizable, HasFactory;
+    use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
 
-    protected $casts = [
-        'owner' => 'boolean',
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
     ];
 
-    public function account()
+    /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var array<int, string>
+     */
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+
+    /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [
+            'owner' => 'boolean',
+            'email_verified_at' => 'datetime',
+        ];
+    }
+
+    public function resolveRouteBinding($value, $field = null)
+    {
+        return $this->where($field ?? 'id', $value)->withTrashed()->firstOrFail();
+    }
+
+    public function account(): BelongsTo
     {
         return $this->belongsTo(Account::class);
     }
@@ -34,27 +65,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 
     public function setPasswordAttribute($password)
     {
-        if(!$password) return;
-
-        $this->attributes['password'] = Hash::make($password);
-    }
-
-    public function setPhotoAttribute($photo)
-    {
-        if(!$photo) return;
-
-        $this->attributes['photo_path'] = $photo instanceof UploadedFile ? $photo->store('users') : $photo;
-    }
-
-    public function getPhotoAttribute() {
-        return $this->photoUrl(['w' => 40, 'h' => 40, 'fit' => 'crop']);
-    }
-
-    public function photoUrl(array $attributes)
-    {
-        if ($this->photo_path) {
-            return URL::to(App::make(Server::class)->fromPath($this->photo_path, $attributes));
-        }
+        $this->attributes['password'] = Hash::needsRehash($password) ? Hash::make($password) : $password;
     }
 
     public function isDemoUser()

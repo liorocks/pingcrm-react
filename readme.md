@@ -79,7 +79,7 @@ You're ready to go! [Visit Ping CRM](http://127.0.0.1:8000/) in your browser, an
 To run the Ping CRM tests, run:
 
 ```
-phpunit
+php artisan test
 ```
 
 ## Credits

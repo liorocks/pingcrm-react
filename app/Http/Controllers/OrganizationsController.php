@@ -6,15 +6,17 @@ use App\Http\Requests\OrganizationStoreRequest;
 use App\Http\Requests\OrganizationUpdateRequest;
 use App\Http\Resources\OrganizationCollection;
 use App\Http\Resources\OrganizationResource;
-use Inertia\Inertia;
 use App\Models\Organization;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Request;
+use Inertia\Inertia;
+use Inertia\Response;
 
 class OrganizationsController extends Controller
 {
-    public function index()
+    public function index(): Response
     {
         return Inertia::render('Organizations/Index', [
             'filters' => Request::all('search', 'trashed'),
@@ -28,12 +30,12 @@ class OrganizationsController extends Controller
         ]);
     }
 
-    public function create()
+    public function create(): Response
     {
         return Inertia::render('Organizations/Create');
     }
 
-    public function store(OrganizationStoreRequest $request)
+    public function store(OrganizationStoreRequest $request): RedirectResponse
     {
         Auth::user()->account->organizations()->create(
             $request->validated()
@@ -42,14 +44,14 @@ class OrganizationsController extends Controller
         return Redirect::route('organizations')->with('success', 'Organization created.');
     }
 
-    public function edit(Organization $organization)
+    public function edit(Organization $organization): Response
     {
         return Inertia::render('Organizations/Edit', [
             'organization' => new OrganizationResource($organization),
         ]);
     }
 
-    public function update(Organization $organization, OrganizationUpdateRequest $request)
+    public function update(Organization $organization, OrganizationUpdateRequest $request): RedirectResponse
     {
         $organization->update(
             $request->validated()
@@ -58,14 +60,14 @@ class OrganizationsController extends Controller
         return Redirect::back()->with('success', 'Organization updated.');
     }
 
-    public function destroy(Organization $organization)
+    public function destroy(Organization $organization): RedirectResponse
     {
         $organization->delete();
 
         return Redirect::back()->with('success', 'Organization deleted.');
     }
 
-    public function restore(Organization $organization)
+    public function restore(Organization $organization): RedirectResponse
     {
         $organization->restore();
 

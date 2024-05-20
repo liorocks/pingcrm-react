@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UserStoreRequest extends FormRequest
 {
@@ -33,5 +33,4 @@ class UserStoreRequest extends FormRequest
             'photo' => ['nullable', 'image'],
         ];
     }
-
 }
