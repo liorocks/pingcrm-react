@@ -2,18 +2,19 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import { useForm } from '@inertiajs/react';
 import Logo from '@/Shared/Logo';
-import LoadingButton from '@/Shared/LoadingButton';
-import TextInput from '@/Shared/TextInput';
+import LoadingButton from '@/Shared/Button/LoadingButton';
+import TextInput from '@/Shared/Form/TextInput';
 
-export default () => {
+export default function LoginPage() {
   const { data, setData, errors, post, processing } = useForm({
     email: 'johndoe@example.com',
     password: 'secret',
     remember: true
   });
 
-  function handleSubmit(e) {
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+
     post(route('login.store'));
   }
 
@@ -66,7 +67,7 @@ export default () => {
             </label>
           </div>
           <div className="flex items-center justify-between px-10 py-4 bg-gray-100 border-t border-gray-200">
-            <a className="hover:underline" tabIndex="-1" href="#reset-password">
+            <a className="hover:underline" tabIndex={-1} href="#reset-password">
               Forgot password?
             </a>
             <LoadingButton
@@ -81,4 +82,4 @@ export default () => {
       </div>
     </div>
   );
-};
+}

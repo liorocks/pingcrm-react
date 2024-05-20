@@ -1,12 +1,12 @@
-import React from 'react';
 import { Link, usePage, useForm } from '@inertiajs/react';
 import Layout from '@/Shared/Layout';
-import LoadingButton from '@/Shared/LoadingButton';
-import TextInput from '@/Shared/TextInput';
-import SelectInput from '@/Shared/SelectInput';
+import LoadingButton from '@/Shared/Button/LoadingButton';
+import TextInput from '@/Shared/Form/TextInput';
+import SelectInput from '@/Shared/Form/SelectInput';
+import { Organization } from '@/types';
 
 const Create = () => {
-  const { organizations } = usePage().props;
+  const { organizations } = usePage<{ organizations: Organization[] }>().props;
   const { data, setData, errors, post, processing } = useForm({
     first_name: '',
     last_name: '',
@@ -20,7 +20,7 @@ const Create = () => {
     postal_code: ''
   });
 
-  function handleSubmit(e) {
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     post(route('contacts.store'));
   }

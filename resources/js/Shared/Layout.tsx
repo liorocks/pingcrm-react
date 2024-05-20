@@ -1,11 +1,15 @@
-import React from 'react';
 import Helmet from 'react-helmet';
 import MainMenu from '@/Shared/MainMenu';
 import FlashMessages from '@/Shared/FlashMessages';
-import TopHeader from '@/Shared/TopHeader';
-import BottomHeader from '@/Shared/BottomHeader';
+import TopHeader from '@/Shared/Header/TopHeader';
+import BottomHeader from '@/Shared/Header/BottomHeader';
 
-export default function Layout({ title, children }) {
+interface LayoutProps {
+  title?: string;
+  children: React.ReactNode;
+}
+
+export default function Layout({ title, children }: LayoutProps) {
   return (
     <div>
       <Helmet titleTemplate="%s | Ping CRM" title={title} />

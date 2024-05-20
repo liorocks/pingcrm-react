@@ -1,16 +1,20 @@
-import React from 'react';
 import { Link, usePage } from '@inertiajs/react';
 import Layout from '@/Shared/Layout';
 import Icon from '@/Shared/Icon';
 import SearchFilter from '@/Shared/SearchFilter';
 import Pagination from '@/Shared/Pagination';
+import { Organization } from '@/types';
 
-const Index = () => {
-  const { organizations } = usePage().props;
+function Index() {
+  const { organizations } = usePage<{
+    organizations: { data: Organization[]; meta: { links: any } };
+  }>().props;
+
   const {
     data,
     meta: { links }
   } = organizations;
+
   return (
     <div>
       <h1 className="mb-8 text-3xl font-bold">Organizations</h1>
@@ -30,7 +34,7 @@ const Index = () => {
             <tr className="font-bold text-left">
               <th className="px-6 pt-5 pb-4">Name</th>
               <th className="px-6 pt-5 pb-4">City</th>
-              <th className="px-6 pt-5 pb-4" colSpan="2">
+              <th className="px-6 pt-5 pb-4" colSpan={2}>
                 Phone
               </th>
             </tr>
@@ -58,7 +62,7 @@ const Index = () => {
                   </td>
                   <td className="border-t">
                     <Link
-                      tabIndex="-1"
+                      tabIndex={-1}
                       href={route('organizations.edit', id)}
                       className="flex items-center px-6 py-4 focus:text-indigo focus:outline-none"
                     >
@@ -67,7 +71,7 @@ const Index = () => {
                   </td>
                   <td className="border-t">
                     <Link
-                      tabIndex="-1"
+                      tabIndex={-1}
                       href={route('organizations.edit', id)}
                       className="flex items-center px-6 py-4 focus:text-indigo focus:outline-none"
                     >
@@ -76,7 +80,7 @@ const Index = () => {
                   </td>
                   <td className="w-px border-t">
                     <Link
-                      tabIndex="-1"
+                      tabIndex={-1}
                       href={route('organizations.edit', id)}
                       className="flex items-center px-4 focus:outline-none"
                     >
@@ -91,7 +95,7 @@ const Index = () => {
             })}
             {data.length === 0 && (
               <tr>
-                <td className="px-6 py-4 border-t" colSpan="4">
+                <td className="px-6 py-4 border-t" colSpan={4}>
                   No organizations found.
                 </td>
               </tr>
@@ -102,7 +106,7 @@ const Index = () => {
       <Pagination links={links} />
     </div>
   );
-};
+}
 
 Index.layout = page => <Layout title="Organizations" children={page} />;
 

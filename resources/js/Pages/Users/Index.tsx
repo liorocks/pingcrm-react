@@ -1,12 +1,14 @@
-import React from 'react';
 import { Link, usePage } from '@inertiajs/react';
 import Layout from '@/Shared/Layout';
 import Icon from '@/Shared/Icon';
 import SearchFilter from '@/Shared/SearchFilter';
 import Pagination from '@/Shared/Pagination';
+import { User } from '@/types';
 
 const Index = () => {
-  const { users } = usePage().props;
+  const { users } = usePage<{ users: { data: User[]; meta: { links: any } } }>()
+    .props;
+
   const {
     data,
     meta: { links }
@@ -30,7 +32,7 @@ const Index = () => {
             <tr className="font-bold text-left">
               <th className="px-6 pt-5 pb-4">Name</th>
               <th className="px-6 pt-5 pb-4">Email</th>
-              <th className="px-6 pt-5 pb-4" colSpan="2">
+              <th className="px-6 pt-5 pb-4" colSpan={2}>
                 Role
               </th>
             </tr>
@@ -64,7 +66,7 @@ const Index = () => {
                   </td>
                   <td className="border-t">
                     <Link
-                      tabIndex="-1"
+                      tabIndex={-1}
                       href={route('users.edit', id)}
                       className="flex items-center px-6 py-4 focus:text-indigo focus:outline-none"
                     >
@@ -73,7 +75,7 @@ const Index = () => {
                   </td>
                   <td className="border-t">
                     <Link
-                      tabIndex="-1"
+                      tabIndex={-1}
                       href={route('users.edit', id)}
                       className="flex items-center px-6 py-4 focus:text-indigo focus:outline-none"
                     >
@@ -82,7 +84,7 @@ const Index = () => {
                   </td>
                   <td className="w-px border-t">
                     <Link
-                      tabIndex="-1"
+                      tabIndex={-1}
                       href={route('users.edit', id)}
                       className="flex items-center px-4 focus:outline-none"
                     >
@@ -97,7 +99,7 @@ const Index = () => {
             })}
             {data.length === 0 && (
               <tr>
-                <td className="px-6 py-4 border-t" colSpan="4">
+                <td className="px-6 py-4 border-t" colSpan={4}>
                   No users found.
                 </td>
               </tr>

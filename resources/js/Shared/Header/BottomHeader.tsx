@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link, usePage } from '@inertiajs/react';
 import Icon from '@/Shared/Icon';
+import { PageProps } from '@/types';
 
 export default () => {
-  const { auth } = usePage().props;
+  const { auth } = usePage<PageProps>().props;
   const [menuOpened, setMenuOpened] = useState(false);
+
   return (
     <div className="flex items-center justify-between w-full p-4 text-sm bg-white border-b md:py-0 md:px-12 d:text-md">
       <div className="mt-1 mr-4">{auth.user.account.name}</div>
@@ -41,8 +43,8 @@ export default () => {
             <Link
               as="button"
               href={route('logout')}
+              method="delete"
               className="block w-full px-6 py-2 text-left focus:outline-none hover:bg-indigo-600 hover:text-white"
-              method="DELETE"
             >
               Logout
             </Link>

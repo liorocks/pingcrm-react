@@ -1,7 +1,6 @@
-import React from 'react';
 import Icon from '@/Shared/Icon';
 
-export default ({ onRestore, children }) => {
+export default function TrashedMessage({ onRestore, children }) {
   return (
     <div className="max-w-3xl mb-6 p-4 bg-yellow-400 rounded border border-yellow-500 flex items-center justify-between">
       <div className="flex items-center">
@@ -13,7 +12,7 @@ export default ({ onRestore, children }) => {
       </div>
       <button
         className="text-yellow-800 focus:outline-none text-sm hover:underline"
-        tabIndex="-1"
+        tabIndex={-1}
         type="button"
         onClick={onRestore}
       >
@@ -21,4 +20,4 @@ export default ({ onRestore, children }) => {
       </button>
     </div>
   );
-};
+}

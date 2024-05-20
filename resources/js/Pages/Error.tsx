@@ -1,7 +1,7 @@
-import React from 'react';
+import { PageProps } from '@/types';
 import Helmet from 'react-helmet';
 
-export default ({ status }) => {
+export default function ErrorPage({ status }: PageProps<{ status: number }>) {
   // const { status } = usePage().props;
 
   const title = {
@@ -27,4 +27,4 @@ export default ({ status }) => {
       </div>
     </div>
   );
-};
+}

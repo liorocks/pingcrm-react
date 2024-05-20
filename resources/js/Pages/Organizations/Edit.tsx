@@ -2,15 +2,16 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import { Link, usePage, useForm, router } from '@inertiajs/react';
 import Layout from '@/Shared/Layout';
-import DeleteButton from '@/Shared/DeleteButton';
-import LoadingButton from '@/Shared/LoadingButton';
-import TextInput from '@/Shared/TextInput';
-import SelectInput from '@/Shared/SelectInput';
+import DeleteButton from '@/Shared/Button/DeleteButton';
+import LoadingButton from '@/Shared/Button/LoadingButton';
+import TextInput from '@/Shared/Form/TextInput';
+import SelectInput from '@/Shared/Form/SelectInput';
 import TrashedMessage from '@/Shared/TrashedMessage';
 import Icon from '@/Shared/Icon';
+import { Organization } from '@/types';
 
 const Edit = () => {
-  const { organization } = usePage().props;
+  const { organization } = usePage<{ organization: Organization }>().props;
   const { data, setData, errors, put, processing } = useForm({
     name: organization.name || '',
     email: organization.email || '',
@@ -22,7 +23,7 @@ const Edit = () => {
     postal_code: organization.postal_code || ''
   });
 
-  function handleSubmit(e) {
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     put(route('organizations.update', organization.id));
   }
@@ -64,7 +65,7 @@ const Edit = () => {
               className="w-full pb-8 pr-6 lg:w-1/2"
               label="Name"
               name="name"
-              errors={errors.name}
+              errors={errors?.name}
               value={data.name}
               onChange={e => setData('name', e.target.value)}
             />
@@ -158,7 +159,7 @@ const Edit = () => {
             <tr className="font-bold text-left">
               <th className="px-6 pt-5 pb-4">Name</th>
               <th className="px-6 pt-5 pb-4">City</th>
-              <th className="px-6 pt-5 pb-4" colSpan="2">
+              <th className="px-6 pt-5 pb-4" colSpan={2}>
                 Phone
               </th>
             </tr>
@@ -187,7 +188,7 @@ const Edit = () => {
                     </td>
                     <td className="border-t">
                       <Link
-                        tabIndex="-1"
+                        tabIndex={-1}
                         href={route('contacts.edit', id)}
                         className="flex items-center px-6 py-4 focus:text-indigo focus:outline-none"
                       >
@@ -196,7 +197,7 @@ const Edit = () => {
                     </td>
                     <td className="border-t">
                       <Link
-                        tabIndex="-1"
+                        tabIndex={-1}
                         href={route('contacts.edit', id)}
                         className="flex items-center px-6 py-4 focus:text-indigo focus:outline-none"
                       >
@@ -205,7 +206,7 @@ const Edit = () => {
                     </td>
                     <td className="w-px border-t">
                       <Link
-                        tabIndex="-1"
+                        tabIndex={-1}
                         href={route('contacts.edit', id)}
                         className="flex items-center px-4"
                       >
@@ -221,7 +222,7 @@ const Edit = () => {
             )}
             {organization.contacts.length === 0 && (
               <tr>
-                <td className="px-6 py-4 border-t" colSpan="4">
+                <td className="px-6 py-4 border-t" colSpan={4}>
                   No contacts found.
                 </td>
               </tr>

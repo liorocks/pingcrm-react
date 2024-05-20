@@ -1,16 +1,18 @@
 import React from 'react';
 import Helmet from 'react-helmet';
-import { Link, usePage, useForm, router} from '@inertiajs/react';
+import { Link, usePage, useForm, router } from '@inertiajs/react';
 import Layout from '@/Shared/Layout';
-import DeleteButton from '@/Shared/DeleteButton';
-import LoadingButton from '@/Shared/LoadingButton';
-import TextInput from '@/Shared/TextInput';
-import SelectInput from '@/Shared/SelectInput';
-import FileInput from '@/Shared/FileInput';
+import DeleteButton from '@/Shared/Button/DeleteButton';
+import LoadingButton from '@/Shared/Button/LoadingButton';
+import TextInput from '@/Shared/Form/TextInput';
+import SelectInput from '@/Shared/Form/SelectInput';
+import FileInput from '@/Shared/Form/FileInput';
 import TrashedMessage from '@/Shared/TrashedMessage';
+import { User } from '@/types';
 
 const Edit = () => {
-  const { user } = usePage().props;
+  const { user } = usePage<{ user: User & { password: string } }>().props;
+
   const { data, setData, errors, post, processing } = useForm({
     first_name: user.first_name || '',
     last_name: user.last_name || '',
@@ -24,10 +26,10 @@ const Edit = () => {
     _method: 'PUT'
   });
 
-  function handleSubmit(e) {
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    // NOTE: We are using POST method here, not PUT/PACH. See comment above.
+    // NOTE: We are using POST method here, not PUT/PATCH. See comment above.
     post(route('users.update', user.id));
   }
 

@@ -2,14 +2,19 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import { Link, usePage, useForm, router } from '@inertiajs/react';
 import Layout from '@/Shared/Layout';
-import DeleteButton from '@/Shared/DeleteButton';
-import LoadingButton from '@/Shared/LoadingButton';
-import TextInput from '@/Shared/TextInput';
-import SelectInput from '@/Shared/SelectInput';
+import DeleteButton from '@/Shared/Button/DeleteButton';
+import LoadingButton from '@/Shared/Button/LoadingButton';
+import TextInput from '@/Shared/Form/TextInput';
+import SelectInput from '@/Shared/Form/SelectInput';
 import TrashedMessage from '@/Shared/TrashedMessage';
+import { Contact, Organization } from '@/types';
 
 const Edit = () => {
-  const { contact, organizations } = usePage().props;
+  const { contact, organizations } = usePage<{
+    contact: Contact;
+    organizations: Organization[];
+  }>().props;
+
   const { data, setData, errors, put, processing } = useForm({
     first_name: contact.first_name || '',
     last_name: contact.last_name || '',
@@ -23,7 +28,7 @@ const Edit = () => {
     postal_code: contact.postal_code || ''
   });
 
-  function handleSubmit(e) {
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     put(route('contacts.update', contact.id));
   }
