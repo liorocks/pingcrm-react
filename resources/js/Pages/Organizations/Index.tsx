@@ -4,6 +4,7 @@ import SearchFilter from '@/Shared/SearchFilter';
 import Pagination from '@/Shared/Pagination';
 import { Organization, PaginatedData } from '@/types';
 import Table from '@/Shared/Table/Table';
+import Icon from '@/Shared/Icon';
 
 function Index() {
   const { organizations } = usePage<{
@@ -30,7 +31,21 @@ function Index() {
       </div>
       <Table
         columns={[
-          { label: 'Name', name: 'name' },
+          {
+            label: 'Name',
+            name: 'name',
+            renderCell: row => (
+              <>
+                {row.name}
+                {row.deleted_at && (
+                  <Icon
+                    name="trash"
+                    className="flex-shrink-0 w-3 h-3 ml-2 text-gray-400 fill-current"
+                  />
+                )}
+              </>
+            )
+          },
           { label: 'City', name: 'city' },
           { label: 'Phone', name: 'phone', colSpan: 2 }
         ]}

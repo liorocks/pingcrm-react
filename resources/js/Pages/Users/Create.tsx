@@ -15,7 +15,7 @@ const Create = () => {
     photo: ''
   });
 
-  function handleSubmit(e) {
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     post(route('users.store'));
   }

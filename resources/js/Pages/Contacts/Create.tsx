@@ -62,8 +62,8 @@ const Create = () => {
               error={errors.organization_id}
               value={data.organization_id}
               onChange={e => setData('organization_id', e.target.value)}
-              options={organizations.map(({ id, name }) => ({
-                id,
+              options={organizations?.map(({ id, name }) => ({
+                value: String(id),
                 label: name
               }))}
             />
@@ -119,11 +119,11 @@ const Create = () => {
               error={errors.country}
               value={data.country}
               onChange={e => setData('country', e.target.value)}
-            >
-              <option value=""></option>
-              <option value="CA">Canada</option>
-              <option value="US">United States</option>
-            </SelectInput>
+              options={[
+                { value: 'CA', label: 'Canada' },
+                { value: 'US', label: 'United States' }
+              ]}
+            />
             <TextInput
               className="w-full pb-8 pr-6 lg:w-1/2"
               label="Postal Code"
