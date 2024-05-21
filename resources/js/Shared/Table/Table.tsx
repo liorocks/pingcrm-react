@@ -7,20 +7,18 @@ interface TableProps<T> {
     name: string;
     label: string;
     colSpan?: number;
-    prependCell?: (row: T) => React.ReactNode;
     renderCell?: (row: T) => React.ReactNode;
-    appendCell?: (row: T) => React.ReactNode;
   }[];
 
   rows: T[];
 
-  onRowClickUrl?: (row: T) => string;
+  getRowDetailsUrl?: (row: T) => string;
 }
 
 export default function Table<T>({
   columns = [],
   rows = [],
-  onRowClickUrl
+  getRowDetailsUrl
 }: TableProps<T>) {
   return (
     <div className="overflow-x-auto bg-white rounded shadow">
@@ -61,15 +59,12 @@ export default function Table<T>({
                     <td key={column.name} className="border-t">
                       <Link
                         tabIndex={-1}
-                        href={onRowClickUrl?.(row) as string}
+                        href={getRowDetailsUrl?.(row) as string}
                         className="flex items-center px-6 py-4 focus:text-indigo focus:outline-none"
                       >
-                        {/* Append, Main Cell, Prepend */}
-                        {column.prependCell?.(row)}
                         {column.renderCell?.(row) ??
                           get(row, column.name) ??
                           'N/A'}
-                        {column.appendCell?.(row)}
                       </Link>
                     </td>
                   );
@@ -77,7 +72,7 @@ export default function Table<T>({
                 <td className="w-px border-t">
                   <Link
                     tabIndex={-1}
-                    href={onRowClickUrl?.(row)!}
+                    href={getRowDetailsUrl?.(row)!}
                     className="flex items-center px-4 focus:outline-none"
                   >
                     <Icon

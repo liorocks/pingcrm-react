@@ -1,6 +1,6 @@
-import React from 'react';
+import { ComponentProps } from 'react';
 
-interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface Props extends ComponentProps<'button'> {
   onDelete: () => void;
 }
 

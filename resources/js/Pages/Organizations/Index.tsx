@@ -35,7 +35,7 @@ function Index() {
           { label: 'Phone', name: 'phone', colSpan: 2 }
         ]}
         rows={data}
-        onRowClickUrl={row => route('organizations.edit', row.id)}
+        getRowDetailsUrl={row => route('organizations.edit', row.id)}
       />
       <Pagination links={links} />
     </div>

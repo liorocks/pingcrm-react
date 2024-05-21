@@ -33,22 +33,24 @@ const Index = () => {
             label: 'Name',
             name: 'name',
 
-            prependCell: row =>
-              row.photo && (
-                <img
-                  src={row.photo}
-                  alt={row.name}
-                  className="w-5 h-5 mr-2 rounded-full"
-                />
-              ),
-
-            appendCell: row =>
-              row.deleted_at && (
-                <Icon
-                  name="trash"
-                  className="flex-shrink-0 w-3 h-3 ml-2 text-gray-400 fill-current"
-                />
-              )
+            renderCell: row => (
+              <>
+                {row.photo && (
+                  <img
+                    src={row.photo}
+                    alt={row.name}
+                    className="w-5 h-5 mr-2 rounded-full"
+                  />
+                )}
+                <>{row.name}</>
+                {row.deleted_at && (
+                  <Icon
+                    name="trash"
+                    className="flex-shrink-0 w-3 h-3 ml-2 text-gray-400 fill-current"
+                  />
+                )}
+              </>
+            )
           },
           { label: 'Email', name: 'email' },
           {
@@ -59,7 +61,7 @@ const Index = () => {
           }
         ]}
         rows={data}
-        onRowClickUrl={row => route('users.edit', row.id)}
+        getRowDetailsUrl={row => route('users.edit', row.id)}
       />
       <Pagination links={links} />
     </div>

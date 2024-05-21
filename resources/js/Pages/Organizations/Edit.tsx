@@ -170,7 +170,7 @@ const Edit = () => {
           { label: 'Phone', name: 'phone', colSpan: 2 }
         ]}
         rows={organization.contacts}
-        onRowClickUrl={row => route('contacts.edit', row.id)}
+        getRowDetailsUrl={row => route('contacts.edit', row.id)}
       />
     </div>
   );
