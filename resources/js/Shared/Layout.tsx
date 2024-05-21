@@ -11,7 +11,7 @@ interface LayoutProps {
 
 export default function Layout({ title, children }: LayoutProps) {
   return (
-    <div>
+    <>
       <Head title={title} />
       <div className="flex flex-col">
         <div className="flex flex-col h-screen">
@@ -22,13 +22,16 @@ export default function Layout({ title, children }: LayoutProps) {
           <div className="flex flex-grow overflow-hidden">
             <MainMenu className="flex-shrink-0 hidden w-56 p-12 overflow-y-auto bg-indigo-800 md:block" />
             {/* To reset scroll region (https://inertiajs.com/pages#scroll-regions) add `scroll-region="true"` to div below */}
-            <div className="w-full px-4 py-8 overflow-hidden overflow-y-auto md:p-12">
+            <div
+              className="w-full px-4 py-8 overflow-hidden overflow-y-auto md:p-12"
+              scroll-region="true"
+            >
               <FlashMessages />
               {children}
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

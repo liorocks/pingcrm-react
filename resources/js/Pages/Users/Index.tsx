@@ -13,6 +13,7 @@ const Index = () => {
     data,
     meta: { links }
   } = users;
+
   return (
     <div>
       <h1 className="mb-8 text-3xl font-bold">Users</h1>
@@ -34,7 +35,11 @@ const Index = () => {
 
             prependCell: row =>
               row.photo && (
-                <img src={row.photo} className="w-8 h-8 mr-2 rounded-full" />
+                <img
+                  src={row.photo}
+                  alt={row.name}
+                  className="w-5 h-5 mr-2 rounded-full"
+                />
               ),
 
             appendCell: row =>

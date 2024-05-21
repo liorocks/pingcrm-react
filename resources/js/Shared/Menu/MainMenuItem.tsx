@@ -1,9 +1,14 @@
-import React from 'react';
 import { Link } from '@inertiajs/react';
 import classNames from 'classnames';
 import Icon from '@/Shared/Icon';
 
-export default ({ icon, link, text }) => {
+interface MainMenuItemProps {
+  icon: string;
+  link: string;
+  text: string;
+}
+
+export default function MainMenuItem({ icon, link, text }: MainMenuItemProps) {
   const isActive = route().current(link + '*');
 
   const iconClasses = classNames('w-4 h-4 mr-2', {
@@ -24,4 +29,4 @@ export default ({ icon, link, text }) => {
       </Link>
     </div>
   );
-};
+}

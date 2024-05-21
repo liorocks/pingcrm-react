@@ -87,7 +87,7 @@ const Create = () => {
               label="Photo"
               name="photo"
               accept="image/*"
-              errors={errors.photo}
+              error={errors.photo}
               value={data.photo}
               onChange={photo => setData('photo', photo)}
             />

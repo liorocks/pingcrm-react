@@ -1,34 +1,37 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, ComponentProps } from 'react';
 import { fileSize } from '@/utils';
 
-const Button = ({ text, onClick }) => (
-  <button
-    type="button"
-    className="px-4 py-1 text-xs font-medium text-white bg-gray-600 rounded-sm focus:outline-none hover:bg-gray-700"
-    onClick={onClick}
-  >
-    {text}
-  </button>
-);
+interface FileInputProps extends ComponentProps<'input'> {
+  label?: string;
+  error?: string;
+}
 
-export default ({ className, name, label, accept, errors = [], onChange }) => {
-  const fileInput = useRef();
-  const [file, setFile] = useState(null);
+export default function FileInput({
+  className,
+  name,
+  label,
+  accept,
+  error,
+  onChange
+}: FileInputProps) {
+  const fileInput = useRef<HTMLInputElement>(null);
+  const [file, setFile] = useState<File | null>(null);
 
-  function browse() {
-    fileInput.current.click();
+  function handleBrowse() {
+    fileInput?.current?.click();
   }
 
-  function remove() {
+  function handleRemove() {
     setFile(null);
-    onChange(null);
+    onChange?.(null);
+
     fileInput.current.value = null;
   }
 
-  function handleFileChange(e) {
-    const file = e.target.files[0];
+  function handleChange(e: React.FormEvent<HTMLInputElement>) {
+    const file = e.target?.files[0];
     setFile(file);
-    onChange(file);
+    onChange?.(file);
   }
 
   return (
@@ -38,33 +41,50 @@ export default ({ className, name, label, accept, errors = [], onChange }) => {
           {label}:
         </label>
       )}
-      <div className={`form-input p-0 ${errors.length && 'error'}`}>
+      <div className={`form-input p-0 ${error && 'error'}`}>
         <input
           id={name}
           ref={fileInput}
           accept={accept}
           type="file"
           className="hidden"
-          onChange={handleFileChange}
+          onChange={handleChange}
         />
         {!file && (
           <div className="p-2">
-            <Button text="Browse" onClick={browse} />
+            <BrowseButton text="Browse" onClick={handleBrowse} />
           </div>
         )}
         {file && (
           <div className="flex items-center justify-between p-2">
             <div className="flex-1 pr-1">
-              {file.name}
+              {file?.name}
               <span className="ml-1 text-xs text-gray-600">
-                ({fileSize(file.size)})
+                ({fileSize(file?.size)})
               </span>
             </div>
-            <Button text="Remove" onClick={remove} />
+            <BrowseButton text="Remove" onClick={handleRemove} />
           </div>
         )}
       </div>
-      {errors.length > 0 && <div className="form-error">{errors}</div>}
+      {error && <div className="form-error">{error}</div>}
     </div>
   );
-};
+}
+
+interface BrowseButtonProps extends ComponentProps<'button'> {
+  text: string;
+}
+
+function BrowseButton({ text, onClick, ...props }: BrowseButtonProps) {
+  return (
+    <button
+      {...props}
+      type="button"
+      className="px-4 py-1 text-xs font-medium text-white bg-gray-600 rounded-sm focus:outline-none hover:bg-gray-700"
+      onClick={onClick}
+    >
+      {text}
+    </button>
+  );
+}

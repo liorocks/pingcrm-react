@@ -1,5 +1,5 @@
 import Icon from '../Icon';
-import { Link, usePage } from '@inertiajs/react';
+import { Link } from '@inertiajs/react';
 import get from 'lodash/get';
 
 interface TableProps<T> {
@@ -56,14 +56,15 @@ export default function Table<T>({
                 key={index}
                 className="hover:bg-gray-100 focus-within:bg-gray-100"
               >
-                {columns.map((column, index) => {
+                {columns.map(column => {
                   return (
                     <td key={column.name} className="border-t">
                       <Link
                         tabIndex={-1}
-                        href={onRowClickUrl?.(row)!}
+                        href={onRowClickUrl?.(row) as string}
                         className="flex items-center px-6 py-4 focus:text-indigo focus:outline-none"
                       >
+                        {/* Append, Main Cell, Prepend */}
                         {column.prependCell?.(row)}
                         {column.renderCell?.(row) ??
                           get(row, column.name) ??

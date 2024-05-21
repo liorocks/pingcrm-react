@@ -1,6 +1,10 @@
 import MainMenuItem from '@/Shared/Menu/MainMenuItem';
 
-export default ({ className }) => {
+interface MainMenuProps {
+  className?: string;
+}
+
+export default function MainMenu({ className }: MainMenuProps) {
   return (
     <div className={className}>
       <MainMenuItem text="Dashboard" link="dashboard" icon="dashboard" />
@@ -9,4 +13,4 @@ export default ({ className }) => {
       <MainMenuItem text="Reports" link="reports" icon="printer" />
     </div>
   );
-};
+}
