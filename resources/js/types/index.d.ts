@@ -51,6 +51,18 @@ export interface Organization {
   contacts: Contact[];
 }
 
+export type PaginatedData<T> = {
+  data: T[];
+  meta: {
+    links: {
+      first: string;
+      last: string;
+      prev: string | null;
+      next: string | null;
+    };
+  };
+};
+
 export type PageProps<
   T extends Record<string, unknown> = Record<string, unknown>
 > = T & {

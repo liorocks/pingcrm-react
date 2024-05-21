@@ -2,12 +2,12 @@ import { Link, usePage } from '@inertiajs/react';
 import Layout from '@/Shared/Layout';
 import Pagination from '@/Shared/Pagination';
 import SearchFilter from '@/Shared/SearchFilter';
-import { Contact } from '@/types';
+import { Contact, PaginatedData } from '@/types';
 import Table from '@/Shared/Table/Table';
 
 const Index = () => {
   const { contacts } = usePage<{
-    contacts: { data: Contact[]; meta: { links: unknown } };
+    contacts: PaginatedData<Contact>;
   }>().props;
 
   const {
@@ -43,6 +43,13 @@ const Index = () => {
   );
 };
 
-Index.layout = page => <Layout title="Contacts" children={page} />;
+/**
+ * Persistent Layout (Inertia.js)
+ *
+ * [Learn more](https://inertiajs.com/pages#persistent-layouts)
+ */
+Index.layout = (page: React.ReactNode) => (
+  <Layout title="Contacts" children={page} />
+);
 
 export default Index;

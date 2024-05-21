@@ -35,8 +35,13 @@ function DashboardPage() {
   );
 }
 
-// Persistent layout
-// Docs: https://inertiajs.com/pages#persistent-layouts
-DashboardPage.layout = page => <Layout title="Dashboard" children={page} />;
+/**
+ * Persistent Layout (Inertia.js)
+ *
+ * [Learn more](https://inertiajs.com/pages#persistent-layouts)
+ */
+DashboardPage.layout = (page: React.ReactNode) => (
+  <Layout title="Dashboard" children={page} />
+);
 
 export default DashboardPage;

@@ -2,13 +2,12 @@ import { Link, usePage } from '@inertiajs/react';
 import Layout from '@/Shared/Layout';
 import SearchFilter from '@/Shared/SearchFilter';
 import Pagination from '@/Shared/Pagination';
-import { User } from '@/types';
+import { PaginatedData, User } from '@/types';
 import Table from '@/Shared/Table/Table';
 import Icon from '@/Shared/Icon';
 
 const Index = () => {
-  const { users } = usePage<{ users: { data: User[]; meta: { links: any } } }>()
-    .props;
+  const { users } = usePage<{ users: PaginatedData<User> }>().props;
 
   const {
     data,
@@ -62,6 +61,13 @@ const Index = () => {
   );
 };
 
-Index.layout = page => <Layout title="Users" children={page} />;
+/**
+ * Persistent Layout (Inertia.js)
+ *
+ * [Learn more](https://inertiajs.com/pages#persistent-layouts)
+ */
+Index.layout = (page: React.ReactNode) => (
+  <Layout title="Users" children={page} />
+);
 
 export default Index;

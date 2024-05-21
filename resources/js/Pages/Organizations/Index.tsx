@@ -2,12 +2,12 @@ import { Link, usePage } from '@inertiajs/react';
 import Layout from '@/Shared/Layout';
 import SearchFilter from '@/Shared/SearchFilter';
 import Pagination from '@/Shared/Pagination';
-import { Organization } from '@/types';
+import { Organization, PaginatedData } from '@/types';
 import Table from '@/Shared/Table/Table';
 
 function Index() {
   const { organizations } = usePage<{
-    organizations: { data: Organization[]; meta: { links: any } };
+    organizations: PaginatedData<Organization>;
   }>().props;
 
   const {
@@ -42,6 +42,13 @@ function Index() {
   );
 }
 
-Index.layout = page => <Layout title="Organizations" children={page} />;
+/**
+ * Persistent Layout (Inertia.js)
+ *
+ * [Learn more](https://inertiajs.com/pages#persistent-layouts)
+ */
+Index.layout = (page: React.ReactNode) => (
+  <Layout title="Organizations" children={page} />
+);
 
 export default Index;

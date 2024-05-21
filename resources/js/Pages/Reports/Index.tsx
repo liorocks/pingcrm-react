@@ -8,6 +8,13 @@ function ReportsPage() {
   );
 }
 
-ReportsPage.layout = page => <Layout title="Reports" children={page} />;
+/**
+ * Persistent Layout (Inertia.js)
+ *
+ * [Learn more](https://inertiajs.com/pages#persistent-layouts)
+ */
+ReportsPage.layout = (page: React.ReactNode) => (
+  <Layout title="Reports" children={page} />
+);
 
 export default ReportsPage;
