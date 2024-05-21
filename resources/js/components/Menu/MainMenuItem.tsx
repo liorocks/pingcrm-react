@@ -1,6 +1,6 @@
 import { Link } from '@inertiajs/react';
 import classNames from 'classnames';
-import Icon from '@/Shared/Icon';
+import Icon from '@/components/Icon';
 
 interface MainMenuItemProps {
   icon: string;

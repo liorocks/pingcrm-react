@@ -1,10 +1,10 @@
 import { Link, usePage } from '@inertiajs/react';
-import Layout from '@/Shared/Layout';
-import SearchFilter from '@/Shared/SearchFilter';
-import Pagination from '@/Shared/Pagination';
+import Layout from '@/components/Layout';
+import SearchFilter from '@/components/SearchFilter';
+import Pagination from '@/components/Pagination';
 import { PaginatedData, User } from '@/types';
-import Table from '@/Shared/Table/Table';
-import Icon from '@/Shared/Icon';
+import Table from '@/components/Table/Table';
+import Icon from '@/components/Icon';
 
 const Index = () => {
   const { users } = usePage<{ users: PaginatedData<User> }>().props;

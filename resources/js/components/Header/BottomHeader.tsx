@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, usePage } from '@inertiajs/react';
-import Icon from '@/Shared/Icon';
+import Icon from '@/components/Icon';
 import { PageProps } from '@/types';
 
 export default () => {

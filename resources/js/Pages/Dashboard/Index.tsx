@@ -1,5 +1,5 @@
 import { Link } from '@inertiajs/react';
-import Layout from '@/Shared/Layout';
+import Layout from '@/components/Layout';
 
 function DashboardPage() {
   return (

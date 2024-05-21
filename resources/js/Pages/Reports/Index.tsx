@@ -1,4 +1,4 @@
-import Layout from '@/Shared/Layout';
+import Layout from '@/components/Layout';
 
 function ReportsPage() {
   return (

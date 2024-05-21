@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { usePage, router } from '@inertiajs/react';
 import { usePrevious } from 'react-use';
-import SelectInput from '@/Shared/Form/SelectInput';
+import SelectInput from '@/components/Form/SelectInput';
 import pickBy from 'lodash/pickBy';
 
 export default () => {

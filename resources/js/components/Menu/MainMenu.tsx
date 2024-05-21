@@ -1,4 +1,4 @@
-import MainMenuItem from '@/Shared/Menu/MainMenuItem';
+import MainMenuItem from '@/components/Menu/MainMenuItem';
 
 interface MainMenuProps {
   className?: string;

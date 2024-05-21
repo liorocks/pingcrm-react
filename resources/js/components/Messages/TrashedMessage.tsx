@@ -1,4 +1,4 @@
-import Icon from '@/Shared/Icon';
+import Icon from '@/components/Icon';
 
 export default function TrashedMessage({ onRestore, children }) {
   return (

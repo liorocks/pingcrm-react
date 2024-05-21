@@ -1,9 +1,9 @@
 import React from 'react';
 import { Head } from '@inertiajs/react';
 import { useForm } from '@inertiajs/react';
-import Logo from '@/Shared/Logo';
-import LoadingButton from '@/Shared/Button/LoadingButton';
-import TextInput from '@/Shared/Form/TextInput';
+import Logo from '@/components/Logo';
+import LoadingButton from '@/components/Button/LoadingButton';
+import TextInput from '@/components/Form/TextInput';
 
 export default function LoginPage() {
   const { data, setData, errors, post, processing } = useForm({

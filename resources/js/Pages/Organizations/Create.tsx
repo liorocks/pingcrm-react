@@ -1,8 +1,8 @@
 import { Link, useForm } from '@inertiajs/react';
-import Layout from '@/Shared/Layout';
-import LoadingButton from '@/Shared/Button/LoadingButton';
-import TextInput from '@/Shared/Form/TextInput';
-import SelectInput from '@/Shared/Form/SelectInput';
+import Layout from '@/components/Layout';
+import LoadingButton from '@/components/Button/LoadingButton';
+import TextInput from '@/components/Form/TextInput';
+import SelectInput from '@/components/Form/SelectInput';
 
 const Create = () => {
   const { data, setData, errors, post, processing } = useForm({
