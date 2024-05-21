@@ -1,13 +1,19 @@
-import React from 'react';
+import { ComponentProps } from 'react';
 
-export default ({
-  label,
+interface SelectInputProps extends ComponentProps<'select'> {
+  label?: string;
+  options: { value: string; label: string }[];
+  error?: string;
+}
+
+export default function SelectInput({
   name,
+  label,
   className,
-  children,
-  errors = [],
+  error,
+  options = [],
   ...props
-}) => {
+}: SelectInputProps) {
   return (
     <div className={className}>
       {label && (
@@ -19,11 +25,15 @@ export default ({
         id={name}
         name={name}
         {...props}
-        className={`form-select ${errors.length ? 'error' : ''}`}
+        className={`form-select ${error ? 'error' : ''}`}
       >
-        {children}
+        {options?.map(({ value, label }, index) => (
+          <option key={index} value={value}>
+            {label}
+          </option>
+        ))}
       </select>
-      {errors && <div className="form-error">{errors}</div>}
+      {error && <div className="form-error">{error}</div>}
     </div>
   );
-};
+}

@@ -1,4 +1,17 @@
-export default ({ label, name, className, errors = [], ...props }) => {
+import { ComponentProps } from 'react';
+
+interface TextInputProps extends ComponentProps<'input'> {
+  label?: string;
+  error?: string;
+}
+
+export default function TextInput({
+  label,
+  name,
+  className,
+  error,
+  ...props
+}: TextInputProps) {
   return (
     <div className={className}>
       {label && (
@@ -10,9 +23,9 @@ export default ({ label, name, className, errors = [], ...props }) => {
         id={name}
         name={name}
         {...props}
-        className={`form-input ${errors.length ? 'error' : ''}`}
+        className={`form-input ${error ? 'error' : ''}`}
       />
-      {errors && <div className="form-error">{errors}</div>}
+      {error && <div className="form-error">{error}</div>}
     </div>
   );
-};
+}

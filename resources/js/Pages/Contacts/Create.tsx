@@ -43,7 +43,7 @@ const Create = () => {
               className="w-full pb-8 pr-6 lg:w-1/2"
               label="First Name"
               name="first_name"
-              errors={errors.first_name}
+              error={errors.first_name}
               value={data.first_name}
               onChange={e => setData('first_name', e.target.value)}
             />
@@ -51,7 +51,7 @@ const Create = () => {
               className="w-full pb-8 pr-6 lg:w-1/2"
               label="Last Name"
               name="last_name"
-              errors={errors.last_name}
+              error={errors.last_name}
               value={data.last_name}
               onChange={e => setData('last_name', e.target.value)}
             />
@@ -59,23 +59,20 @@ const Create = () => {
               className="w-full pb-8 pr-6 lg:w-1/2"
               label="Organization"
               name="organization_id"
-              errors={errors.organization_id}
+              error={errors.organization_id}
               value={data.organization_id}
               onChange={e => setData('organization_id', e.target.value)}
-            >
-              <option value=""></option>
-              {organizations?.map(({ id, name }) => (
-                <option key={id} value={id}>
-                  {name}
-                </option>
-              ))}
-            </SelectInput>
+              options={organizations.map(({ id, name }) => ({
+                id,
+                label: name
+              }))}
+            />
             <TextInput
               className="w-full pb-8 pr-6 lg:w-1/2"
               label="Email"
               name="email"
               type="email"
-              errors={errors.email}
+              error={errors.email}
               value={data.email}
               onChange={e => setData('email', e.target.value)}
             />
@@ -84,7 +81,7 @@ const Create = () => {
               label="Phone"
               name="phone"
               type="text"
-              errors={errors.phone}
+              error={errors.phone}
               value={data.phone}
               onChange={e => setData('phone', e.target.value)}
             />
@@ -93,7 +90,7 @@ const Create = () => {
               label="Address"
               name="address"
               type="text"
-              errors={errors.address}
+              error={errors.address}
               value={data.address}
               onChange={e => setData('address', e.target.value)}
             />
@@ -102,7 +99,7 @@ const Create = () => {
               label="City"
               name="city"
               type="text"
-              errors={errors.city}
+              error={errors.city}
               value={data.city}
               onChange={e => setData('city', e.target.value)}
             />
@@ -111,7 +108,7 @@ const Create = () => {
               label="Province/State"
               name="region"
               type="text"
-              errors={errors.region}
+              error={errors.region}
               value={data.region}
               onChange={e => setData('region', e.target.value)}
             />
@@ -119,7 +116,7 @@ const Create = () => {
               className="w-full pb-8 pr-6 lg:w-1/2"
               label="Country"
               name="country"
-              errors={errors.country}
+              error={errors.country}
               value={data.country}
               onChange={e => setData('country', e.target.value)}
             >
@@ -132,7 +129,7 @@ const Create = () => {
               label="Postal Code"
               name="postal_code"
               type="text"
-              errors={errors.postal_code}
+              error={errors.postal_code}
               value={data.postal_code}
               onChange={e => setData('postal_code', e.target.value)}
             />
@@ -152,6 +149,13 @@ const Create = () => {
   );
 };
 
-Create.layout = page => <Layout title="Create Contact" children={page} />;
+/**
+ * Persistent Layout (Inertia.js)
+ *
+ * [Learn more](https://inertiajs.com/pages#persistent-layouts)
+ */
+Create.layout = (page: React.ReactNode) => (
+  <Layout title="Create Contact" children={page} />
+);
 
 export default Create;

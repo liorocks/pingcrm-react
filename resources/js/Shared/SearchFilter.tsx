@@ -71,22 +71,24 @@ export default () => {
                 name="role"
                 value={values.role}
                 onChange={handleChange}
-              >
-                <option value=""></option>
-                <option value="user">User</option>
-                <option value="owner">Owner</option>
-              </SelectInput>
+                options={[
+                  { value: '', label: '' },
+                  { value: 'user', label: 'User' },
+                  { value: 'owner', label: 'Owner' }
+                ]}
+              />
             )}
             <SelectInput
               label="Trashed"
               name="trashed"
               value={values.trashed}
               onChange={handleChange}
-            >
-              <option value=""></option>
-              <option value="with">With Trashed</option>
-              <option value="only">Only Trashed</option>
-            </SelectInput>
+              options={[
+                { value: '', label: '' },
+                { value: 'with', label: 'With Trashed' },
+                { value: 'only', label: 'Only Trashed' }
+              ]}
+            />
           </div>
         </div>
         <button

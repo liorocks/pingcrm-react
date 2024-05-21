@@ -65,7 +65,7 @@ const Edit = () => {
               className="w-full pb-8 pr-6 lg:w-1/2"
               label="Name"
               name="name"
-              errors={errors?.name}
+              error={errors?.name}
               value={data.name}
               onChange={e => setData('name', e.target.value)}
             />
@@ -74,7 +74,7 @@ const Edit = () => {
               label="Email"
               name="email"
               type="email"
-              errors={errors.email}
+              error={errors.email}
               value={data.email}
               onChange={e => setData('email', e.target.value)}
             />
@@ -83,7 +83,7 @@ const Edit = () => {
               label="Phone"
               name="phone"
               type="text"
-              errors={errors.phone}
+              error={errors.phone}
               value={data.phone}
               onChange={e => setData('phone', e.target.value)}
             />
@@ -92,7 +92,7 @@ const Edit = () => {
               label="Address"
               name="address"
               type="text"
-              errors={errors.address}
+              error={errors.address}
               value={data.address}
               onChange={e => setData('address', e.target.value)}
             />
@@ -101,7 +101,7 @@ const Edit = () => {
               label="City"
               name="city"
               type="text"
-              errors={errors.city}
+              error={errors.city}
               value={data.city}
               onChange={e => setData('city', e.target.value)}
             />
@@ -110,7 +110,7 @@ const Edit = () => {
               label="Province/State"
               name="region"
               type="text"
-              errors={errors.region}
+              error={errors.region}
               value={data.region}
               onChange={e => setData('region', e.target.value)}
             />
@@ -118,20 +118,30 @@ const Edit = () => {
               className="w-full pb-8 pr-6 lg:w-1/2"
               label="Country"
               name="country"
-              errors={errors.country}
+              error={errors.country}
               value={data.country}
               onChange={e => setData('country', e.target.value)}
-            >
-              <option value=""></option>
-              <option value="CA">Canada</option>
-              <option value="US">United States</option>
-            </SelectInput>
+              options={[
+                {
+                  value: '',
+                  label: ''
+                },
+                {
+                  value: 'CA',
+                  label: 'Canada'
+                },
+                {
+                  value: 'US',
+                  label: 'United States'
+                }
+              ]}
+            />
             <TextInput
               className="w-full pb-8 pr-6 lg:w-1/2"
               label="Postal Code"
               name="postal_code"
               type="text"
-              errors={errors.postal_code}
+              error={errors.postal_code}
               value={data.postal_code}
               onChange={e => setData('postal_code', e.target.value)}
             />
@@ -166,6 +176,11 @@ const Edit = () => {
   );
 };
 
-Edit.layout = page => <Layout children={page} />;
+/**
+ * Persistent Layout (Inertia.js)
+ *
+ * [Learn more](https://inertiajs.com/pages#persistent-layouts)
+ */
+Edit.layout = (page: React.ReactNode) => <Layout children={page} />;
 
 export default Edit;

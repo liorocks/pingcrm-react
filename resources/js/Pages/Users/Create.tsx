@@ -40,7 +40,7 @@ const Create = () => {
               className="w-full pb-8 pr-6 lg:w-1/2"
               label="First Name"
               name="first_name"
-              errors={errors.first_name}
+              error={errors.first_name}
               value={data.first_name}
               onChange={e => setData('first_name', e.target.value)}
             />
@@ -48,7 +48,7 @@ const Create = () => {
               className="w-full pb-8 pr-6 lg:w-1/2"
               label="Last Name"
               name="last_name"
-              errors={errors.last_name}
+              error={errors.last_name}
               value={data.last_name}
               onChange={e => setData('last_name', e.target.value)}
             />
@@ -57,7 +57,7 @@ const Create = () => {
               label="Email"
               name="email"
               type="email"
-              errors={errors.email}
+              error={errors.email}
               value={data.email}
               onChange={e => setData('email', e.target.value)}
             />
@@ -66,7 +66,7 @@ const Create = () => {
               label="Password"
               name="password"
               type="password"
-              errors={errors.password}
+              error={errors.password}
               value={data.password}
               onChange={e => setData('password', e.target.value)}
             />
@@ -74,13 +74,14 @@ const Create = () => {
               className="w-full pb-8 pr-6 lg:w-1/2"
               label="Owner"
               name="owner"
-              errors={errors.owner}
+              error={errors.owner}
               value={data.owner}
               onChange={e => setData('owner', e.target.value)}
-            >
-              <option value="1">Yes</option>
-              <option value="0">No</option>
-            </SelectInput>
+              options={[
+                { value: '1', label: 'Yes' },
+                { value: '0', label: 'No' }
+              ]}
+            />
             <FileInput
               className="w-full pb-8 pr-6 lg:w-1/2"
               label="Photo"
@@ -106,6 +107,13 @@ const Create = () => {
   );
 };
 
-Create.layout = page => <Layout title="Create User" children={page} />;
+/**
+ * Persistent Layout (Inertia.js)
+ *
+ * [Learn more](https://inertiajs.com/pages#persistent-layouts)
+ */
+Create.layout = (page: React.ReactNode) => (
+  <Layout title="Create User" children={page} />
+);
 
 export default Create;

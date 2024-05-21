@@ -39,7 +39,7 @@ export default function LoginPage() {
               label="Email"
               name="email"
               type="email"
-              errors={errors.email}
+              error={errors.email}
               value={data.email}
               onChange={e => setData('email', e.target.value)}
             />
@@ -48,7 +48,7 @@ export default function LoginPage() {
               label="Password"
               name="password"
               type="password"
-              errors={errors.password}
+              error={errors.password}
               value={data.password}
               onChange={e => setData('password', e.target.value)}
             />
