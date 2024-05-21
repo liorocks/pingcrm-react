@@ -9,9 +9,7 @@ interface TableProps<T> {
     colSpan?: number;
     renderCell?: (row: T) => React.ReactNode;
   }[];
-
   rows: T[];
-
   getRowDetailsUrl?: (row: T) => string;
 }
 
@@ -41,7 +39,7 @@ export default function Table<T>({
           {rows?.length === 0 && (
             <tr>
               <td
-                className="px-6 py-4 border-t text-center"
+                className="px-6 py-24 border-t text-center"
                 colSpan={columns.length}
               >
                 No data found.
@@ -71,7 +69,6 @@ export default function Table<T>({
                 })}
                 <td className="w-px border-t">
                   <Link
-                    tabIndex={-1}
                     href={getRowDetailsUrl?.(row)!}
                     className="flex items-center px-4 focus:outline-none"
                   >

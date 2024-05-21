@@ -1,8 +1,18 @@
 import { PageProps } from '@/types';
 import { Head } from '@inertiajs/react';
 
-export default function ErrorPage({ status }: PageProps<{ status: number }>) {
-  // const { status } = usePage().props;
+type ErrorPageProps = PageProps<{
+  status: number;
+}>;
+
+export default function ErrorPage({ status }: ErrorPageProps) {
+  /**
+   * Alternative way to get the status code using the `usePage` hook.
+   *
+   * `const { status } = usePage().props;`
+   *
+   * [Read more](https://inertiajs.com/error-handling)
+   */
 
   const title = {
     503: '503: Service Unavailable',
