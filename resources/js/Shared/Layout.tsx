@@ -1,4 +1,4 @@
-import Helmet from 'react-helmet';
+import { Head } from '@inertiajs/react';
 import MainMenu from '@/Shared/Menu/MainMenu';
 import FlashMessages from '@/Shared/Messages/FlashMessages';
 import TopHeader from '@/Shared/Header/TopHeader';
@@ -12,7 +12,7 @@ interface LayoutProps {
 export default function Layout({ title, children }: LayoutProps) {
   return (
     <div>
-      <Helmet titleTemplate="%s | Ping CRM" title={title} />
+      <Head title={title} />
       <div className="flex flex-col">
         <div className="flex flex-col h-screen">
           <div className="md:flex">

@@ -1,5 +1,5 @@
 import { PageProps } from '@/types';
-import Helmet from 'react-helmet';
+import { Head } from '@inertiajs/react';
 
 export default function ErrorPage({ status }: PageProps<{ status: number }>) {
   // const { status } = usePage().props;
@@ -20,7 +20,7 @@ export default function ErrorPage({ status }: PageProps<{ status: number }>) {
 
   return (
     <div className="flex items-center justify-center min-h-screen p-5 text-indigo-100 bg-indigo-800">
-      <Helmet title={title} />
+      <Head title={title} />
       <div className="w-full max-w-md">
         <h1 className="text-3xl">{title}</h1>
         <p className="mt-3 text-lg leading-tight">{description}</p>

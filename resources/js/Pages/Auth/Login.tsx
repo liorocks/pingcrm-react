@@ -1,5 +1,5 @@
 import React from 'react';
-import Helmet from 'react-helmet';
+import { Head } from '@inertiajs/react';
 import { useForm } from '@inertiajs/react';
 import Logo from '@/Shared/Logo';
 import LoadingButton from '@/Shared/Button/LoadingButton';
@@ -20,7 +20,8 @@ export default function LoginPage() {
 
   return (
     <div className="flex items-center justify-center min-h-screen p-6 bg-indigo-900">
-      <Helmet title="Login" />
+      <Head title="Login" />
+
       <div className="w-full max-w-md">
         <Logo
           className="block w-full max-w-xs mx-auto text-white fill-current"

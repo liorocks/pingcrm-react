@@ -1,5 +1,5 @@
 import React from 'react';
-import Helmet from 'react-helmet';
+import { Head } from '@inertiajs/react';
 import { Link, usePage, useForm, router } from '@inertiajs/react';
 import Layout from '@/Shared/Layout';
 import DeleteButton from '@/Shared/Button/DeleteButton';
@@ -47,7 +47,7 @@ const Edit = () => {
 
   return (
     <div>
-      <Helmet title={`${data.first_name} ${data.last_name}`} />
+      <Head title={`${data.first_name} ${data.last_name}`} />
       <h1 className="mb-8 text-3xl font-bold">
         <Link
           href={route('contacts')}
