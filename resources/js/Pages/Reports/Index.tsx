@@ -1,4 +1,4 @@
-import Layout from '@/components/Layout';
+import Layout from '@/__components__/Layout';
 
 function ReportsPage() {
   return (

@@ -1,8 +1,8 @@
 import { Head } from '@inertiajs/react';
-import MainMenu from '@/components/Menu/MainMenu';
-import FlashMessages from '@/components/Messages/FlashMessages';
-import TopHeader from '@/components/Header/TopHeader';
-import BottomHeader from '@/components/Header/BottomHeader';
+import MainMenu from '@/__components__/Menu/MainMenu';
+import FlashMessages from '@/__components__/Messages/FlashMessages';
+import TopHeader from '@/__components__/Header/TopHeader';
+import BottomHeader from '@/__components__/Header/BottomHeader';
 
 interface LayoutProps {
   title?: string;

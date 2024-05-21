@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from '@inertiajs/react';
-import Logo from '@/components/Logo';
-import MainMenu from '@/components/Menu/MainMenu';
+import Logo from '@/__components__/Logo';
+import MainMenu from '@/__components__/Menu/MainMenu';
 import { Menu } from 'lucide-react';
 
 export default () => {

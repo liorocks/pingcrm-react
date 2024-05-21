@@ -1,13 +1,13 @@
 import React from 'react';
 import { Head } from '@inertiajs/react';
 import { Link, usePage, useForm, router } from '@inertiajs/react';
-import Layout from '@/components/Layout';
-import DeleteButton from '@/components/Button/DeleteButton';
-import LoadingButton from '@/components/Button/LoadingButton';
-import TextInput from '@/components/Form/TextInput';
-import SelectInput from '@/components/Form/SelectInput';
-import FileInput from '@/components/Form/FileInput';
-import TrashedMessage from '@/components/Messages/TrashedMessage';
+import Layout from '@/__components__/Layout';
+import DeleteButton from '@/__components__/Button/DeleteButton';
+import LoadingButton from '@/__components__/Button/LoadingButton';
+import TextInput from '@/__components__/Form/TextInput';
+import SelectInput from '@/__components__/Form/SelectInput';
+import FileInput from '@/__components__/Form/FileInput';
+import TrashedMessage from '@/__components__/Messages/TrashedMessage';
 import { User } from '@/types';
 
 const Edit = () => {
