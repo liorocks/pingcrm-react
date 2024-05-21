@@ -4,7 +4,7 @@ import SearchFilter from '@/components/SearchFilter';
 import Pagination from '@/components/Pagination';
 import { Organization, PaginatedData } from '@/types';
 import Table from '@/components/Table/Table';
-import Icon from '@/components/Icon';
+import { Trash2 } from 'lucide-react';
 
 function Index() {
   const { organizations } = usePage<{
@@ -38,10 +38,7 @@ function Index() {
               <>
                 {row.name}
                 {row.deleted_at && (
-                  <Icon
-                    name="trash"
-                    className="flex-shrink-0 w-3 h-3 ml-2 text-gray-400 fill-current"
-                  />
+                  <Trash2 size={16} className="ml-2 text-gray-400" />
                 )}
               </>
             )

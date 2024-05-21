@@ -1,6 +1,6 @@
-import Icon from '../Icon';
 import { Link } from '@inertiajs/react';
 import get from 'lodash/get';
+import { ChevronRight } from 'lucide-react';
 
 interface TableProps<T> {
   columns: {
@@ -75,10 +75,7 @@ export default function Table<T>({
                     href={getRowDetailsUrl?.(row)!}
                     className="flex items-center px-4 focus:outline-none"
                   >
-                    <Icon
-                      name="cheveron-right"
-                      className="block w-6 h-6 text-gray-400 fill-current"
-                    />
+                    <ChevronRight size={24} className="text-gray-400" />
                   </Link>
                 </td>
               </tr>

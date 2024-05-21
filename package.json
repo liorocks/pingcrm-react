@@ -13,6 +13,7 @@
     "cross-env": "^7.0.3",
     "eslint": "^8.32.0",
     "lodash": "^4.17.21",
+    "lucide-react": "^0.378.0",
     "postcss-import": "^15.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

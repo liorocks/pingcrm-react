@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link, usePage } from '@inertiajs/react';
-import Icon from '@/components/Icon';
 import { PageProps } from '@/types';
+import { ChevronDown } from 'lucide-react';
 
 export default () => {
   const { auth } = usePage<PageProps>().props;
@@ -19,9 +19,9 @@ export default () => {
             <span>{auth.user.first_name}</span>
             <span className="hidden ml-1 md:inline">{auth.user.last_name}</span>
           </div>
-          <Icon
-            className="w-5 h-5 text-gray-800 fill-current group-hover:text-indigo-600 focus:text-indigo-600"
-            name="cheveron-down"
+          <ChevronDown
+            size={20}
+            className="text-gray-800 group-hover:text-indigo-600"
           />
         </div>
         <div className={menuOpened ? '' : 'hidden'}>

@@ -4,7 +4,7 @@ import Pagination from '@/components/Pagination';
 import SearchFilter from '@/components/SearchFilter';
 import { Contact, PaginatedData } from '@/types';
 import Table from '@/components/Table/Table';
-import Icon from '@/components/Icon';
+import { Trash2 } from 'lucide-react';
 
 const Index = () => {
   const { contacts } = usePage<{
@@ -38,10 +38,7 @@ const Index = () => {
               <>
                 {row.name}
                 {row.deleted_at && (
-                  <Icon
-                    name="trash"
-                    className="flex-shrink-0 w-3 h-3 ml-2 text-gray-400 fill-current"
-                  />
+                  <Trash2 size={16} className="ml-2 text-gray-400" />
                 )}
               </>
             )
