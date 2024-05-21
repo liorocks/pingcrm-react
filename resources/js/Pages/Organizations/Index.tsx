@@ -1,9 +1,9 @@
 import { Link, usePage } from '@inertiajs/react';
-import Layout from '@/__components__/Layout';
-import SearchFilter from '@/__components__/SearchFilter';
-import Pagination from '@/__components__/Pagination';
+import Layout from '@/Components/Layout';
+import SearchFilter from '@/Components/SearchFilter';
+import Pagination from '@/Components/Pagination';
 import { Organization, PaginatedData } from '@/types';
-import Table from '@/__components__/Table/Table';
+import Table from '@/Components/Table/Table';
 import { Trash2 } from 'lucide-react';
 
 function Index() {

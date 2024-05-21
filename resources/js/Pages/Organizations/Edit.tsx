@@ -1,14 +1,14 @@
 import React from 'react';
 import { Head } from '@inertiajs/react';
 import { Link, usePage, useForm, router } from '@inertiajs/react';
-import Layout from '@/__components__/Layout';
-import DeleteButton from '@/__components__/Button/DeleteButton';
-import LoadingButton from '@/__components__/Button/LoadingButton';
-import TextInput from '@/__components__/Form/TextInput';
-import SelectInput from '@/__components__/Form/SelectInput';
-import TrashedMessage from '@/__components__/Messages/TrashedMessage';
+import Layout from '@/Components/Layout';
+import DeleteButton from '@/Components/Button/DeleteButton';
+import LoadingButton from '@/Components/Button/LoadingButton';
+import TextInput from '@/Components/Form/TextInput';
+import SelectInput from '@/Components/Form/SelectInput';
+import TrashedMessage from '@/Components/Messages/TrashedMessage';
 import { Organization } from '@/types';
-import Table from '@/__components__/Table/Table';
+import Table from '@/Components/Table/Table';
 
 const Edit = () => {
   const { organization } = usePage<{ organization: Organization }>().props;

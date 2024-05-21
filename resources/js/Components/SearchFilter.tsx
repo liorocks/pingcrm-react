@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { usePage, router } from '@inertiajs/react';
 import { usePrevious } from 'react-use';
-import SelectInput from '@/__components__/Form/SelectInput';
+import SelectInput from '@/Components/Form/SelectInput';
 import pickBy from 'lodash/pickBy';
 import { ChevronDown } from 'lucide-react';
 
