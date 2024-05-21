@@ -1,8 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { usePage, router } from '@inertiajs/react';
 import { usePrevious } from 'react-use';
 import SelectInput from '@/components/Form/SelectInput';
 import pickBy from 'lodash/pickBy';
+import { ChevronDown } from 'lucide-react';
 
 export default () => {
   const { filters } = usePage<{
@@ -95,15 +96,9 @@ export default () => {
           onClick={() => setOpened(true)}
           className="px-4 border-r rounded-l md:px-6 hover:bg-gray-100 focus:outline-none focus:border-white focus:ring-2 focus:ring-indigo-400 focus:z-10"
         >
-          <div className="flex items-baseline">
+          <div className="flex items-center">
             <span className="hidden text-gray-700 md:inline">Filter</span>
-            <svg
-              className="w-2 h-2 text-gray-700 fill-current md:ml-2"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 961.243 599.998"
-            >
-              <path d="M239.998 239.999L0 0h961.243L721.246 240c-131.999 132-240.28 240-240.624 239.999-.345-.001-108.625-108.001-240.624-240z" />
-            </svg>
+            <ChevronDown size={14} strokeWidth={3} className="md:ml-2" />
           </div>
         </button>
         <input

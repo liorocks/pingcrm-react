@@ -1,9 +1,8 @@
 import { Link } from '@inertiajs/react';
 import classNames from 'classnames';
-import Icon from '@/components/Icon';
 
 interface MainMenuItemProps {
-  icon: string;
+  icon?: React.ReactNode;
   link: string;
   text: string;
 }
@@ -11,7 +10,7 @@ interface MainMenuItemProps {
 export default function MainMenuItem({ icon, link, text }: MainMenuItemProps) {
   const isActive = route().current(link + '*');
 
-  const iconClasses = classNames('w-4 h-4 mr-2', {
+  const iconClasses = classNames({
     'text-white fill-current': isActive,
     'text-indigo-400 group-hover:text-white fill-current': !isActive
   });
@@ -23,8 +22,11 @@ export default function MainMenuItem({ icon, link, text }: MainMenuItemProps) {
 
   return (
     <div className="mb-4">
-      <Link href={route(link)} className="flex items-center group py-3">
-        <Icon name={icon} className={iconClasses} />
+      <Link
+        href={route(link)}
+        className="flex items-center group py-3 space-x-3"
+      >
+        <div className={iconClasses}>{icon}</div>
         <div className={textClasses}>{text}</div>
       </Link>
     </div>
