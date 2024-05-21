@@ -64,10 +64,9 @@ export default () => {
             onClick={() => setOpened(false)}
             className="fixed inset-0 z-20 bg-black opacity-25"
           ></div>
-          <div className="relative z-30 w-64 px-4 py-6 mt-2 bg-white rounded shadow-lg">
+          <div className="relative z-30 w-64 px-4 py-6 mt-2 bg-white rounded shadow-lg space-y-4">
             {filters.hasOwnProperty('role') && (
               <SelectInput
-                className="mb-4"
                 label="Role"
                 name="role"
                 value={values.role}
@@ -102,7 +101,7 @@ export default () => {
           </div>
         </button>
         <input
-          className="relative w-full px-6 py-3 rounded-r focus:outline-none focus:ring-2 focus:ring-indigo-400"
+          className="relative form-input border-0 w-full px-6 py-3 rounded-r focus:outline-none focus:ring-2 focus:ring-indigo-400"
           autoComplete="off"
           type="text"
           name="search"

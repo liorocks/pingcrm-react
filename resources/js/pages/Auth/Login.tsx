@@ -34,38 +34,38 @@ export default function LoginPage() {
           <div className="px-10 py-12">
             <h1 className="text-3xl font-bold text-center">Welcome Back!</h1>
             <div className="w-24 mx-auto mt-6 border-b-2" />
-            <TextInput
-              className="mt-10"
-              label="Email"
-              name="email"
-              type="email"
-              error={errors.email}
-              value={data.email}
-              onChange={e => setData('email', e.target.value)}
-            />
-            <TextInput
-              className="mt-6"
-              label="Password"
-              name="password"
-              type="password"
-              error={errors.password}
-              value={data.password}
-              onChange={e => setData('password', e.target.value)}
-            />
-            <label
-              className="flex items-center mt-6 select-none"
-              htmlFor="remember"
-            >
-              <input
-                name="remember"
-                id="remember"
-                className="mr-1"
-                type="checkbox"
-                checked={data.remember}
-                onChange={e => setData('remember', e.target.checked)}
+            <div className="grid gap-6">
+              <TextInput
+                label="Email"
+                name="email"
+                type="email"
+                error={errors.email}
+                value={data.email}
+                onChange={e => setData('email', e.target.value)}
               />
-              <span className="text-sm">Remember Me</span>
-            </label>
+              <TextInput
+                label="Password"
+                name="password"
+                type="password"
+                error={errors.password}
+                value={data.password}
+                onChange={e => setData('password', e.target.value)}
+              />
+              <label
+                className="flex items-center select-none"
+                htmlFor="remember"
+              >
+                <input
+                  name="remember"
+                  id="remember"
+                  className="mr-2 form-checkbox rounded text-indigo-600 focus:ring-indigo-600"
+                  type="checkbox"
+                  checked={data.remember}
+                  onChange={e => setData('remember', e.target.checked)}
+                />
+                <span className="text-sm">Remember Me</span>
+              </label>
+            </div>
           </div>
           <div className="flex items-center justify-between px-10 py-4 bg-gray-100 border-t border-gray-200">
             <a className="hover:underline" tabIndex={-1} href="#reset-password">

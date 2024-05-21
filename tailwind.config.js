@@ -19,5 +19,9 @@ export default {
         sans: ['"Cerebri Sans"', ...defaultTheme.fontFamily.sans]
       }
     }
-  }
+  },
+  plugins: [
+    require('@tailwindcss/forms')
+    // ...
+  ]
 };

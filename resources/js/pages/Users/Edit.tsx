@@ -70,9 +70,8 @@ const Edit = () => {
       )}
       <div className="max-w-3xl overflow-hidden bg-white rounded shadow">
         <form onSubmit={handleSubmit}>
-          <div className="flex flex-wrap p-8 -mb-8 -mr-6">
+          <div className="grid gap-8 p-8 lg:grid-cols-2">
             <TextInput
-              className="w-full pb-8 pr-6 lg:w-1/2"
               label="First Name"
               name="first_name"
               error={errors.first_name}
@@ -80,7 +79,6 @@ const Edit = () => {
               onChange={e => setData('first_name', e.target.value)}
             />
             <TextInput
-              className="w-full pb-8 pr-6 lg:w-1/2"
               label="Last Name"
               name="last_name"
               error={errors.last_name}
@@ -88,7 +86,6 @@ const Edit = () => {
               onChange={e => setData('last_name', e.target.value)}
             />
             <TextInput
-              className="w-full pb-8 pr-6 lg:w-1/2"
               label="Email"
               name="email"
               type="email"
@@ -97,7 +94,6 @@ const Edit = () => {
               onChange={e => setData('email', e.target.value)}
             />
             <TextInput
-              className="w-full pb-8 pr-6 lg:w-1/2"
               label="Password"
               name="password"
               type="password"
@@ -106,7 +102,6 @@ const Edit = () => {
               onChange={e => setData('password', e.target.value)}
             />
             <SelectInput
-              className="w-full pb-8 pr-6 lg:w-1/2"
               label="Owner"
               name="owner"
               error={errors.owner}
@@ -118,7 +113,6 @@ const Edit = () => {
               ]}
             />
             <FileInput
-              className="w-full pb-8 pr-6 lg:w-1/2"
               label="Photo"
               name="photo"
               accept="image/*"

@@ -65,9 +65,8 @@ const Edit = () => {
       )}
       <div className="max-w-3xl overflow-hidden bg-white rounded shadow">
         <form onSubmit={handleSubmit}>
-          <div className="flex flex-wrap p-8 -mb-8 -mr-6">
+          <div className="grid gap-8 p-8 lg:grid-cols-2">
             <TextInput
-              className="w-full pb-8 pr-6 lg:w-1/2"
               label="First Name"
               name="first_name"
               error={errors.first_name}
@@ -75,7 +74,6 @@ const Edit = () => {
               onChange={e => setData('first_name', e.target.value)}
             />
             <TextInput
-              className="w-full pb-8 pr-6 lg:w-1/2"
               label="Last Name"
               name="last_name"
               error={errors.last_name}
@@ -83,7 +81,6 @@ const Edit = () => {
               onChange={e => setData('last_name', e.target.value)}
             />
             <SelectInput
-              className="w-full pb-8 pr-6 lg:w-1/2"
               label="Organization"
               name="organization_id"
               error={errors.organization_id}
@@ -101,7 +98,6 @@ const Edit = () => {
               ]}
             />
             <TextInput
-              className="w-full pb-8 pr-6 lg:w-1/2"
               label="Email"
               name="email"
               type="email"
@@ -110,7 +106,6 @@ const Edit = () => {
               onChange={e => setData('email', e.target.value)}
             />
             <TextInput
-              className="w-full pb-8 pr-6 lg:w-1/2"
               label="Phone"
               name="phone"
               type="text"
@@ -119,7 +114,6 @@ const Edit = () => {
               onChange={e => setData('phone', e.target.value)}
             />
             <TextInput
-              className="w-full pb-8 pr-6 lg:w-1/2"
               label="Address"
               name="address"
               type="text"
@@ -128,7 +122,6 @@ const Edit = () => {
               onChange={e => setData('address', e.target.value)}
             />
             <TextInput
-              className="w-full pb-8 pr-6 lg:w-1/2"
               label="City"
               name="city"
               type="text"
@@ -137,7 +130,6 @@ const Edit = () => {
               onChange={e => setData('city', e.target.value)}
             />
             <TextInput
-              className="w-full pb-8 pr-6 lg:w-1/2"
               label="Province/State"
               name="region"
               type="text"
@@ -146,7 +138,6 @@ const Edit = () => {
               onChange={e => setData('region', e.target.value)}
             />
             <SelectInput
-              className="w-full pb-8 pr-6 lg:w-1/2"
               label="Country"
               name="country"
               error={errors.country}
@@ -168,7 +159,6 @@ const Edit = () => {
               ]}
             />
             <TextInput
-              className="w-full pb-8 pr-6 lg:w-1/2"
               label="Postal Code"
               name="postal_code"
               type="text"

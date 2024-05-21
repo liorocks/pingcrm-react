@@ -34,9 +34,8 @@ const Create = () => {
       </h1>
       <div className="max-w-3xl overflow-hidden bg-white rounded shadow">
         <form onSubmit={handleSubmit}>
-          <div className="flex flex-wrap p-8 -mb-8 -mr-6">
+          <div className="grid gap-8 p-8 lg:grid-cols-2">
             <TextInput
-              className="w-full pb-8 pr-6 lg:w-1/2"
               label="Name"
               name="name"
               error={errors.name}
@@ -44,7 +43,6 @@ const Create = () => {
               onChange={e => setData('name', e.target.value)}
             />
             <TextInput
-              className="w-full pb-8 pr-6 lg:w-1/2"
               label="Email"
               name="email"
               type="email"
@@ -53,7 +51,6 @@ const Create = () => {
               onChange={e => setData('email', e.target.value)}
             />
             <TextInput
-              className="w-full pb-8 pr-6 lg:w-1/2"
               label="Phone"
               name="phone"
               type="text"
@@ -62,7 +59,6 @@ const Create = () => {
               onChange={e => setData('phone', e.target.value)}
             />
             <TextInput
-              className="w-full pb-8 pr-6 lg:w-1/2"
               label="Address"
               name="address"
               type="text"
@@ -71,7 +67,6 @@ const Create = () => {
               onChange={e => setData('address', e.target.value)}
             />
             <TextInput
-              className="w-full pb-8 pr-6 lg:w-1/2"
               label="City"
               name="city"
               type="text"
@@ -80,7 +75,6 @@ const Create = () => {
               onChange={e => setData('city', e.target.value)}
             />
             <TextInput
-              className="w-full pb-8 pr-6 lg:w-1/2"
               label="Province/State"
               name="region"
               type="text"
@@ -89,7 +83,6 @@ const Create = () => {
               onChange={e => setData('region', e.target.value)}
             />
             <SelectInput
-              className="w-full pb-8 pr-6 lg:w-1/2"
               label="Country"
               name="country"
               error={errors.country}
@@ -111,7 +104,6 @@ const Create = () => {
               ]}
             />
             <TextInput
-              className="w-full pb-8 pr-6 lg:w-1/2"
               label="Postal Code"
               name="postal_code"
               type="text"
