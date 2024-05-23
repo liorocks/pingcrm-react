@@ -9,6 +9,7 @@ import SelectInput from '@/Components/Form/SelectInput';
 import FileInput from '@/Components/Form/FileInput';
 import TrashedMessage from '@/Components/Messages/TrashedMessage';
 import { User } from '@/types';
+import { FieldGroup } from '@/Components/Form/FieldGroup';
 
 const Edit = () => {
   const { user } = usePage<{
@@ -73,57 +74,80 @@ const Edit = () => {
       <div className="max-w-3xl overflow-hidden bg-white rounded shadow">
         <form onSubmit={handleSubmit}>
           <div className="grid gap-8 p-8 lg:grid-cols-2">
-            <TextInput
+            <FieldGroup
               label="First Name"
               name="first_name"
               error={errors.first_name}
-              value={data.first_name}
-              onChange={e => setData('first_name', e.target.value)}
-            />
-            <TextInput
+            >
+              <TextInput
+                name="first_name"
+                error={errors.first_name}
+                value={data.first_name}
+                onChange={e => setData('first_name', e.target.value)}
+              />
+            </FieldGroup>
+            <FieldGroup
               label="Last Name"
               name="last_name"
               error={errors.last_name}
-              value={data.last_name}
-              onChange={e => setData('last_name', e.target.value)}
-            />
-            <TextInput
-              label="Email"
-              name="email"
-              type="email"
-              error={errors.email}
-              value={data.email}
-              onChange={e => setData('email', e.target.value)}
-            />
-            <TextInput
+            >
+              <TextInput
+                name="last_name"
+                error={errors.last_name}
+                value={data.last_name}
+                onChange={e => setData('last_name', e.target.value)}
+              />
+            </FieldGroup>
+
+            <FieldGroup label="Email" name="email" error={errors.email}>
+              <TextInput
+                name="email"
+                type="email"
+                error={errors.email}
+                value={data.email}
+                onChange={e => setData('email', e.target.value)}
+              />
+            </FieldGroup>
+
+            <FieldGroup
               label="Password"
               name="password"
-              type="password"
               error={errors.password}
-              value={data.password}
-              onChange={e => setData('password', e.target.value)}
-            />
-            <SelectInput
-              label="Owner"
-              name="owner"
-              error={errors.owner}
-              value={data.owner}
-              onChange={e => setData('owner', e.target.value)}
-              options={[
-                { value: '1', label: 'Yes' },
-                { value: '0', label: 'No' }
-              ]}
-            />
-            <FileInput
-              label="Photo"
-              name="photo"
-              accept="image/*"
-              error={errors.photo}
-              value={data.photo}
-              onChange={photo => {
-                setData('photo', photo as unknown as string);
-              }}
-            />
+            >
+              <TextInput
+                name="password"
+                type="password"
+                error={errors.password}
+                value={data.password}
+                onChange={e => setData('password', e.target.value)}
+              />
+            </FieldGroup>
+
+            <FieldGroup label="Owner" name="owner" error={errors.owner}>
+              <SelectInput
+                name="owner"
+                error={errors.owner}
+                value={data.owner}
+                onChange={e => setData('owner', e.target.value)}
+                options={[
+                  { value: '1', label: 'Yes' },
+                  { value: '0', label: 'No' }
+                ]}
+              />
+            </FieldGroup>
+
+            <FieldGroup label="Photo" name="photo" error={errors.photo}>
+              <FileInput
+                label="Photo"
+                name="photo"
+                accept="image/*"
+                error={errors.photo}
+                value={data.photo}
+                onChange={photo => {
+                  setData('photo', photo as unknown as string);
+                }}
+              />
+            </FieldGroup>
           </div>
           <div className="flex items-center px-8 py-4 bg-gray-100 border-t border-gray-200">
             {!user.deleted_at && (

@@ -4,6 +4,8 @@ import { usePrevious } from 'react-use';
 import SelectInput from '@/Components/Form/SelectInput';
 import pickBy from 'lodash/pickBy';
 import { ChevronDown } from 'lucide-react';
+import { FieldGroup } from './Form/FieldGroup';
+import TextInput from './Form/TextInput';
 
 export default function SearchFilter() {
   const { filters } = usePage<{
@@ -56,7 +58,7 @@ export default function SearchFilter() {
 
   return (
     <div className="flex items-center w-full max-w-md mr-4">
-      <div className="relative flex w-full bg-white rounded shadow">
+      <div className="relative flex bg-white rounded shadow">
         <div
           style={{ top: '100%' }}
           className={`absolute ${opened ? '' : 'hidden'}`}
@@ -67,29 +69,31 @@ export default function SearchFilter() {
           />
           <div className="relative z-30 w-64 px-4 py-6 mt-2 bg-white rounded shadow-lg space-y-4">
             {filters.hasOwnProperty('role') && (
+              <FieldGroup label="Role" name="role">
+                <SelectInput
+                  name="role"
+                  value={values.role}
+                  onChange={handleChange}
+                  options={[
+                    { value: '', label: '' },
+                    { value: 'user', label: 'User' },
+                    { value: 'owner', label: 'Owner' }
+                  ]}
+                />
+              </FieldGroup>
+            )}
+            <FieldGroup label="Trashed" name="trashed">
               <SelectInput
-                label="Role"
-                name="role"
-                value={values.role}
+                name="trashed"
+                value={values.trashed}
                 onChange={handleChange}
                 options={[
                   { value: '', label: '' },
-                  { value: 'user', label: 'User' },
-                  { value: 'owner', label: 'Owner' }
+                  { value: 'with', label: 'With Trashed' },
+                  { value: 'only', label: 'Only Trashed' }
                 ]}
               />
-            )}
-            <SelectInput
-              label="Trashed"
-              name="trashed"
-              value={values.trashed}
-              onChange={handleChange}
-              options={[
-                { value: '', label: '' },
-                { value: 'with', label: 'With Trashed' },
-                { value: 'only', label: 'Only Trashed' }
-              ]}
-            />
+            </FieldGroup>
           </div>
         </div>
         <button
@@ -101,13 +105,13 @@ export default function SearchFilter() {
             <ChevronDown size={14} strokeWidth={3} className="md:ml-2" />
           </div>
         </button>
-        <input
-          className="relative form-input border-0 w-full px-6 py-3 rounded-r focus:outline-none focus:ring-2 focus:ring-indigo-400"
-          autoComplete="off"
+        <TextInput
           name="search"
+          placeholder="Search…"
+          autoComplete="off"
           value={values.search}
           onChange={handleChange}
-          placeholder="Search…"
+          className="border-0 rounded-l-none focus:ring-2"
         />
       </div>
       <button

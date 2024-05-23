@@ -3,18 +3,11 @@ import { fileSize } from '@/utils';
 import { Omit } from 'lodash';
 
 interface FileInputProps extends Omit<ComponentProps<'input'>, 'onChange'> {
-  label?: string;
   error?: string;
   onChange?: (file: File | null) => void;
 }
 
-export default function FileInput({
-  name,
-  label,
-  accept,
-  error,
-  onChange
-}: FileInputProps) {
+export default function FileInput({ name, error, onChange }: FileInputProps) {
   const fileInput = useRef<HTMLInputElement>(null);
   const [file, setFile] = useState<File | null>(null);
 
@@ -38,43 +31,34 @@ export default function FileInput({
   }
 
   return (
-    <div className="space-y-2">
-      {label && (
-        <label className="block text-gray-800 select-none" htmlFor={name}>
-          {label}:
-        </label>
+    <div
+      className={`form-input w-full focus:outline-none focus:ring-1 focus:ring-indigo-400 focus:border-indigo-400 border-gray-300 rounded p-0 ${
+        error && 'border-red-400 focus:border-red-400 focus:ring-red-400'
+      }`}
+    >
+      <input
+        id={name}
+        ref={fileInput}
+        type="file"
+        className="hidden"
+        onChange={handleChange}
+      />
+      {!file && (
+        <div className="p-2">
+          <BrowseButton text="Browse" onClick={handleBrowse} />
+        </div>
       )}
-      <div
-        className={`form-input w-full focus:outline-none focus:ring-1 focus:ring-indigo-400 focus:border-indigo-400 border-gray-300 rounded p-0 ${
-          error && 'border-red-400 focus:border-red-400 focus:ring-red-400'
-        }`}
-      >
-        <input
-          id={name}
-          ref={fileInput}
-          accept={accept}
-          type="file"
-          className="hidden"
-          onChange={handleChange}
-        />
-        {!file && (
-          <div className="p-2">
-            <BrowseButton text="Browse" onClick={handleBrowse} />
+      {file && (
+        <div className="flex items-center justify-between p-2">
+          <div className="flex-1 pr-1">
+            {file?.name}
+            <span className="ml-1 text-xs text-gray-600">
+              ({fileSize(file?.size)})
+            </span>
           </div>
-        )}
-        {file && (
-          <div className="flex items-center justify-between p-2">
-            <div className="flex-1 pr-1">
-              {file?.name}
-              <span className="ml-1 text-xs text-gray-600">
-                ({fileSize(file?.size)})
-              </span>
-            </div>
-            <BrowseButton text="Remove" onClick={handleRemove} />
-          </div>
-        )}
-      </div>
-      {error && <div className="text-red-500 mt-2 text-sm">{error}</div>}
+          <BrowseButton text="Remove" onClick={handleRemove} />
+        </div>
+      )}
     </div>
   );
 }

@@ -4,6 +4,8 @@ import { useForm } from '@inertiajs/react';
 import Logo from '@/Components/Logo';
 import LoadingButton from '@/Components/Button/LoadingButton';
 import TextInput from '@/Components/Form/TextInput';
+import { FieldGroup } from '@/Components/Form/FieldGroup';
+import { CheckboxInput } from '@/Components/Form/CheckboxInput';
 
 export default function LoginPage() {
   const { data, setData, errors, post, processing } = useForm({
@@ -35,36 +37,38 @@ export default function LoginPage() {
             <h1 className="text-3xl font-bold text-center">Welcome Back!</h1>
             <div className="w-24 mx-auto mt-6 border-b-2" />
             <div className="grid gap-6">
-              <TextInput
-                label="Email"
-                name="email"
-                type="email"
-                error={errors.email}
-                value={data.email}
-                onChange={e => setData('email', e.target.value)}
-              />
-              <TextInput
+              <FieldGroup label="Email" name="email" error={errors.email}>
+                <TextInput
+                  name="email"
+                  type="email"
+                  error={errors.email}
+                  value={data.email}
+                  onChange={e => setData('email', e.target.value)}
+                />
+              </FieldGroup>
+
+              <FieldGroup
                 label="Password"
                 name="password"
-                type="password"
                 error={errors.password}
-                value={data.password}
-                onChange={e => setData('password', e.target.value)}
-              />
-              <label
-                className="flex items-center select-none"
-                htmlFor="remember"
               >
-                <input
+                <TextInput
+                  type="password"
+                  error={errors.password}
+                  value={data.password}
+                  onChange={e => setData('password', e.target.value)}
+                />
+              </FieldGroup>
+
+              <FieldGroup>
+                <CheckboxInput
+                  label="Remember Me"
                   name="remember"
                   id="remember"
-                  className="mr-2 form-checkbox rounded text-indigo-600 focus:ring-indigo-600"
-                  type="checkbox"
                   checked={data.remember}
                   onChange={e => setData('remember', e.target.checked)}
                 />
-                <span className="text-sm">Remember Me</span>
-              </label>
+              </FieldGroup>
             </div>
           </div>
           <div className="flex items-center justify-between px-10 py-4 bg-gray-100 border-t border-gray-200">
