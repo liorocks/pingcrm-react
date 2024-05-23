@@ -168,7 +168,6 @@ const Edit = () => {
 
             <FieldGroup label="Country" name="country" error={errors.country}>
               <SelectInput
-                label="Country"
                 name="country"
                 error={errors.country}
                 value={data.country}
