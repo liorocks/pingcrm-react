@@ -5,7 +5,12 @@ interface FieldGroupProps {
   children: React.ReactNode;
 }
 
-export function FieldGroup({ label, name, error, children }: FieldGroupProps) {
+export default function FieldGroup({
+  label,
+  name,
+  error,
+  children
+}: FieldGroupProps) {
   return (
     <div className="space-y-2">
       {label && (

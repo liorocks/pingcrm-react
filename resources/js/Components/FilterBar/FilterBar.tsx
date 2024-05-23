@@ -4,8 +4,8 @@ import { usePrevious } from 'react-use';
 import SelectInput from '@/Components/Form/SelectInput';
 import pickBy from 'lodash/pickBy';
 import { ChevronDown } from 'lucide-react';
-import { FieldGroup } from '../Form/FieldGroup';
-import TextInput from '../Form/TextInput';
+import FieldGroup from '@/Components/Form/FieldGroup';
+import TextInput from '@/Components/Form/TextInput';
 
 export default function FilterBar() {
   const { filters } = usePage<{

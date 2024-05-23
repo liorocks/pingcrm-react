@@ -4,7 +4,7 @@ import LoadingButton from '@/Components/Button/LoadingButton';
 import TextInput from '@/Components/Form/TextInput';
 import SelectInput from '@/Components/Form/SelectInput';
 import FileInput from '@/Components/Form/FileInput';
-import { FieldGroup } from '@/Components/Form/FieldGroup';
+import FieldGroup from '@/Components/Form/FieldGroup';
 
 const Create = () => {
   const { data, setData, errors, post, processing } = useForm({

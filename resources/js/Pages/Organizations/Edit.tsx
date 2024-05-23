@@ -9,7 +9,7 @@ import SelectInput from '@/Components/Form/SelectInput';
 import TrashedMessage from '@/Components/Messages/TrashedMessage';
 import { Organization } from '@/types';
 import Table from '@/Components/Table/Table';
-import { FieldGroup } from '@/Components/Form/FieldGroup';
+import FieldGroup from '@/Components/Form/FieldGroup';
 
 const Edit = () => {
   const { organization } = usePage<{ organization: Organization }>().props;

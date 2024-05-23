@@ -8,7 +8,7 @@ import TextInput from '@/Components/Form/TextInput';
 import SelectInput from '@/Components/Form/SelectInput';
 import TrashedMessage from '@/Components/Messages/TrashedMessage';
 import { Contact, Organization } from '@/types';
-import { FieldGroup } from '@/Components/Form/FieldGroup';
+import FieldGroup from '@/Components/Form/FieldGroup';
 
 const Edit = () => {
   const { contact, organizations } = usePage<{

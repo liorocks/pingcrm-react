@@ -4,7 +4,7 @@ import LoadingButton from '@/Components/Button/LoadingButton';
 import TextInput from '@/Components/Form/TextInput';
 import SelectInput from '@/Components/Form/SelectInput';
 import { Organization } from '@/types';
-import { FieldGroup } from '@/Components/Form/FieldGroup';
+import FieldGroup from '@/Components/Form/FieldGroup';
 
 const Create = () => {
   const { organizations } = usePage<{ organizations: Organization[] }>().props;

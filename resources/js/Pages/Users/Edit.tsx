@@ -9,7 +9,7 @@ import SelectInput from '@/Components/Form/SelectInput';
 import FileInput from '@/Components/Form/FileInput';
 import TrashedMessage from '@/Components/Messages/TrashedMessage';
 import { User } from '@/types';
-import { FieldGroup } from '@/Components/Form/FieldGroup';
+import FieldGroup from '@/Components/Form/FieldGroup';
 
 const Edit = () => {
   const { user } = usePage<{
