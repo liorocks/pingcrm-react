@@ -75,7 +75,6 @@ const Create = () => {
             <TextInput
               label="Phone"
               name="phone"
-              type="text"
               error={errors.phone}
               value={data.phone}
               onChange={e => setData('phone', e.target.value)}
@@ -83,7 +82,6 @@ const Create = () => {
             <TextInput
               label="Address"
               name="address"
-              type="text"
               error={errors.address}
               value={data.address}
               onChange={e => setData('address', e.target.value)}
@@ -91,7 +89,6 @@ const Create = () => {
             <TextInput
               label="City"
               name="city"
-              type="text"
               error={errors.city}
               value={data.city}
               onChange={e => setData('city', e.target.value)}
@@ -99,7 +96,6 @@ const Create = () => {
             <TextInput
               label="Province/State"
               name="region"
-              type="text"
               error={errors.region}
               value={data.region}
               onChange={e => setData('region', e.target.value)}
@@ -118,7 +114,6 @@ const Create = () => {
             <TextInput
               label="Postal Code"
               name="postal_code"
-              type="text"
               error={errors.postal_code}
               value={data.postal_code}
               onChange={e => setData('postal_code', e.target.value)}
