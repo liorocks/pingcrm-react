@@ -1,11 +1,11 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { usePage, router } from '@inertiajs/react';
 import { usePrevious } from 'react-use';
 import SelectInput from '@/Components/Form/SelectInput';
 import pickBy from 'lodash/pickBy';
 import { ChevronDown } from 'lucide-react';
 
-export default () => {
+export default function SearchFilter() {
   const { filters } = usePage<{
     filters: { role?: string; search?: string; trashed?: string };
   }>().props;
@@ -31,23 +31,24 @@ export default () => {
   useEffect(() => {
     // https://reactjs.org/docs/hooks-faq.html#how-to-get-the-previous-props-or-state
     if (prevValues) {
-      const query = Object.keys(pickBy(values)).length
-        ? pickBy(values)
-        : { remember: 'forget' };
-      router.get(route(route().current()), query, {
+      const query = Object.keys(pickBy(values)).length ? pickBy(values) : {};
+
+      router.get(route(route().current() as string), query, {
         replace: true,
         preserveState: true
       });
     }
   }, [values]);
 
-  function handleChange(e) {
-    const key = e.target.name;
+  function handleChange(
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) {
+    const name = e.target.name;
     const value = e.target.value;
 
     setValues(values => ({
       ...values,
-      [key]: value
+      [name]: value
     }));
 
     if (opened) setOpened(false);
@@ -63,7 +64,7 @@ export default () => {
           <div
             onClick={() => setOpened(false)}
             className="fixed inset-0 z-20 bg-black opacity-25"
-          ></div>
+          />
           <div className="relative z-30 w-64 px-4 py-6 mt-2 bg-white rounded shadow-lg space-y-4">
             {filters.hasOwnProperty('role') && (
               <SelectInput
@@ -119,4 +120,4 @@ export default () => {
       </button>
     </div>
   );
-};
+}
