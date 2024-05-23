@@ -34,7 +34,7 @@ const Create = () => {
         </h1>
       </div>
       <div className="max-w-3xl overflow-hidden bg-white rounded shadow">
-        <form name="createForm" onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
           <div className="grid gap-8 p-8 lg:grid-cols-2">
             <TextInput
               label="First Name"

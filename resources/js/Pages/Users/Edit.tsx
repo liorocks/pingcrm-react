@@ -11,7 +11,9 @@ import TrashedMessage from '@/Components/Messages/TrashedMessage';
 import { User } from '@/types';
 
 const Edit = () => {
-  const { user } = usePage<{ user: User & { password: string } }>().props;
+  const { user } = usePage<{
+    user: User & { password: string; photo: File | null };
+  }>().props;
 
   const { data, setData, errors, post, processing } = useForm({
     first_name: user.first_name || '',
@@ -23,7 +25,7 @@ const Edit = () => {
 
     // NOTE: When working with Laravel PUT/PATCH requests and FormData
     // you SHOULD send POST request and fake the PUT request like this.
-    _method: 'PUT'
+    _method: 'put'
   });
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -118,7 +120,9 @@ const Edit = () => {
               accept="image/*"
               error={errors.photo}
               value={data.photo}
-              onChange={photo => setData('photo', photo)}
+              onChange={photo => {
+                setData('photo', photo as unknown as string);
+              }}
             />
           </div>
           <div className="flex items-center px-8 py-4 bg-gray-100 border-t border-gray-200">

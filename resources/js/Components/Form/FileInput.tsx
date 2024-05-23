@@ -1,13 +1,14 @@
 import React, { useState, useRef, ComponentProps } from 'react';
 import { fileSize } from '@/utils';
+import { Omit } from 'lodash';
 
-interface FileInputProps extends ComponentProps<'input'> {
+interface FileInputProps extends Omit<ComponentProps<'input'>, 'onChange'> {
   label?: string;
   error?: string;
+  onChange?: (file: File | null) => void;
 }
 
 export default function FileInput({
-  className,
   name,
   label,
   accept,
@@ -25,11 +26,13 @@ export default function FileInput({
     setFile(null);
     onChange?.(null);
 
-    fileInput.current.value = null;
+    // fileInput?.current?.value = '';
   }
 
   function handleChange(e: React.FormEvent<HTMLInputElement>) {
-    const file = e.target?.files[0];
+    const files = e.currentTarget?.files as FileList;
+    const file = files[0] || null;
+
     setFile(file);
     onChange?.(file);
   }
