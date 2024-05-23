@@ -1,5 +1,5 @@
 import { Link } from '@inertiajs/react';
-import Layout from '@/Components/Layout';
+import MainLayout from '@/Layouts/MainLayout';
 
 function DashboardPage() {
   return (
@@ -41,7 +41,7 @@ function DashboardPage() {
  * [Learn more](https://inertiajs.com/pages#persistent-layouts)
  */
 DashboardPage.layout = (page: React.ReactNode) => (
-  <Layout title="Dashboard" children={page} />
+  <MainLayout title="Dashboard" children={page} />
 );
 
 export default DashboardPage;

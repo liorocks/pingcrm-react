@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from '@inertiajs/react';
-import Logo from '@/Components/Logo';
+import Logo from '@/Components/Logo/Logo';
 import MainMenu from '@/Components/Menu/MainMenu';
 import { Menu } from 'lucide-react';
 

@@ -4,10 +4,10 @@ import { usePrevious } from 'react-use';
 import SelectInput from '@/Components/Form/SelectInput';
 import pickBy from 'lodash/pickBy';
 import { ChevronDown } from 'lucide-react';
-import { FieldGroup } from './Form/FieldGroup';
-import TextInput from './Form/TextInput';
+import { FieldGroup } from '../Form/FieldGroup';
+import TextInput from '../Form/TextInput';
 
-export default function SearchFilter() {
+export default function FilterBar() {
   const { filters } = usePage<{
     filters: { role?: string; search?: string; trashed?: string };
   }>().props;

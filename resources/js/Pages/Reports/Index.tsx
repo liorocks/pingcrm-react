@@ -1,4 +1,4 @@
-import Layout from '@/Components/Layout';
+import MainLayout from '@/Layouts/MainLayout';
 
 function ReportsPage() {
   return (
@@ -15,7 +15,7 @@ function ReportsPage() {
  * [Learn more](https://inertiajs.com/pages#persistent-layouts)
  */
 ReportsPage.layout = (page: React.ReactNode) => (
-  <Layout title="Reports" children={page} />
+  <MainLayout title="Reports" children={page} />
 );
 
 export default ReportsPage;

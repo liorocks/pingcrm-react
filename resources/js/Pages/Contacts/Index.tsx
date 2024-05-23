@@ -1,7 +1,7 @@
 import { Link, usePage } from '@inertiajs/react';
-import Layout from '@/Components/Layout';
-import Pagination from '@/Components/Pagination';
-import SearchFilter from '@/Components/SearchFilter';
+import MainLayout from '@/Layouts/MainLayout';
+import Pagination from '@/Components/Pagination/Pagination';
+import FilterBar from '@/Components/FilterBar/FilterBar';
 import { Contact, PaginatedData } from '@/types';
 import Table from '@/Components/Table/Table';
 import { Trash2 } from 'lucide-react';
@@ -20,7 +20,7 @@ const Index = () => {
     <div>
       <h1 className="mb-8 text-3xl font-bold">Contacts</h1>
       <div className="flex items-center justify-between mb-6">
-        <SearchFilter />
+        <FilterBar />
         <Link
           className="btn-indigo focus:outline-none"
           href={route('contacts.create')}
@@ -61,7 +61,7 @@ const Index = () => {
  * [Learn more](https://inertiajs.com/pages#persistent-layouts)
  */
 Index.layout = (page: React.ReactNode) => (
-  <Layout title="Contacts" children={page} />
+  <MainLayout title="Contacts" children={page} />
 );
 
 export default Index;

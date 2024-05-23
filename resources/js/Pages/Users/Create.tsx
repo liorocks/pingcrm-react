@@ -1,5 +1,5 @@
 import { Link, useForm } from '@inertiajs/react';
-import Layout from '@/Components/Layout';
+import MainLayout from '@/Layouts/MainLayout';
 import LoadingButton from '@/Components/Button/LoadingButton';
 import TextInput from '@/Components/Form/TextInput';
 import SelectInput from '@/Components/Form/SelectInput';
@@ -131,7 +131,7 @@ const Create = () => {
  * [Learn more](https://inertiajs.com/pages#persistent-layouts)
  */
 Create.layout = (page: React.ReactNode) => (
-  <Layout title="Create User" children={page} />
+  <MainLayout title="Create User" children={page} />
 );
 
 export default Create;

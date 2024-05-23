@@ -1,7 +1,7 @@
 import React from 'react';
 import { Head } from '@inertiajs/react';
 import { useForm } from '@inertiajs/react';
-import Logo from '@/Components/Logo';
+import Logo from '@/Components/Logo/Logo';
 import LoadingButton from '@/Components/Button/LoadingButton';
 import TextInput from '@/Components/Form/TextInput';
 import { FieldGroup } from '@/Components/Form/FieldGroup';

@@ -4,12 +4,12 @@ import FlashMessages from '@/Components/Messages/FlashMessages';
 import TopHeader from '@/Components/Header/TopHeader';
 import BottomHeader from '@/Components/Header/BottomHeader';
 
-interface LayoutProps {
+interface MainLayoutProps {
   title?: string;
   children: React.ReactNode;
 }
 
-export default function Layout({ title, children }: LayoutProps) {
+export default function MainLayout({ title, children }: MainLayoutProps) {
   return (
     <>
       <Head title={title} />
@@ -21,7 +21,12 @@ export default function Layout({ title, children }: LayoutProps) {
           </div>
           <div className="flex flex-grow overflow-hidden">
             <MainMenu className="flex-shrink-0 hidden w-56 p-12 overflow-y-auto bg-indigo-800 md:block" />
-            {/* To reset scroll region (https://inertiajs.com/pages#scroll-regions) add `scroll-region="true"` to div below */}
+            {/**
+             * We need to scroll the content of the page, not the whole page.
+             * So we need to add `scroll-region="true"` to the div below.
+             *
+             * [Read more](https://inertiajs.com/pages#scroll-regions)
+             */}
             <div
               className="w-full px-4 py-8 overflow-hidden overflow-y-auto md:p-12"
               scroll-region="true"
