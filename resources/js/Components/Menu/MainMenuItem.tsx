@@ -11,8 +11,8 @@ export default function MainMenuItem({ icon, link, text }: MainMenuItemProps) {
   const isActive = route().current(link + '*');
 
   const iconClasses = classNames({
-    'text-white fill-current': isActive,
-    'text-indigo-400 group-hover:text-white fill-current': !isActive
+    'text-white': isActive,
+    'text-indigo-400 group-hover:text-white': !isActive
   });
 
   const textClasses = classNames({
