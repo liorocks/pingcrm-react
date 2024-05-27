@@ -60,9 +60,10 @@ const Edit = () => {
         {data.first_name} {data.last_name}
       </h1>
       {contact.deleted_at && (
-        <TrashedMessage onRestore={restore}>
-          This contact has been deleted.
-        </TrashedMessage>
+        <TrashedMessage
+          message="This contact has been deleted."
+          onRestore={restore}
+        />
       )}
       <div className="max-w-3xl overflow-hidden bg-white rounded shadow">
         <form onSubmit={handleSubmit}>

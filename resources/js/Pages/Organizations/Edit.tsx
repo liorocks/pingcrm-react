@@ -55,9 +55,10 @@ const Edit = () => {
         {data.name}
       </h1>
       {organization.deleted_at && (
-        <TrashedMessage onRestore={restore}>
-          This organization has been deleted.
-        </TrashedMessage>
+        <TrashedMessage
+          message="This organization has been deleted."
+          onRestore={restore}
+        />
       )}
       <div className="max-w-3xl overflow-hidden bg-white rounded shadow">
         <form onSubmit={handleSubmit}>

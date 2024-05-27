@@ -67,9 +67,10 @@ const Edit = () => {
         )}
       </div>
       {user.deleted_at && (
-        <TrashedMessage onRestore={restore}>
-          This user has been deleted.
-        </TrashedMessage>
+        <TrashedMessage
+          message="This user has been deleted."
+          onRestore={restore}
+        />
       )}
       <div className="max-w-3xl overflow-hidden bg-white rounded shadow">
         <form onSubmit={handleSubmit}>
@@ -138,7 +139,6 @@ const Edit = () => {
 
             <FieldGroup label="Photo" name="photo" error={errors.photo}>
               <FileInput
-                label="Photo"
                 name="photo"
                 accept="image/*"
                 error={errors.photo}
