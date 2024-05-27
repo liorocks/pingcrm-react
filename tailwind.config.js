@@ -1,7 +1,7 @@
 import defaultTheme from 'tailwindcss/defaultTheme';
 
 export default {
-  content: ['./resources/**/*.{js,jsx,blade.php}'],
+  content: ['./resources/**/*.{js,jsx,ts,tsx,blade.php}'],
   theme: {
     extend: {
       colors: {
@@ -19,5 +19,9 @@ export default {
         sans: ['"Cerebri Sans"', ...defaultTheme.fontFamily.sans]
       }
     }
-  }
+  },
+  plugins: [
+    require('@tailwindcss/forms')
+    // ...
+  ]
 };

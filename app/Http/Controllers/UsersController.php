@@ -38,9 +38,15 @@ class UsersController extends Controller
 
     public function store(UserStoreRequest $request): RedirectResponse
     {
-        Auth::user()->account->users()->create(
+        $user = Auth::user()->account->users()->create(
             $request->validated()
         );
+
+        if ($request->hasFile('photo')) {
+            $user->update([
+                'photo' => $request->file('photo')->store('users'),
+            ]);
+        }
 
         return Redirect::route('users')->with('success', 'User created.');
     }
@@ -57,6 +63,12 @@ class UsersController extends Controller
         $user->update(
             $request->validated()
         );
+
+        if ($request->hasFile('photo')) {
+            $user->update([
+                'photo' => $request->file('photo')->store('users'),
+            ]);
+        }
 
         return Redirect::back()->with('success', 'User updated.');
     }
