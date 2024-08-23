@@ -54,9 +54,9 @@ const Create = () => {
             </FieldGroup>
 
             <FieldGroup
-              label="First Name"
-              name="first_name"
-              error={errors.first_name}
+              label="Last Name"
+              name="last_name"
+              error={errors.last_name}
             >
               <TextInput
                 name="last_name"
