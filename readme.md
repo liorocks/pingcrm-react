@@ -33,7 +33,13 @@ Build assets:
 npm run dev
 ```
 
-Setup configuration:
+Setup MySQL configuration:
+
+```sh
+cp .env.mysql .env
+```
+
+Or Setup SQLite configuration:
 
 ```sh
 cp .env.example .env
