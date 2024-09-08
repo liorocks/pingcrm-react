@@ -150,9 +150,11 @@ const Edit = () => {
             </FieldGroup>
           </div>
           <div className="flex items-center px-8 py-4 bg-gray-100 border-t border-gray-200">
+            {/* 
             {!user.deleted_at && (
               <DeleteButton onDelete={destroy}>Delete User</DeleteButton>
             )}
+            */}
             <LoadingButton
               loading={processing}
               type="submit"

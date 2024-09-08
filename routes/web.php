@@ -34,13 +34,14 @@ Route::delete('logout', [LoginController::class, 'destroy'])
     ->name('logout');
 
 // Dashboard
-
 Route::get('/', [DashboardController::class, 'index'])
     ->name('dashboard')
     ->middleware('auth');
 
-// Users
+Route::get('404', [DashboardController::class, 'fourZeroFour'])
+    ->name('404');
 
+// Users
 Route::get('users', [UsersController::class, 'index'])
     ->name('users')
     ->middleware('auth');
