@@ -11,7 +11,7 @@ A demo application to illustrate how [Inertia.js](https://inertiajs.com/) works 
 Clone the repo locally:
 
 ```sh
-git clone https://github.com/liorocks/pingcrm-react.git
+git clone https://github.com/Harun1302123/pingcrm-react.git
 cd pingcrm-react
 ```
 
