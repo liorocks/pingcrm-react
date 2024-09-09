@@ -23,8 +23,7 @@ use Illuminate\Support\Facades\Route;
 // Auth
 
 Route::get('login', [LoginController::class, 'create'])
-    ->name('login')
-    ->middleware('guest');
+    ->name('login');
 
 Route::post('login', [LoginController::class, 'store'])
     ->name('login.store')
@@ -33,13 +32,19 @@ Route::post('login', [LoginController::class, 'store'])
 Route::delete('logout', [LoginController::class, 'destroy'])
     ->name('logout');
 
-// Dashboard
+Route::get('forget-password', [LoginController::class, 'forgetPassword'])->name('forget-password');
+Route::post('forget-password', [LoginController::class, 'forgetPasswordStore'])->name('forget-password.store');
 
+// Dashboard
 Route::get('/', [DashboardController::class, 'index'])
     ->name('dashboard')
     ->middleware('auth');
 
+Route::get('404', [DashboardController::class, 'fourZeroFour'])
+    ->name('404');
+
 // Users
+Route::get('users/{user}/profileinfo', [UsersController::class, 'profileInfo'])->name('users.profileinfo')->middleware('auth');
 
 Route::get('users', [UsersController::class, 'index'])
     ->name('users')

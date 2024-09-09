@@ -11,4 +11,9 @@ class DashboardController extends Controller
     {
         return Inertia::render('Dashboard/Index');
     }
+    
+    public function fourZeroFour(): Response
+    {
+        return Inertia::render('404');
+    }
 }

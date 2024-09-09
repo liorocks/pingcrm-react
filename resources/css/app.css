@@ -1,5 +1,6 @@
 /* @import 'components/form'; */
 @import 'components/button';
+@import 'bootstrap/dist/css/bootstrap.min.css';
 
 @tailwind base;
 @tailwind components;

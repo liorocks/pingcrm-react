@@ -53,13 +53,7 @@ const Edit = () => {
       <Head title={`${data.first_name} ${data.last_name}`} />
       <div className="flex justify-start max-w-lg mb-8">
         <h1 className="text-3xl font-bold">
-          <Link
-            href={route('users')}
-            className="text-indigo-600 hover:text-indigo-700"
-          >
-            Users
-          </Link>
-          <span className="mx-2 font-medium text-indigo-600">/</span>
+          <span className="mx-2 font-medium text-indigo-600">User Info of</span>
           {data.first_name} {data.last_name}
         </h1>
         {user.photo && (
@@ -110,20 +104,6 @@ const Edit = () => {
               />
             </FieldGroup>
 
-            <FieldGroup
-              label="Password"
-              name="password"
-              error={errors.password}
-            >
-              <TextInput
-                name="password"
-                type="password"
-                error={errors.password}
-                value={data.password}
-                onChange={e => setData('password', e.target.value)}
-              />
-            </FieldGroup>
-
             <FieldGroup label="Owner" name="owner" error={errors.owner}>
               <SelectInput
                 name="owner"
@@ -150,9 +130,11 @@ const Edit = () => {
             </FieldGroup>
           </div>
           <div className="flex items-center px-8 py-4 bg-gray-100 border-t border-gray-200">
+            {/* 
             {!user.deleted_at && (
               <DeleteButton onDelete={destroy}>Delete User</DeleteButton>
             )}
+            */}
             <LoadingButton
               loading={processing}
               type="submit"
