@@ -86,4 +86,9 @@ class UsersController extends Controller
 
         return Redirect::back()->with('success', 'User restored.');
     }
+
+    public function profileInfo(): Response
+    {
+        return Inertia::render('Users/ProfileInfo');
+    }
 }

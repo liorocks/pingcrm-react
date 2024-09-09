@@ -5,10 +5,8 @@ import Logo from '@/Components/Logo/Logo';
 import LoadingButton from '@/Components/Button/LoadingButton';
 import TextInput from '@/Components/Form/TextInput';
 import FieldGroup from '@/Components/Form/FieldGroup';
-import { CheckboxInput } from '@/Components/Form/CheckboxInput';
-import FlashedMessages from '@/Components/Messages/FlashMessages';
 
-export default function LoginPage() {
+export default function ForgotPassword() {
   const { data, setData, errors, post, processing } = useForm({
     email: 'johndoe@example.com',
     password: 'secret',
@@ -18,7 +16,7 @@ export default function LoginPage() {
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    post(route('login.store'));
+    post(route('forget-password.store'));
   }
 
   return (
@@ -26,9 +24,6 @@ export default function LoginPage() {
       <Head title="Login" />
 
       <div className="w-full max-w-md">
-        
-        <FlashedMessages />
-        
         <Logo
           className="block w-full max-w-xs mx-auto text-white fill-current"
           height={50}
@@ -38,7 +33,7 @@ export default function LoginPage() {
           className="mt-8 overflow-hidden bg-white rounded-lg shadow-xl"
         >
           <div className="px-10 py-12">
-            <h1 className="text-3xl font-bold text-center">Welcome Back!</h1>
+            <h1 className="text-3xl font-bold text-center">Forgot Password</h1>
             <div className="w-24 mx-auto mt-6 border-b-2" />
             <div className="grid gap-6">
               <FieldGroup label="Email" name="email" error={errors.email}>
@@ -51,40 +46,15 @@ export default function LoginPage() {
                 />
               </FieldGroup>
 
-              <FieldGroup
-                label="Password"
-                name="password"
-                error={errors.password}
-              >
-                <TextInput
-                  type="password"
-                  error={errors.password}
-                  value={data.password}
-                  onChange={e => setData('password', e.target.value)}
-                />
-              </FieldGroup>
-
-              <FieldGroup>
-                <CheckboxInput
-                  label="Remember Me"
-                  name="remember"
-                  id="remember"
-                  checked={data.remember}
-                  onChange={e => setData('remember', e.target.checked)}
-                />
-              </FieldGroup>
             </div>
           </div>
           <div className="flex items-center justify-between px-10 py-4 bg-gray-100 border-t border-gray-200">
-            <a className="hover:underline" tabIndex={-1} href={route('forget-password')}>
-              Forgot password?
-            </a>
             <LoadingButton
               type="submit"
               loading={processing}
               className="btn-indigo"
             >
-              Login
+              Submit
             </LoadingButton>
           </div>
         </form>
