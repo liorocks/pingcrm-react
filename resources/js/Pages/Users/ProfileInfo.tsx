@@ -1,22 +1,30 @@
-import MainLayout from '@/Layouts/MainLayout';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
+import React from 'react';
+import MainLayout from '@/Layouts/MainLayout';
+import Edit from '../Users/Edit';
+import ChangePassword from './ChangePassword';
 
 
-function ProfileInfo() {
+// function ProfileInfo() {
+const ProfileInfo = () => {
+  
+
+
   return (
     <div>
-      <h1 className="mb-8 text-3xl font-bold">ProfileInfo</h1>
       <Tabs
           defaultActiveKey="profile"
           id="uncontrolled-tab-example"
           className="mb-3"
         >
-        <Tab eventKey="home" title="Home">
-          Tab content for Home
-        </Tab>
+        
         <Tab eventKey="profile" title="Profile">
-          Tab content for Profile
+          <Edit />
+        </Tab>
+        
+        <Tab eventKey="change-password" title="Change Password">
+          <ChangePassword />
         </Tab>
     </Tabs>
     </div>

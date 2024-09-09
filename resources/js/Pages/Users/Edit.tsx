@@ -53,13 +53,7 @@ const Edit = () => {
       <Head title={`${data.first_name} ${data.last_name}`} />
       <div className="flex justify-start max-w-lg mb-8">
         <h1 className="text-3xl font-bold">
-          <Link
-            href={route('users')}
-            className="text-indigo-600 hover:text-indigo-700"
-          >
-            Users
-          </Link>
-          <span className="mx-2 font-medium text-indigo-600">/</span>
+          <span className="mx-2 font-medium text-indigo-600">User Info of</span>
           {data.first_name} {data.last_name}
         </h1>
         {user.photo && (
@@ -107,20 +101,6 @@ const Edit = () => {
                 error={errors.email}
                 value={data.email}
                 onChange={e => setData('email', e.target.value)}
-              />
-            </FieldGroup>
-
-            <FieldGroup
-              label="Password"
-              name="password"
-              error={errors.password}
-            >
-              <TextInput
-                name="password"
-                type="password"
-                error={errors.password}
-                value={data.password}
-                onChange={e => setData('password', e.target.value)}
               />
             </FieldGroup>
 

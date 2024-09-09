@@ -44,7 +44,7 @@ Route::get('404', [DashboardController::class, 'fourZeroFour'])
     ->name('404');
 
 // Users
-Route::get('users/profileinfo', [UsersController::class, 'profileInfo'])->name('users.profileinfo')->middleware('auth');
+Route::get('users/{user}/profileinfo', [UsersController::class, 'profileInfo'])->name('users.profileinfo')->middleware('auth');
 
 Route::get('users', [UsersController::class, 'index'])
     ->name('users')

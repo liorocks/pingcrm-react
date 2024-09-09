@@ -13,6 +13,11 @@ export default function MainMenu({ className }: MainMenuProps) {
         link="dashboard"
         icon={<CircleGauge size={20} />}
       />
+       <MainMenuItem
+        text="Users"
+        link="users"
+        icon={<Users size={20} />}
+      />
       <MainMenuItem
         text="Organizations"
         link="organizations"
