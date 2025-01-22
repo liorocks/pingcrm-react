@@ -31,6 +31,6 @@
     "laravel-vite-plugin": "^1.0.4",
     "postcss": "^8.4.21",
     "typescript": "^5.4.5",
-    "vite": "^5.4.6"
+    "vite": "^5.4.14"
   }
 }
